@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('main-content')
-    DASHBOARD
+    Service index
 @endsection

@@ -1,0 +1,5 @@
+@section('aside')
+
+    ASIDE
+
+@endsection
