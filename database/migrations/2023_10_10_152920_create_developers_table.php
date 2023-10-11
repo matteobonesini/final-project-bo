@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name', 64);
             $table->string('lastname', 64);
             $table->string('email', 255);
-            $table->string('workfield', 64);
-            $table->unsignedTinyInteger('year_experience')->nullable();
+            $table->unsignedTinyInteger('experience_year')->nullable();
             $table->string('curriculum', 255)->nullable();
             $table->string('profile_picture', 255)->nullable();
             $table->string('address', 64)->nullable();
