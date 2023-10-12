@@ -16,13 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('developer_id');
             $table->foreign('developer_id')
                 ->references('id')
+                ->after('id')
                 ->on('developers')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('customer_name', 64);
             $table->text('description', 2048)->nullable();
-            $table->unsignedSmallInteger('vote');
-            $table->string('service', 64);
             $table->timestamps();
         });
     }

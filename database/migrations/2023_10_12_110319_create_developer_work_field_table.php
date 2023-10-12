@@ -11,20 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
+
+
+        Schema::create('developer_work_field', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('developer_id');
-            $table->string('name', 255);
-            $table->string('title', 64);
-            $table->text('content');
-            $table->string('email', 255);
+
+            $table->unsignedBigInteger("developer_id")->nullable();
             $table->foreign('developer_id')
                 ->references('id')
-                ->after('id')
                 ->on('developers')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            //$table->string('attachments', 255)->nullable();
+
+            $table->unsignedBigInteger("work_field_id")->nullable();
+            $table->foreign('work_field_id')
+                ->references('id')
+                ->on('work_field')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+
             $table->timestamps();
         });
     }
@@ -34,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('developer_work_field');
     }
 };

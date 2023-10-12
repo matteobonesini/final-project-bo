@@ -11,20 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('developer_sponsorship', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('developer_id');
-            $table->string('name', 255);
-            $table->string('title', 64);
-            $table->text('content');
-            $table->string('email', 255);
+
+            $table->unsignedBigInteger("developer_id");
             $table->foreign('developer_id')
                 ->references('id')
-                ->after('id')
                 ->on('developers')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            //$table->string('attachments', 255)->nullable();
+
+            $table->unsignedBigInteger("sponsorship_id");
+            $table->foreign('sponsorship_id')
+                ->references('id')
+                ->on('sponsorships')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            
+            $table->dateTime("start_date");
+            $table->dateTime("expire_date");
+
+
             $table->timestamps();
         });
     }
@@ -34,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('developer_sponsorship');
     }
 };
