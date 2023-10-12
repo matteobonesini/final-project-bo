@@ -26,7 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger("work_field_id")->nullable();
             $table->foreign('work_field_id')
                 ->references('id')
-                ->on('work_field')
+                ->on('work_fields')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
