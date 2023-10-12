@@ -58,7 +58,8 @@ class DeveloperController extends Controller
      */
     public function show(Developer $developer)
     {
-        return view('developer.show', compact('developer'));
+         return view('developer.show', compact('developer'));
+        // return response()->json($developer);
     }
 
     /**
