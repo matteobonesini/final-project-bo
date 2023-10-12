@@ -20,11 +20,15 @@ class Developer extends Model
     ];
 
     protected $appends = [
-        'full_img_src'
+        'full_profile_picture_src'
     ];
 
     public function getFullImgSrcAttribute() {
-        return asset('storage/' . $this->img_src);
+        return asset('storage/' . $this->profile_picture);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
     public function messages() {
