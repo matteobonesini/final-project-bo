@@ -22,7 +22,8 @@ class StoreReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required, min:3, max:64, alpha:ascii',
+            'description' => 'required, min:10, max:2048, alpha_num:ascii'
         ];
     }
 }
