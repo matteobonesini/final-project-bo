@@ -25,6 +25,7 @@ class DeveloperSeeder extends Seeder
 
         for ($i=0; $i < 10; $i++) { 
             $developer = new Developer();
+            $developer->user_id = $i+1;
             $developer->experience_year = rand(0, 20);
             $developer->address = fake()->streetAddress;
             $developer->profile_picture =  $imgs[$i];
