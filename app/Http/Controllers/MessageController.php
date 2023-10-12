@@ -6,6 +6,9 @@ use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 
+//Controllers
+use App\Http\Controllers\DeveloperController;
+
 class MessageController extends Controller
 {
     /**
@@ -13,7 +16,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::all();
+        return view('dashboard.messages');
     }
 
     /**
@@ -29,7 +33,9 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request)
     {
-        //
+        $formData = $request->validated();
+        $message = Message::create($formData);
+        $message->save();
     }
 
     /**
