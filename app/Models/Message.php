@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'title',
+        'content',
+        'email',
+    ];
+
+    // Relation
+    
+    public function developers()
+    {
+        return $this->hasMany(Developer::class);
+    }
 }
