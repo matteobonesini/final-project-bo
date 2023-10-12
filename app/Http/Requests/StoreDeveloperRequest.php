@@ -22,7 +22,13 @@ class StoreDeveloperRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => 'nullable|existes:users,id',
+            'experience_year' => 'nullable',
+            'curriculum' => 'nullable|max:255',
+            'profile_picture' => 'nullable|max:255',
+            'profile_description' => 'required',
+            'address' => 'nullable|max:64',
+            'phone_number' => 'nullable|max:20',
         ];
     }
 }

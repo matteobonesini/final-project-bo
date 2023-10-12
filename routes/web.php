@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -24,5 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
+    Route::resource('developer', DeveloperController::class);
+});
 
 require __DIR__.'/auth.php';
