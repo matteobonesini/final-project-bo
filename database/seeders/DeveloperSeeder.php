@@ -33,9 +33,5 @@ class DeveloperSeeder extends Seeder
             $developer->phone_number = rand(3000000001, 3999999999);
             $developer->save();
         }
-        
-        
-
-
     }
 }
