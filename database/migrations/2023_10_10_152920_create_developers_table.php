@@ -13,17 +13,21 @@ return new class extends Migration
     {
         Schema::create('developers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64);
-            $table->string('lastname', 64);
-            $table->string('email', 255);
+            $table->unsignedBigInteger("user_id")->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->after('id')
+                ->on('users')
+
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->unsignedTinyInteger('experience_year')->nullable();
             $table->string('curriculum', 255)->nullable();
             $table->string('profile_picture', 255)->nullable();
+            $table->text('profile_description');
             $table->string('address', 64)->nullable();
-            $table->text('profile_resume')->nullable();
-            $table->boolean('sponsored')->default(false);
-            $table->date('sponsored_end_date')->nullable();
-            $table->string('phone_number', 10)->nullable();
+            $table->string('phone_number', 20)->nullable();
             $table->timestamps();
         });
     }

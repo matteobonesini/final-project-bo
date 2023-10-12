@@ -2,7 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--primary);
+}
+
+:root {
     --text: #080a0c;
     --background: #ffffff;
     --primary: #1dbf73;
@@ -16,52 +29,51 @@
     --dark-secondary: #26292c;
     --dark-accent: #7c8fa2;
     --dark-tertiary: #166534;
-
 }
 
-.btn-primary{
-    -webkit-box-shadow: 5px 5px 15px 0px #5d7083; 
+.btn-primary {
+    -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
     box-shadow: 5px 5px 15px 0px #5d7083;
 }
-.btn-primary:hover{
-    -webkit-box-shadow: 0px 0px 15px 0px #40e297; 
+.btn-primary:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px #40e297;
     box-shadow: 0px 0px 15px 0px #40e297;
 }
 
-.btn-secondary{
-    -webkit-box-shadow: 5px 5px 15px 0px #5d7083; 
+.btn-secondary {
+    -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
     box-shadow: 5px 5px 15px 0px #5d7083;
 }
-.btn-secondary:hover{
-    -webkit-box-shadow: 0px 0px 15px 0px var(--primary); 
+.btn-secondary:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px var(--primary);
     box-shadow: 0px 0px 15px 0px var(--primary);
 }
 
-.btn-accent{
-    -webkit-box-shadow: 5px 5px 15px 0px #5d7083; 
+.btn-accent {
+    -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
     box-shadow: 5px 5px 15px 0px #5d7083;
 }
-.btn-accent:hover{
-    -webkit-box-shadow: 0px 0px 15px 0px #7c8fa2; 
+.btn-accent:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px #7c8fa2;
     box-shadow: 0px 0px 15px 0px #7c8fa2;
 }
 
 @layer components {
-
-    /* BUTTONS */
-    .btn-primary{
-        @apply  bg-[--primary] py-2 px-6 rounded-xl text-[--dark-text] transition-all
+    .btn-primary {
+        @apply bg-[--primary] py-2 px-6 rounded-xl text-[--dark-text] transition-all;
     }
-    .btn-primary:hover, .btn-secondary:hover, .btn-accent:hover{
-        @apply scale-110
-    }
-
-    .btn-secondary{
-        @apply  bg-[--tertiary] py-2 px-6 rounded-xl text-[--dark-text] transition-all
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-accent:hover {
+        @apply scale-110;
     }
 
-    .btn-accent{
-        @apply  bg-[--accent] py-2 px-6 rounded-xl text-[--dark-text] transition-all
+    .btn-secondary {
+        @apply bg-[--tertiary] py-2 px-6 rounded-xl text-[--dark-text] transition-all;
+    }
+
+    .btn-accent {
+        @apply bg-[--accent] py-2 px-6 rounded-xl text-[--dark-text] transition-all;
     }
     
     /* FORM */
@@ -73,29 +85,27 @@
         @apply flex gap-1 peer-focus:font-medium absolute text-sm dark:text-[--dark-text] text-[--text] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[--text] peer-focus:dark:text-[--dark-text] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6
     }
 
-    .form-row{
-        @apply relative z-0 w-full mb-6
+    .form-row {
+        @apply relative z-0 w-full mb-6;
     }
 
-    .form-primary{
-        @apply dark:bg-[--dark-secondary] bg-[--secondary] m-5 p-5 rounded-2xl
+    .form-primary {
+        @apply dark:bg-[--dark-secondary] bg-[--secondary] m-5 p-5 rounded-2xl;
     }
      
     /* CHECKBOX */
     .checkbox{
         @apply w-4 h-4 text-[--tertiary] bg-gray-100 border-gray-300 rounded focus:ring-[--tertiary] dark:focus:ring-[--tertiary] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600
     }
-
-    .checkbox-label{
-        @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300
+    .checkbox-label {
+        @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300;
     }
 
     /* SELECT */
     .select-label{
         @apply block mb-2 text-sm font-medium text-[--text] dark:text-[--dark-text]
     }
-
-    .select{
-        @apply bg-gray-50 border border-gray-300 text-[--text] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[--accent] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[--dark-text] dark:focus:ring-slate-200 dark:focus:border-slate-200
+    .select {
+        @apply bg-gray-50 border border-gray-300 text-[--text] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[--accent] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[--dark-text] dark:focus:ring-slate-200 dark:focus:border-slate-200;
     }
 }
