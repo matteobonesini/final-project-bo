@@ -19,6 +19,14 @@ class Developer extends Model
         'phone_number'
     ];
 
+    protected $appends = [
+        'full_img_src'
+    ];
+
+    public function getFullImgSrcAttribute() {
+        return asset('storage/' . $this->img_src);
+    }
+
     public function messages() {
         return $this->belongsTo(Message::class);
     }
