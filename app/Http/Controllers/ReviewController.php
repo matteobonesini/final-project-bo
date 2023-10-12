@@ -13,7 +13,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::all();
+        return view ('reviews');
     }
 
     /**
@@ -29,7 +30,9 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        $formData = $request->validated();
+        $review = Review::create($formData);
+        $review->save();
     }
 
     /**
