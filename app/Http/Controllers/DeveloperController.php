@@ -6,6 +6,7 @@ use App\Models\Developer;
 use App\Http\Requests\StoreDeveloperRequest;
 use App\Http\Requests\UpdateDeveloperRequest;
 use App\Models\Sponsorship;
+use App\Models\Vote;
 use App\Models\WorkField;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -65,7 +66,16 @@ class DeveloperController extends Controller
     public function show(Developer $developer)
     {
         if(Auth::id() === $developer->id){
-            return view('developer.show', compact('developer'));
+            $voteArr = [];
+            foreach ($developer->votes as $vote) {
+                $voteArr[] = $vote->value;
+            }
+            if (count($voteArr) != 0) {
+                $avgVote =  array_sum($voteArr)/count($voteArr);
+            } else {
+                $avgVote = 0;
+            }
+            return view('developer.show', compact('developer', 'avgVote'));
         } else {
             abort(404);
         }

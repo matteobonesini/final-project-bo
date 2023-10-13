@@ -29,6 +29,8 @@ class UpdateDeveloperRequest extends FormRequest
             'profile_description' => 'required',
             'address' => 'nullable|max:64',
             'phone_number' => 'nullable|max:20',
+            'remove_profile_picture' => 'nullable',
+            'remove_curriculum' => 'nullable'
         ];
     }
 }

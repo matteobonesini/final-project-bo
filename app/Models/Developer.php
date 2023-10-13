@@ -19,11 +19,16 @@ class Developer extends Model
     ];
 
     protected $appends = [
-        'full_img_src'
+        'full_img_src',
+        'full_cv_src'
     ];
 
     public function getFullImgSrcAttribute() {
         return asset('storage/' . $this->profile_picture);
+    }
+
+    public function getFullCvSrcAttribute() {
+        return asset('storage/' . $this->curriculum);
     }
 
     public function user() {

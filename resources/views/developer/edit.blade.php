@@ -26,13 +26,14 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" />
                         </svg>
-                        <label for="curriculum" >Anni di Esperienza</label>
+                        <label for="curriculum" >Curriculum</label>
                     </div>
                     @if ($developer->curriculum)
+                        <a class="block underline w-full text-center my-5" href="{{ $developer->full_cv_src }}">See Curriculum Pdf</a>
                         <div class="form-check">
                             <input class="checkbox" type="checkbox" value="1" name="remove_curriculum" id="remove_curriculum">
                             <label class="checkbox-label" for="remove_curriculum">
-                                Rimuovi immagine
+                                Remove Curriculum
                             </label>
                         </div>
                     @endif
@@ -45,16 +46,16 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" />
                         </svg>
-                        <label for="profile_picture" >Anni di Esperienza</label>
+                        <label for="profile_picture" >Profile Picture</label>
                     </div>
                     @if ($developer->profile_picture)
-                        <div>
-                            <img src="{{ $developer->full_img_src }}" class="w-50" alt="{{ $developer->user->name }}">
+                        <div class="my-5">
+                            <img class="rounded-lg w-32 object-cover" src="{{ $developer->full_img_src }}" class="w-50" alt="{{ $developer->user->name }}">
                         </div>
                         <div class="form-check">
-                            <input class="checkbox" type="checkbox" value="1" name="remove_profile_picture" id="remove_profile_picture">
+                            <input class="checkbox" type="checkbox" name="remove_profile_picture" id="remove_profile_picture" value="remove">
                             <label class="checkbox-label" for="remove_profile_picture">
-                                Rimuovi immagine
+                                Remove Profile Picture
                             </label>
                         </div>
                     @endif
@@ -62,7 +63,7 @@
                 
                 {{-- Profile Description --}}
                 <div class="form-row">
-                    <textarea id="profile_description" name="profile_description" class="form-input peer" rows="4" cols="50">{{ old('profile_description', $developer->profile_description) }}"</textarea>
+                    <textarea id="profile_description" name="profile_description" class="form-input peer" rows="4" cols="50">{{ old('profile_description', $developer->profile_description) }}</textarea>
                     <div class="form-label-input">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" d="M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 10-2.636 6.364M16.5 12V8.25" />
