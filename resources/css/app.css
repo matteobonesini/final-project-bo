@@ -18,6 +18,7 @@
 :root {
     --text: #080a0c;
     --background: #ffffff;
+    --bg-secondary: rgb(111, 126, 148);
     --primary: #1dbf73;
     --secondary: #d3d6d9;
     --accent: #5d7083;
@@ -25,6 +26,7 @@
 
     --dark-text: #f3f5f7;
     --dark-background: #000000;
+    --dark-bg-secondary: #4b5563;
     --dark-primary: #40e297;
     --dark-secondary: #26292c;
     --dark-accent: #7c8fa2;
@@ -56,6 +58,10 @@
 .btn-accent:hover {
     -webkit-box-shadow: 0px 0px 15px 0px #7c8fa2;
     box-shadow: 0px 0px 15px 0px #7c8fa2;
+}
+
+.custom-shadow{
+    box-shadow: 5px 5px 15px 0px var(--text);
 }
 
 @layer components {
