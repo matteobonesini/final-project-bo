@@ -3,6 +3,7 @@
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 /*
 YURI
 */
@@ -10,9 +11,10 @@ YURI
 /*
 LORENZO
 */
+Route::get('/message', [MessageController::class, 'index'])->name('message.index');
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard.dashboard');
 });
 
 Route::get('/dashboard', function () {
