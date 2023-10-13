@@ -10,7 +10,6 @@ class Developer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'experience_year',
         'curriculum',
         'profile_picture',
@@ -20,7 +19,7 @@ class Developer extends Model
     ];
 
     protected $appends = [
-        'full_profile_picture_src'
+        'full_img_src'
     ];
 
     public function getFullImgSrcAttribute() {
@@ -32,7 +31,7 @@ class Developer extends Model
     }
 
     public function messages() {
-        return $this->belongsTo(Message::class);
+        return $this->hasMany(Message::class);
     }
     
     public function sponsorships() {

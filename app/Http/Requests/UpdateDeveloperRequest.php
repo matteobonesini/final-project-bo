@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateDeveloperRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateDeveloperRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -22,7 +23,12 @@ class UpdateDeveloperRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'experience_year' => 'nullable',
+            'curriculum' => 'nullable|max:255',
+            'profile_picture' => 'nullable|max:255',
+            'profile_description' => 'required',
+            'address' => 'nullable|max:64',
+            'phone_number' => 'nullable|max:20',
         ];
     }
 }
