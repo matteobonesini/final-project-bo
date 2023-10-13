@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Vote extends Model
 {
     use HasFactory;
+
+
+    public function developer()
+    {
+        return $this->belongsToMany(Developer::class);
+    }
 }
