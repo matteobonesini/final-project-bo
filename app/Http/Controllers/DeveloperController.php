@@ -7,6 +7,8 @@ use App\Http\Requests\StoreDeveloperRequest;
 use App\Http\Requests\UpdateDeveloperRequest;
 use App\Models\Sponsorship;
 use App\Models\WorkField;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class DeveloperController extends Controller
 {
@@ -23,34 +25,38 @@ class DeveloperController extends Controller
      */
     public function create()
     {
-        $sponsorships = Sponsorship::all();
-        $work_fields = WorkField::all();
+            $sponsorships = Sponsorship::all();
+            $work_fields = WorkField::all();
 
-        return view('developer.create', compact('sponsorships', 'work_fields'));
+            return view('developer.create', compact('sponsorships', 'work_fields'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDeveloperRequest $request)
+    public function store(StoreDeveloperRequest $request, Developer $developer)
     {
-        $data = $request->validated();
+        if(Auth::id() === $developer->id){ 
+            $data = $request->validated();
 
-        $newDeveloper = Developer::create($data);
+            $newDeveloper = Developer::create($data);
 
-        if(isset($data['sponsorships'])) {
-            foreach ($data['sponsorships'] as $sponsorship) {
-                $newDeveloper->sponsorships()->attach($sponsorship);
+            if(isset($data['sponsorships'])) {
+                foreach ($data['sponsorships'] as $sponsorship) {
+                    $newDeveloper->sponsorships()->attach($sponsorship);
+                }
             }
-        }
 
-        if(isset($data['work_fields'])) {
-            foreach ($data['work_fields'] as $work_field) {
-                $newDeveloper->work_fiels()->attach($work_field);
+            if(isset($data['work_fields'])) {
+                foreach ($data['work_fields'] as $work_field) {
+                    $newDeveloper->work_fiels()->attach($work_field);
+                }
             }
-        }
 
-        return redirect()->route('developer.show', ['developer' => $newDeveloper->id]);
+            return redirect()->route('developer.show', ['developer' => $newDeveloper->id]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -58,8 +64,11 @@ class DeveloperController extends Controller
      */
     public function show(Developer $developer)
     {
-         return view('developer.show', compact('developer'));
-        // return response()->json($developer);
+        if(Auth::id() === $developer->id){
+            return view('developer.show', compact('developer'));
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -67,10 +76,14 @@ class DeveloperController extends Controller
      */
     public function edit(Developer $developer)
     {
-        $sponsorships = Sponsorship::all();
-        $work_fields = WorkField::all();
+        if(Auth::id() === $developer->id){
+            $sponsorships = Sponsorship::all();
+            $work_fields = WorkField::all();
 
-        return view('developer.edit', compact('developer', 'sponsorships', 'work_fields'));
+            return view('developer.edit', compact('developer', 'sponsorships', 'work_fields'));
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -80,19 +93,54 @@ class DeveloperController extends Controller
     {
         $data = $request->validated();
 
+        $crlmPath = $developer->curriculum;
+        if (isset($data['curriculum'])) {
+            if ($developer->curriculum) {
+                Storage::delete($developer->curriculum);
+            }
+            $crlmPath = Storage::put('uploads/curriculums', $data['curriculum']);
+        }
+        else if (isset($data['remove_curriculum'])) {
+            if ($developer->curriculum) {
+                Storage::delete($developer->curriculum);
+            }
+            $crlmPath = null;
+        }
+
+        $imgPath = $developer->profile_picture;
+        if (isset($data['profile_picture'])) {
+            if ($developer->profile_picture) {
+                Storage::delete($developer->profile_picture);
+            }
+            $imgPath = Storage::put('uploads/imgs', $data['profile_picture']);
+        }
+        else if (isset($data['remove_profile_picture'])) {
+            if ($developer->profile_picture) {
+                Storage::delete($developer->profile_picture);
+            }
+            $imgPath = null;
+        }
+
         $updatedDeveloper = Developer::findOrFail($developer->id);
-        $updatedDeveloper->update($data);
+        $updatedDeveloper->update([
+            'experience_year' => $data['experience_year'],
+            'curriculum' => $crlmPath,
+            'profile_picture' => $imgPath,
+            'profile_description' => $data['profile_description'],
+            'address' => $data['address'],
+            'phone_number' => $data['phone_number']
+        ]);
 
         if(isset($data['sponsorships'])) {
             $updatedDeveloper->sponsorships()->sync($data['sponsorships']);
         } else {
-            $updatedDeveloper->sponsorship()->detach();
+            // $updatedDeveloper->sponsorships()->detach();
         }
 
-        if(isset($data['work_fileds'])) {
-            $updatedDeveloper->work_fileds()->sync($data['work_fileds']);
+        if(isset($data['work_fiels'])) {
+            $updatedDeveloper->work_fiels()->sync($data['work_fiels']);
         } else {
-            $updatedDeveloper->work_fileds()->detach();
+            $updatedDeveloper->work_fiels()->detach();
         }
 
         return redirect()->route('developer.show', ['developer' => $updatedDeveloper->id]);
@@ -103,7 +151,6 @@ class DeveloperController extends Controller
      */
     public function destroy(Developer $developer)
     {
-        Developer::findOrFail($developer->id)->delete();
-        return redirect()->route('dashboard');
+        //
     }
 }
