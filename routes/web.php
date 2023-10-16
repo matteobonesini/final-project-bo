@@ -10,6 +10,22 @@ use App\Http\Controllers\MessageController;
 // Facades
 use Illuminate\Support\Facades\Route;
 
+/*
+YURI
+*/
+
+/*
+LORENZO
+*/
+Route::get('/message', [MessageController::class, 'index'])->name('message.index');
+
+Route::get('/', function () {
+    return view('dashboard.dashboard');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

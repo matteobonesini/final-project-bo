@@ -9,6 +9,9 @@ use App\Http\Requests\UpdateMessageRequest;
 //Controllers
 use App\Http\Controllers\DeveloperController;
 
+// Facades 
+use Illuminate\Support\Facades\Auth;
+
 class MessageController extends Controller
 {
     /**
@@ -16,8 +19,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
-        return view('dashboard.messages', compact('messages'));
+        $devId = Auth::id();
+        $messages = Message::where('developer_id','-',$devId)->get();
+        return view('dashboard.messages',compact("messages"), compact('messages'));
     }
 
     /**
