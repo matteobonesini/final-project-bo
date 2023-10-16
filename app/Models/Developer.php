@@ -10,6 +10,7 @@ class Developer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'experience_year',
         'curriculum',
         'profile_picture',
@@ -19,11 +20,16 @@ class Developer extends Model
     ];
 
     protected $appends = [
-        'full_img_src'
+        'full_img_src',
+        'full_cv_src'
     ];
 
     public function getFullImgSrcAttribute() {
         return asset('storage/' . $this->profile_picture);
+    }
+
+    public function getFullCvSrcAttribute() {
+        return asset('storage/' . $this->curriculum);
     }
 
     public function user() {
@@ -35,7 +41,7 @@ class Developer extends Model
     }
     
     public function sponsorships() {
-        return $this->belongsToMany(Sponsorship::class);
+        return $this->belongsToMany(Sponsorship::class)->withPivot('expire_date');
     }
 
     public function reviews() {
