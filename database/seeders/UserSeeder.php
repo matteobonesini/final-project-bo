@@ -21,43 +21,43 @@ class UserSeeder extends Seeder
 
         $users = [
             [
-                'userName' => 'claudia',
+                'userName' => 'Claudia Alves',
                 'mail' => 'claudia@email.com'
             ],
             [
-                'userName' => 'francesco',
+                'userName' => 'Francesco Nunziatini',
                 'mail' => 'francesco@email.com'
             ],
             [
-                'userName' => 'harper',
+                'userName' => 'Harper Russo',
                 'mail' => 'harper@email.com'
             ],
             [
-                'userName' => 'kim',
+                'userName' => 'Kim Chun Hei',
                 'mail' => 'kim@email.com'
             ],
             [
-                'userName' => 'loise',
+                'userName' => 'Loise Chastain',
                 'mail' => 'loise@email.com'
             ],
             [
-                'userName' => 'lorenzo',
+                'userName' => 'Lorenzo Favaretto',
                 'mail' => 'lorenzo@email.com'
             ],
             [
-                'userName' => 'pedro',
+                'userName' => 'Pedro Fernandes',
                 'mail' => 'pedro@email.com'
             ],
             [
-                'userName' => 'reese',
+                'userName' => 'Reese Miller',
                 'mail' => 'reese@email.com'
             ],
             [
-                'userName' => 'samira',
+                'userName' => 'Samira Hadid',
                 'mail' => 'samira@email.com'
             ],
             [
-                'userName' => 'yuri',
+                'userName' => 'Yuri Montesi',
                 'mail' => 'yuri@email.com'
             ]
         ];
