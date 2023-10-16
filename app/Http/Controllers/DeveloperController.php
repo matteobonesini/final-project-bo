@@ -28,10 +28,9 @@ class DeveloperController extends Controller
     public function create()
     {
         if(!isset(User::find(Auth::id())->developer)) {
-            $sponsorships = Sponsorship::all();
             $work_fields = WorkField::all();
 
-            return view('developer.create', compact('sponsorships', 'work_fields'));
+            return view('developer.create', compact('work_fields'));
         } else {
             abort(404);
         }
@@ -42,24 +41,39 @@ class DeveloperController extends Controller
      */
     public function store(StoreDeveloperRequest $request, Developer $developer)
     {
-        // if(Auth::id()){ 
+        if(!isset(User::find(Auth::id())->developer)) {
             $data = $request->validated();
 
-            $newDeveloper = Developer::create($data);
-
-            if(isset($data['sponsorships'])) {
-                foreach ($data['sponsorships'] as $sponsorship) {
-                    $newDeveloper->sponsorships()->attach($sponsorship);
-                }
+            $crlmPath = NULL;
+            if (isset($data['curriculum'])) {
+                $crlmPath = Storage::put('uploads/curriculums', $data['curriculum']);
             }
+
+            $imgPath = NULL;
+            if (isset($data['profile_picture'])) {
+                $imgPath = Storage::put('uploads/imgs', $data['profile_picture']);
+            }
+
+            $newDeveloper = Developer::create([
+                'user_id' => Auth::id(),
+                'experience_year' => $data['experience_year'],
+                'curriculum' => $crlmPath,
+                'profile_picture' => $imgPath,
+                'profile_description' => $data['profile_description'],
+                'address' => $data['address'],
+                'phone_number' => $data['phone_number']
+            ]);
 
             if(isset($data['work_fields'])) {
                 foreach ($data['work_fields'] as $work_field) {
-                    $newDeveloper->work_fiels()->attach($work_field);
+                    $newDeveloper->work_fields()->attach($work_field);
                 }
             }
 
             return redirect()->route('developer.show', ['developer' => $newDeveloper->id]);
+        } else {
+            abort(404);
+        }
     }
 
     /**

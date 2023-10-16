@@ -22,13 +22,13 @@
                             <button class="btn-primary">Curriculum</button>
                         </a>
                         @endif
-                        <a href="{{ route('developer.edit', ['developer' => $developer->id]) }}">
+                        <a class="me-5" href="{{ route('developer.edit', ['developer' => $developer->id]) }}">
                             <button class="btn-primary">Modifica</button>
                         </a>
-                        <form class="d-inline bg-transparent" action="{{ route('developer.destroy', ['developer' => $developer->id]) }}" method="POST">
+                        <form class="d-inline bg-transparent inline-block" action="{{ route('developer.destroy', ['developer' => $developer->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button class="btn-primary" type="submit">Elimina</button>
+                            <button class="btn-primary bg-red-700" type="submit">Elimina</button>
                         </form>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ class Developer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'experience_year',
         'curriculum',
         'profile_picture',
