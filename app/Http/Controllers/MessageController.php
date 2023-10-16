@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use Illuminate\Support\Facades\Auth;
 
 //Controllers
 use App\Http\Controllers\DeveloperController;
@@ -16,7 +17,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
+        $devId = Auth::id();
+        $messages = Message::where('developer_id','-',$devId)->get();
         return view('dashboard.messages',compact("messages"));
     }
 
