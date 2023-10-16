@@ -29,6 +29,8 @@ class StoreDeveloperRequest extends FormRequest
             'profile_description' => 'required',
             'address' => 'nullable|max:64',
             'phone_number' => 'nullable|max:20',
+            'work_fields' => 'nullable|array',
+            'work_fields.*' => 'exists:work_fields,id',
         ];
     }
 }

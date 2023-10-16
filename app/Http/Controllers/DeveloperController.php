@@ -6,6 +6,8 @@ use App\Models\Developer;
 use App\Http\Requests\StoreDeveloperRequest;
 use App\Http\Requests\UpdateDeveloperRequest;
 use App\Models\Sponsorship;
+use App\Models\User;
+use App\Models\Vote;
 use App\Models\WorkField;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -25,10 +27,13 @@ class DeveloperController extends Controller
      */
     public function create()
     {
-            $sponsorships = Sponsorship::all();
+        if(!isset(User::find(Auth::id())->developer)) {
             $work_fields = WorkField::all();
 
-            return view('developer.create', compact('sponsorships', 'work_fields'));
+            return view('developer.create', compact('work_fields'));
+        } else {
+            abort(404);
+        }
     }
 
     /**
@@ -36,20 +41,32 @@ class DeveloperController extends Controller
      */
     public function store(StoreDeveloperRequest $request, Developer $developer)
     {
-        if(Auth::id() === $developer->id){ 
+        if(!isset(User::find(Auth::id())->developer)) {
             $data = $request->validated();
 
-            $newDeveloper = Developer::create($data);
-
-            if(isset($data['sponsorships'])) {
-                foreach ($data['sponsorships'] as $sponsorship) {
-                    $newDeveloper->sponsorships()->attach($sponsorship);
-                }
+            $crlmPath = NULL;
+            if (isset($data['curriculum'])) {
+                $crlmPath = Storage::put('uploads/curriculums', $data['curriculum']);
             }
+
+            $imgPath = NULL;
+            if (isset($data['profile_picture'])) {
+                $imgPath = Storage::put('uploads/imgs', $data['profile_picture']);
+            }
+
+            $newDeveloper = Developer::create([
+                'user_id' => Auth::id(),
+                'experience_year' => $data['experience_year'],
+                'curriculum' => $crlmPath,
+                'profile_picture' => $imgPath,
+                'profile_description' => $data['profile_description'],
+                'address' => $data['address'],
+                'phone_number' => $data['phone_number']
+            ]);
 
             if(isset($data['work_fields'])) {
                 foreach ($data['work_fields'] as $work_field) {
-                    $newDeveloper->work_fiels()->attach($work_field);
+                    $newDeveloper->work_fields()->attach($work_field);
                 }
             }
 
@@ -64,8 +81,25 @@ class DeveloperController extends Controller
      */
     public function show(Developer $developer)
     {
-        if(Auth::id() === $developer->id){
-            return view('developer.show', compact('developer'));
+        // user logged in can access to his profile if user->id === developer->user_id
+        if(isset($developer) && Auth::id() === $developer->user_id){
+            $voteArr = [];
+            foreach ($developer->votes as $vote) {
+                $voteArr[] = $vote->value;
+            }
+            if (count($voteArr) != 0) {
+                $avgVote =  array_sum($voteArr)/count($voteArr);
+            } else {
+                $avgVote = 0;
+            }
+
+            $activeSponsorship = false;
+            if(count($developer->sponsorships) > 0) {
+                $expireDate = $developer->sponsorships[count($developer->sponsorships) - 1]->pivot->expire_date;
+                $activeSponsorship = strtotime($expireDate) > time();
+            }
+
+            return view('developer.show', compact('developer', 'avgVote', 'activeSponsorship'));
         } else {
             abort(404);
         }
@@ -76,7 +110,7 @@ class DeveloperController extends Controller
      */
     public function edit(Developer $developer)
     {
-        if(Auth::id() === $developer->id){
+        if(isset($developer) && Auth::id() === $developer->user_id){
             $sponsorships = Sponsorship::all();
             $work_fields = WorkField::all();
 
@@ -91,59 +125,75 @@ class DeveloperController extends Controller
      */
     public function update(UpdateDeveloperRequest $request, Developer $developer)
     {
-        $data = $request->validated();
+        if(isset($developer) && Auth::id() === $developer->user_id){
+            $data = $request->validated();
 
-        $crlmPath = $developer->curriculum;
-        if (isset($data['curriculum'])) {
-            if ($developer->curriculum) {
-                Storage::delete($developer->curriculum);
+            $crlmPath = $developer->curriculum;
+            if (isset($data['curriculum'])) {
+                if ($developer->curriculum) {
+                    Storage::delete($developer->curriculum);
+                }
+                $crlmPath = Storage::put('uploads/curriculums', $data['curriculum']);
             }
-            $crlmPath = Storage::put('uploads/curriculums', $data['curriculum']);
-        }
-        else if (isset($data['remove_curriculum'])) {
-            if ($developer->curriculum) {
-                Storage::delete($developer->curriculum);
+            else if (isset($data['remove_curriculum'])) {
+                if ($developer->curriculum) {
+                    Storage::delete($developer->curriculum);
+                }
+                $crlmPath = null;
             }
-            $crlmPath = null;
-        }
 
-        $imgPath = $developer->profile_picture;
-        if (isset($data['profile_picture'])) {
-            if ($developer->profile_picture) {
-                Storage::delete($developer->profile_picture);
+            $imgPath = $developer->profile_picture;
+            if (isset($data['profile_picture'])) {
+                if ($developer->profile_picture) {
+                    Storage::delete($developer->profile_picture);
+                }
+                $imgPath = Storage::put('uploads/imgs', $data['profile_picture']);
             }
-            $imgPath = Storage::put('uploads/imgs', $data['profile_picture']);
-        }
-        else if (isset($data['remove_profile_picture'])) {
-            if ($developer->profile_picture) {
-                Storage::delete($developer->profile_picture);
+            else if (isset($data['remove_profile_picture'])) {
+                if ($developer->profile_picture) {
+                    Storage::delete($developer->profile_picture);
+                }
+                $imgPath = null;
             }
-            $imgPath = null;
-        }
 
-        $updatedDeveloper = Developer::findOrFail($developer->id);
-        $updatedDeveloper->update([
-            'experience_year' => $data['experience_year'],
-            'curriculum' => $crlmPath,
-            'profile_picture' => $imgPath,
-            'profile_description' => $data['profile_description'],
-            'address' => $data['address'],
-            'phone_number' => $data['phone_number']
-        ]);
+            $updatedDeveloper = Developer::findOrFail($developer->id);
+            $updatedDeveloper->update([
+                'experience_year' => $data['experience_year'],
+                'curriculum' => $crlmPath,
+                'profile_picture' => $imgPath,
+                'profile_description' => $data['profile_description'],
+                'address' => $data['address'],
+                'phone_number' => $data['phone_number']
+            ]);
 
-        if(isset($data['sponsorships'])) {
-            $updatedDeveloper->sponsorships()->sync($data['sponsorships']);
+            if(isset($data['sponsorship']) && $data['sponsorship'] != 'NULL') {
+                // duration of the sponsorship selected in unix timestamp
+                $durationInHours = Sponsorship::find($data['sponsorship'])->duration;
+                $durationInUnix = $durationInHours * 3600;
+                // get expire date of last sponsorship
+                $lastExpireDateInUnix = time();
+                if(count($developer->sponsorships) > 1) {
+                    $lastExpireDateInHours = $updatedDeveloper->sponsorships[count($updatedDeveloper->sponsorships) - 1]->pivot->expire_date;
+                    $lastExpireDateInUnix = strtotime($lastExpireDateInHours);
+                }
+                $index = $data['sponsorship'];
+                $updatedDeveloper->sponsorships()->attach([
+                    $index => ['start_date' => date('Y-m-d h:i:s', $lastExpireDateInUnix), 'expire_date' => date('Y-m-d h:i:s', $lastExpireDateInUnix+$durationInUnix)]
+                ]);
+            } else {
+                // $updatedDeveloper->sponsorships()->detach();
+            }
+
+            if(isset($data['work_fields'])) {
+                $updatedDeveloper->work_fields()->sync($data['work_fields']);
+            } else {
+                $updatedDeveloper->work_fields()->detach();
+            }
+
+            return redirect()->route('developer.show', ['developer' => $updatedDeveloper->id]);
         } else {
-            // $updatedDeveloper->sponsorships()->detach();
+            abort(404);
         }
-
-        if(isset($data['work_fiels'])) {
-            $updatedDeveloper->work_fiels()->sync($data['work_fiels']);
-        } else {
-            $updatedDeveloper->work_fiels()->detach();
-        }
-
-        return redirect()->route('developer.show', ['developer' => $updatedDeveloper->id]);
     }
 
     /**
@@ -151,6 +201,7 @@ class DeveloperController extends Controller
      */
     public function destroy(Developer $developer)
     {
-        //
+        $developer->delete();
+        return redirect()->route('dashboard.dashboard');
     }
 }
