@@ -20,7 +20,7 @@ LORENZO
 Route::get('/message', [MessageController::class, 'index'])->name('message.index');
 
 Route::get('/', function () {
-    return view('dashboard.dashboard');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {

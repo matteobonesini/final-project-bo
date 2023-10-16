@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('main-content')
 
@@ -7,21 +7,14 @@
 
         <!-- Email Address -->
         <div class="mt-4">
-            <label for="email">Email</label>
-            <input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required/>
-            {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+            <input type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@email.com" value="{{ old('email') }}" required>
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <label for="password" :value="old('Password')">Password</label>
-
-            <input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required />
-
-            {{-- <error :messages="$errors->get('password')" class="mt-2" /> --}}
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password" value="{{ old('password') }}" required>
         </div>
 
         <!-- Remember Me -->
@@ -29,7 +22,7 @@
             <label for="remember_me" class="inline-flex items-center">
                 Remember Me
             </label>
-            <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember" :value="old('remember')">
+            <input id="remember_me" type="checkbox" class="checkbox" name="remember" value="{{ old('remember') }}">
         </div>
 
         <div class="flex items-center justify-end mt-4">
@@ -39,9 +32,7 @@
                 </a>
             @endif
 
-            <button class="ml-3">
-                {{ __('Log in') }}
-            </button>
+            <button class="ml-3">Log in</button>
         </div>
     </form>
     
