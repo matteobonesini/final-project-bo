@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main>
+    <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-black dark:text-white">
         <div class="container mx-auto my-5 px-4">
             <h3 class="mb-8 text-4xl font-bold text-center">{{ $developer->user->name }}</h3>
             @if ($errors->any())
