@@ -40,7 +40,7 @@ class Developer extends Model
     }
     
     public function sponsorships() {
-        return $this->belongsToMany(Sponsorship::class);
+        return $this->belongsToMany(Sponsorship::class)->withPivot('expire_date');
     }
 
     public function reviews() {
@@ -51,7 +51,7 @@ class Developer extends Model
         return $this->belongsToMany(Vote::class);
     }
 
-    public function work_fiels() {
+    public function work_fields() {
         return $this->belongsToMany(WorkField::class);
     }
 }

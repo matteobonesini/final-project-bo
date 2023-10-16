@@ -30,7 +30,10 @@ class UpdateDeveloperRequest extends FormRequest
             'address' => 'nullable|max:64',
             'phone_number' => 'nullable|max:20',
             'remove_profile_picture' => 'nullable',
-            'remove_curriculum' => 'nullable'
+            'remove_curriculum' => 'nullable',
+            'work_fields' => 'nullable|array',
+            'work_fields.*' => 'exists:work_fields,id',
+            'sponsorship' => 'nullable',
         ];
     }
 }
