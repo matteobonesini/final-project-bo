@@ -19,31 +19,31 @@
                         </div>
                     </div>
                 </div>
-                
-                @if (count($developer->votes) <= 0)
-                    <div class="mt-10 group">
-                        <h2 class="text-center font-bold text-2xl text-[--dark-text]">
-                            Al momento non ci sono recensioni
-                        </h2>
-                        <div class="flex justify-center my-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z" />
-                            </svg>
-                        </div>
-                        <div class="w-16 absolute bottom-0 right-0 scale-0 transition-all group-hover:scale-100">
-                            <img class="w-full h-full" src="{{ Vite::image('disappointedMan.png') }}" alt="">
-                        </div>
-                    </div>
-                @endif
+               
+                @if ($developer != null)
 
-                @if (count($developer->votes) != 0)
-                    <!-- Reviews -->
-                    <div class="mb-12 md:mb-16 lg:mb-20">
-                        <div class="grid grid-cols-1 justify-items-center gap-5 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-
-                            @foreach ($developer->votes as $index =>$vote)
-                                {{-- @if ($vote->id == $review->id) --}}
-                                        <!-- Review Item -->
+                    @if (count($developer->votes) == 0 || $developer->votes == null)
+                        <div class="mt-10 group">
+                            <h2 class="text-center font-bold text-2xl text-[--dark-text]">
+                                Al momento non ci sono recensioni
+                            </h2>
+                            <div class="flex justify-center my-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z" />
+                                </svg>
+                            </div>
+                            <div class="w-16 absolute bottom-0 right-0 scale-0 transition-all group-hover:scale-100">
+                                <img class="w-full h-full" src="{{ Vite::image('disappointedMan.png') }}" alt="">
+                            </div>
+                        </div>
+                    @endif
+                   
+                    @if (count($developer->votes) != 0)
+                        <!-- Reviews -->
+                        <div class="mb-12 md:mb-16 lg:mb-20">
+                            <div class="grid grid-cols-1 justify-items-center gap-5 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+                                @foreach ($developer->votes as $index =>$vote)
+                                    <!-- Review Item -->
                                     <div class="flex flex-col gap-6 rounded-lg bg-[--secondary] dark:bg-[--dark-secondary] p-8 md:gap-4 min-w-full custom-shadow">
 
                                         <div class="flex flex-wrap justify-center">
@@ -81,10 +81,11 @@
                                         </p>
 
                                     </div>
-                                    {{-- @endif --}}
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
+                    @endif
+
                 @endif
             </div>
         </div>

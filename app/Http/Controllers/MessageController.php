@@ -17,7 +17,7 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::all();
-        return view('dashboard.messages');
+        return view('dashboard.messages', compact('messages'));
     }
 
     /**
@@ -31,12 +31,14 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMessageRequest $request)
-    {
-        $formData = $request->validated();
-        $message = Message::create($formData);
-        $message->save();
-    }
+    // public function store(StoreMessageRequest $request)
+    // {
+    //     $formData = $request->validated();
+    //     $message = Message::create($formData);
+    //     $message->save();
+
+    //     return redirect()->route('dashboard.messages');
+    // }
 
     /**
      * Display the specified resource.

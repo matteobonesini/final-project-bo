@@ -14,14 +14,16 @@
     </head>
 
     <body>
-        
-        @include('partials.header')
+        <div class="flex flex-col h-screen">
+            @include('partials.header')
 
-        @include('partials.aside')
+            <div class="flex h-[92%]">
+    
+                @include('partials.aside')
+    
+                @yield('main-content')
 
-        @yield('main-content')
-
-        @include('partials.footer')
-
+            </div>
+        </div>
     </body>
 </html>

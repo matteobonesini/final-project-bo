@@ -18,11 +18,14 @@
 :root {
     --text: #080a0c;
     --background: #ffffff;
-    --bg-secondary: rgb(111, 126, 148);
+    --bg-secondary: #6f7e94;
     --primary: #1dbf73;
     --secondary: #d3d6d9;
     --accent: #5d7083;
     --tertiary: #166534;
+
+    --dark-transparent: #00000077;
+    --transparent: #0000004b;
 
     --dark-text: #f3f5f7;
     --dark-background: #000000;
@@ -33,43 +36,62 @@
     --dark-tertiary: #166534;
 }
 
+/* .btn-darkshadow:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px #000000;
+    box-shadow: 0px 0px 15px 0px #000000;
+}
+.btn-lightshadow:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px #ffffff;
+    box-shadow: 0px 0px 15px 0px #ffffff;
+} */
+
 .btn-primary {
     -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
     box-shadow: 5px 5px 15px 0px #5d7083;
 }
-.btn-primary:hover {
+/* .btn-primary:hover {
     -webkit-box-shadow: 0px 0px 15px 0px #40e297;
     box-shadow: 0px 0px 15px 0px #40e297;
-}
+} */
 
 .btn-secondary {
     -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
     box-shadow: 5px 5px 15px 0px #5d7083;
 }
-.btn-secondary:hover {
+/* .btn-secondary:hover {
     -webkit-box-shadow: 0px 0px 15px 0px var(--primary);
     box-shadow: 0px 0px 15px 0px var(--primary);
-}
+} */
 
 .btn-accent {
     -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
     box-shadow: 5px 5px 15px 0px #5d7083;
 }
-.btn-accent:hover {
+/* .btn-accent:hover {
     -webkit-box-shadow: 0px 0px 15px 0px #7c8fa2;
     box-shadow: 0px 0px 15px 0px #7c8fa2;
-}
+} */
 
 .custom-shadow{
     box-shadow: 5px 5px 15px 0px var(--text);
 }
 
+.bg-shapeline{
+    background-image: url('/resources/images/subtle-prism.svg');
+    background-position: center;
+}
+
 @layer components {
 
     /* BUTTON */
-    .btn-primary {
-        @apply bg-[--primary] py-2 px-6 rounded-xl text-[--dark-text] transition-all;
+    .btn{
+        @apply py-2 px-6 rounded-xl
     }
+
+    .btn-primary {
+        @apply bg-[--primary] dark:bg-[--dark-primary] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--text] transition-all;
+    }
+    .btn:hover,
     .btn-primary:hover,
     .btn-secondary:hover,
     .btn-accent:hover {
@@ -77,11 +99,11 @@
     }
 
     .btn-secondary {
-        @apply bg-[--tertiary] py-2 px-6 rounded-xl text-[--dark-text] transition-all;
+        @apply bg-[--tertiary] dark:bg-[--dark-tertiary] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--text] transition-all;
     }
 
     .btn-accent {
-        @apply bg-[--accent] py-2 px-6 rounded-xl text-[--dark-text] transition-all;
+        @apply bg-[--accent] dark:bg-[--dark-accent] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--text] transition-all;
     }
     
     /* FORM */
