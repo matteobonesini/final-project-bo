@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Review;
 use App\Http\Requests\StoreReviewRequest;
 use App\Http\Requests\UpdateReviewRequest;
+
+// Facades
+use Illuminate\Support\Facades\Auth;
+
+// Models
+use App\Models\Developer;
+use App\Models\Review;
+use App\Models\Vote;
 
 class ReviewController extends Controller
 {
@@ -13,8 +20,12 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::all();
-        return view ('reviews');
+        $devId = Auth::id();
+        $developer = Developer::find($devId);
+        $reviews = Review::where('developer_id', '=', $devId)->get();
+        $votes = Vote::all();
+
+        return view ('dashboard.reviews', compact('reviews', 'votes', 'developer'));
     }
 
     /**

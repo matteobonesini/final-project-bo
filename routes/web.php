@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 /*
@@ -30,5 +32,7 @@ Route::middleware('auth')->group(function () {
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::resource('developer', DeveloperController::class);
 });
+
+Route::get('/reviews', [ReviewController::class, 'index']);
 
 require __DIR__.'/auth.php';
