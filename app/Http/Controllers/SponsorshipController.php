@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sponsorship;
-use App\Http\Requests\StoreSponsorshipRequest;
 
 
 class SponsorshipController extends Controller

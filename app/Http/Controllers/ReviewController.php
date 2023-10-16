@@ -39,12 +39,14 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReviewRequest $request)
-    {
-        $formData = $request->validated();
-        $review = Review::create($formData);
-        $review->save();
-    }
+    // public function store(StoreReviewRequest $request)
+    // {
+    //     $formData = $request->validated();
+    //     $review = Review::create($formData);
+    //     $review->save();
+
+    //     return redirect()->route('dashboard.reviews');
+    // }
 
     /**
      * Display the specified resource.
