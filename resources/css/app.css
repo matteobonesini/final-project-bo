@@ -72,24 +72,23 @@
     box-shadow: 0px 0px 15px 0px #7c8fa2;
 } */
 
-.custom-shadow{
+.custom-shadow {
     box-shadow: 5px 5px 15px 0px var(--text);
 }
 
-.bg-shapeline{
-    background-image: url('/resources/images/subtle-prism.svg');
+.bg-shapeline {
+    background-image: url("/resources/images/subtle-prism.svg");
     background-position: center;
 }
 
 @layer components {
-
     /* BUTTON */
-    .btn{
-        @apply py-2 px-6 rounded-xl
+    .btn {
+        @apply py-2 px-6 rounded-xl;
     }
 
     .btn-primary {
-        @apply bg-[--primary] dark:bg-[--dark-primary] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--text] transition-all;
+        @apply bg-[--primary] dark:bg-[--dark-primary] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--dark-text] transition-all;
     }
     .btn:hover,
     .btn-primary:hover,
@@ -99,20 +98,24 @@
     }
 
     .btn-secondary {
-        @apply bg-[--tertiary] dark:bg-[--dark-tertiary] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--text] transition-all;
+        @apply bg-[--tertiary] dark:bg-[--dark-tertiary] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--dark-text] transition-all;
     }
 
     .btn-accent {
-        @apply bg-[--accent] dark:bg-[--dark-accent] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--text] transition-all;
-    }
-    
-    /* FORM */
-    .form-input{
-       @apply block py-2.5 px-0 w-full text-sm text-[--text] bg-transparent border-0 border-b-2 border-[--accent] appearance-none dark:text-[--dark-text] dark:border-[--accent] dark:focus:border-[--accent] focus:outline-none focus:ring-0 focus:border-[--accent] 
+        @apply bg-[--accent] dark:bg-[--dark-accent] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--dark-text] transition-all;
     }
 
-    .form-label-input{
-        @apply flex gap-1 peer-focus:font-medium absolute text-sm dark:text-[--dark-text] text-[--text] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[--text] peer-focus:dark:text-[--dark-text] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6
+    /* FORM */
+    .form-input {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+    }
+
+    .form-label {
+        @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
+    }
+
+    .form-container {
+        @apply dark:bg-slate-800 bg-slate-200 p-10 rounded-xl;
     }
 
     .form-row {
@@ -122,18 +125,18 @@
     .form-primary {
         @apply dark:bg-[--dark-secondary] bg-[--secondary] m-5 p-5 rounded-2xl;
     }
-     
+
     /* CHECKBOX */
-    .checkbox{
-        @apply w-4 h-4 text-[--tertiary] bg-gray-100 border-gray-300 rounded focus:ring-[--tertiary] dark:focus:ring-[--tertiary] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600
+    .checkbox {
+        @apply w-4 h-4 text-[--tertiary] bg-gray-100 border-gray-300 rounded focus:ring-[--tertiary] dark:focus:ring-[--tertiary] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
     }
     .checkbox-label {
         @apply ml-2 text-sm font-medium text-gray-900 dark:text-gray-300;
     }
 
     /* SELECT */
-    .select-label{
-        @apply block mb-2 text-sm font-medium text-[--text] dark:text-[--dark-text]
+    .select-label {
+        @apply block mb-2 text-sm font-medium text-[--text] dark:text-[--dark-text];
     }
     .select {
         @apply bg-gray-50 border border-gray-300 text-[--text] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[--accent] dark:border-gray-600 dark:placeholder-gray-400 dark:text-[--dark-text] dark:focus:ring-slate-200 dark:focus:border-slate-200;
