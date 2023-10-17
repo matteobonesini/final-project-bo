@@ -17,11 +17,11 @@
 
     <body>
         <div class="flex flex-col h-screen">
-            <div class="h-[8%]">
+            <div class="min-h-[10%]">
                 @include('partials.header')
             </div>
 
-            <div class="flex h-[92%]">
+            <div class="flex min-h-[90%]">
     
                 @include('partials.aside')
     
