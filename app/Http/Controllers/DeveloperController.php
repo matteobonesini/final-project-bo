@@ -201,12 +201,6 @@ class DeveloperController extends Controller
      */
     public function destroy(Developer $developer)
     {
-        if(isset(User::find(Auth::id())->developer)) {
-            $developer->delete();
-            return redirect()->route('dashboard');
-        } else {
-            abort(404);
-        }
-        
+        //
     }
 }
