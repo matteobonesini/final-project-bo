@@ -20,8 +20,8 @@ class MessageController extends Controller
     public function index()
     {
         $devId = Auth::id();
-        $messages = Message::where('developer_id','-',$devId)->get();
-        return view('dashboard.messages',compact("messages"), compact('messages'));
+        $messages = Message::where('developer_id','=', $devId)->get();
+        return view('dashboard.messages', compact('messages'));
     }
 
     /**
