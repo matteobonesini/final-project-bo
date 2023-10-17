@@ -52,7 +52,7 @@ class DeveloperSeeder extends Seeder
             "Ingegnere AI/ML specializzato nell'applicazione di algoritmi di intelligenza artificiale e machine learning. Esperienza nella creazione di modelli predittivi e nell'implementazione di soluzioni basate sull'AI per risolvere problemi aziendali complessi.",
             "Analista dei Sistemi con una vasta esperienza nella definizione dei requisiti e nella progettazione di soluzioni IT. Abile nella comunicazione tra gli utenti finali e i team di sviluppo per garantire il successo dei progetti"
         ];
-
+        
         for ($i=0; $i < 10; $i++) { 
             $developer = new Developer();
             $developer->user_id = $i+1;
@@ -63,8 +63,9 @@ class DeveloperSeeder extends Seeder
             $developer->profile_description = $descriptions[$i];
             $developer->phone_number = rand(3000000001, 3999999999);
             $developer->save();
+            $vote = rand(1, 10);
 
-            $developer->votes()->attach(rand(1, 10));
+            $developer->votes()->attach($vote);
             $developer->work_fields()->attach(rand(1, 10));
             
             if (fake()->boolean()) {
