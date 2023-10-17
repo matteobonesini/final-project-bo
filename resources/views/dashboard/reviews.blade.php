@@ -1,15 +1,13 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <section class="bg-gray-500 text-[--text] dark:bg-gray-600 dark:text-[--dark-text] min-h-screen ">
-        <!-- Container -->
+<main class="w-full h-full bg-shapeline">
+    <section>
         <div class="mx-auto w-fullcontainer px-10 py-12">
-        <!-- Component -->
             <div class="flex flex-col items-center">
-                <!-- Heading Content -->
                 <div class="mb-8 md:mb-12 lg:mb-16">
                     <div class="w-full max-w-[800px] text-center">
-                        <h2 class="text-[--primary] dark:text-[--dark-primary] mb-5 text-3xl font-bold md:text-5xl">
+                        <h2 class="text-[--text] dark:text-[--dark-text] mb-5 text-3xl font-bold md:text-5xl custom-shadow bg-[--transparent] p-4 rounded-xl ">
                             Le Tue Recensioni
                         </h2>
                         <div class="mx-auto w-full max-w-lg">
@@ -21,7 +19,6 @@
                 </div>
                
                 @if ($developer != null)
-
                     @if (count($developer->votes) == 0 || $developer->votes == null)
                         <div class="mt-10 group">
                             <h2 class="text-center font-bold text-2xl text-[--dark-text]">
@@ -75,19 +72,17 @@
                                                 </div>
                                             @endfor
                                         </div>
-
                                         <p>
                                             {{ $developer->reviews[$index]->description }}
                                         </p>
-
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     @endif
-
                 @endif
             </div>
         </div>
     </section>
+</main>
 @endsection

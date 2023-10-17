@@ -23,8 +23,6 @@
     --secondary: #d3d6d9;
     --accent: #5d7083;
     --tertiary: #166534;
-
-    --dark-transparent: #00000077;
     --transparent: #0000004b;
 
     --dark-text: #f3f5f7;
@@ -34,6 +32,7 @@
     --dark-secondary: #26292c;
     --dark-accent: #7c8fa2;
     --dark-tertiary: #166534;
+    --dark-transparent: #00000077;
 }
 
 /* .btn-darkshadow:hover {
@@ -155,4 +154,17 @@
     .card-img-body {
         @apply bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700;
     }
+
+    .alert{
+        @apply border-2 rounded-xl p-2 my-2
+    }
+
+    .alert-error{
+        @apply bg-red-300 border-red-500 
+    }
+
+    .alert-success{
+        @apply bg-green-300 border-green-500 
+    }
+
 }
