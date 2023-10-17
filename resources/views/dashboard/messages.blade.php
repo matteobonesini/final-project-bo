@@ -14,7 +14,7 @@
         </div>
         {{-- Messages --}}
         <div class="grid grid-cols-1 justify-items-center gap-5 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            @foreach($messages as $message)
+            @foreach($developer->messages as $message)
                 <div class="bg-white flex flex-col justify-between p-4 rounded-lg custom-shadow">
                     <h2 class="text-[--text] text-xl font-semibold">{{ $message->name }}</h2>
                     <p class="text-gray-600">{{ $message->title }}</p>

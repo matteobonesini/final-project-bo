@@ -18,8 +18,8 @@ class Message extends Model
 
     // Relation
     
-    public function developers()
+    public function developer()
     {
-        return $this->hasMany(Developer::class);
+        return $this->belongsTo(Developer::class);
     }
 }

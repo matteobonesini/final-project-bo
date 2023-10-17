@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <main>
+        <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-black dark:text-white">
             @include('partials.headerGuest')
             <div class="w-1/2 mx-auto mt-10 px-4">
                 @yield('main-content')
