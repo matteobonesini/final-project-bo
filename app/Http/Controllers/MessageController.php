@@ -20,22 +20,11 @@ class MessageController extends Controller
     public function index()
     {
         $devId = Auth::id();
+        $developer = Developer::where('user_id', '=', $devId)->first();
 
-        /* $developers = Developer::where('phone_number', '=', '3528230141')->get();
-        dd($developers); */
-
-        $developers = Developer::all();
-        $developer = NULL;
-        foreach ($developers as $singleDeveloper) {
-            if($singleDeveloper->user_id == $devId) {
-                $developer = $singleDeveloper;
-            }
-        }
-
-        /* $developer = Developer::find($devId);
-        dd($developer); */
-
-        return view('dashboard.messages', compact('developer'));
+        $messages = Developer::where('user_id', '=', $devId)->first()->messages;
+        
+        return view('dashboard.messages', compact('developer', 'messages'));
     }
 
     /**

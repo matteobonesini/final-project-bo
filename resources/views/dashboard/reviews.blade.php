@@ -3,7 +3,7 @@
 @section('main-content')
 <main class="w-full h-full bg-shapeline">
     <section>
-        <div class="mx-auto w-fullcontainer px-10 py-12">
+        <div class="mx-auto container px-10 py-12">
             <div class="flex flex-col items-center">
                 <div class="mb-8 md:mb-12 lg:mb-16">
                     <div class="w-full max-w-[800px] text-center">

@@ -11,12 +11,13 @@
                     <h4 class="font-bold text-2xl text-[--text] dark:text-[--dark-text] mb-6">
                         Ultime Recensioni
                     </h4>
+
                     <div class="w-full">
                         @if($developer)
-                            @if($developer->votes->isEmpty())
+                            @if(count($votes) == 0 || count($votes) == null)
                                 Non ci sono recensioni
                             @else
-                                @foreach ($developer->reviews as $singleReview)
+                                @foreach ($reviews as $singleReview)
                                     <div class="card-body">
                                         <h5>
                                             {{ $singleReview->customer_name }}
