@@ -19,7 +19,7 @@
                 @method('PUT')
 
                 {{-- Profile Picture --}}
-                <div class="form-row bg-gray-200 rounded-md p-4">
+                <div class="form-row bg-gray-200 dark:bg-gray-800 rounded-md p-4">
                     @if ($developer->profile_picture)
                         <div class="my-8 flex justify-center">
                             <img class="rounded-lg w-32 object-cover" src="{{ $developer->full_img_src }}" class="w-50" alt="{{ $developer->user->name }}">
@@ -43,7 +43,7 @@
                 </div>
 
                 {{-- Curriculum --}}
-                <div class="form-row bg-gray-200 rounded-md p-4">
+                <div class="form-row bg-gray-200 dark:bg-gray-800 rounded-md p-4">
                     <label class = "form-label" for="curriculum" >Curriculum</label>
                     <input type="file" name="curriculum" id="curriculum" class="form-input peer"/>
                     @if ($developer->curriculum)

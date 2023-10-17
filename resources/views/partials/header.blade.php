@@ -1,6 +1,6 @@
     
 <nav class="bg-[--bg-secondary] border-gray-200 dark:bg-[--dark-bg-secondary]">
-    <div class="max-w-screen-xl flex flex-wrap md:flex-nowrap items-center justify-between mx-auto p-4">
+    <div class="max-w-screen-xl flex flex-wrap md:flex-nowrap items-center justify-between mx-auto p-2">
         <a href="{{ route('dashboard') }}" class="flex items-center">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BDeveloper</span>
@@ -12,7 +12,7 @@
           </svg>
       </button>
       
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+      <div class="hidden w-full md:block md:w-auto absolute md:static top-10 left-0 z-10" id="navbar-default">
         <ul class="flex md:items-center flex-col p-2 px-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li>
             <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
