@@ -7,8 +7,6 @@
 
         <title>{{ config('app.name', 'BDevelopers') }}</title>
 
-        <!-- Fonts -->
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -20,6 +18,5 @@
                 @yield('main-content')
             </div>
         </main>
-        
     </body>
 </html>

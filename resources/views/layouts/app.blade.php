@@ -17,7 +17,9 @@
 
     <body>
         <div class="flex flex-col h-screen">
-            @include('partials.header')
+            <div class="h-[8%]">
+                @include('partials.header')
+            </div>
 
             <div class="flex h-[92%]">
     
