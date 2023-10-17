@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
+use App\Models\Developer;
 
 //Controllers
-use App\Http\Controllers\DeveloperController;
 
 // Facades 
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +20,22 @@ class MessageController extends Controller
     public function index()
     {
         $devId = Auth::id();
-        $messages = Message::where('developer_id','=', $devId)->get();
-        return view('dashboard.messages', compact('messages'));
+
+        /* $developers = Developer::where('phone_number', '=', '3528230141')->get();
+        dd($developers); */
+
+        $developers = Developer::all();
+        $developer = NULL;
+        foreach ($developers as $singleDeveloper) {
+            if($singleDeveloper->user_id == $devId) {
+                $developer = $singleDeveloper;
+            }
+        }
+
+        /* $developer = Developer::find($devId);
+        dd($developer); */
+
+        return view('dashboard.messages', compact('developer'));
     }
 
     /**

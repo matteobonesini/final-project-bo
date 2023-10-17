@@ -16,6 +16,6 @@ class Review extends Model
 
     // Relations
     public function developer(){
-        return $this->hasMany(Developer::class);
+        return $this->belongsTo(Developer::class);
     }
 }
