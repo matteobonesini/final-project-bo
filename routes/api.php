@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::name('api.')->group(function () {
-    Route::get('developers', [DeveloperController::class, 'index']);
-    Route::get('developer', [DeveloperController::class, 'show']);
+    Route::get('work-fields', [DeveloperController::class, 'work_fields']);
+    Route::get('developers/{search}', [DeveloperController::class, 'search']);
+    Route::get('developer/{id}', [DeveloperController::class, 'show']);
 });
