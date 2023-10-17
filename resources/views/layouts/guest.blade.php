@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <main>
+        <main class = "bg-slate-300 dark:bg-slate-900 h-screen">
             @include('partials.headerGuest')
             <div class="w-1/2 mx-auto mt-10 px-4">
                 @yield('main-content')
