@@ -14,7 +14,6 @@ class DashboardController extends Controller
 {
     public function index(){
         $devId = Auth::id();
-
         $developer = Developer::where('user_id', '=', $devId)->with('reviews', 'messages', 'votes')->first();
 
         return view ('dashboard.dashboard', compact('developer'));
