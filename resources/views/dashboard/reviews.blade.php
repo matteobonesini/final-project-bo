@@ -7,11 +7,11 @@
             <div class="flex flex-col items-center">
                 <div class="mb-8 md:mb-12 lg:mb-16">
                     <div class="w-full max-w-[800px] text-center">
-                        <h2 class="text-[--text] dark:text-[--dark-text] mb-5 text-3xl font-bold md:text-5xl custom-shadow bg-[--transparent] p-4 rounded-xl ">
+                        <h2 class="text-[--tertiary] dark:text-[--dark-tertiary] mb-5 text-3xl font-bold md:text-5xl custom-shadow bg-[--transparent] p-4 rounded-xl ">
                             Le Tue Recensioni
                         </h2>
                         <div class="mx-auto w-full max-w-lg">
-                            <p class="tracking-[0.2px] text-[--text] dark:text-[--dark-text]">
+                            <p class="tracking-[0.2px] text-[--text]">
                                 Ciò che pensano i clienti dei tuoi servizi
                             </p>
                         </div>
@@ -21,7 +21,7 @@
                 @if ($developer != null)
                     @if (count($developer->votes) == 0 || $developer->votes == null)
                         <div class="mt-10 group">
-                            <h2 class="text-center font-bold text-2xl text-[--dark-text]">
+                            <h2 class="text-center font-bold text-2xl text-[--text]">
                                 Al momento non ci sono recensioni
                             </h2>
                             <div class="flex justify-center my-4">
@@ -44,7 +44,7 @@
                                     <div class="flex flex-col gap-6 rounded-lg bg-[--secondary] dark:bg-[--dark-secondary] p-8 md:gap-4 min-w-full custom-shadow">
 
                                         <div class="flex flex-wrap justify-center">
-                                            <div class="border-[--accent] border p-2 rounded-full">
+                                            <div class="border-[--accent] border p-2 rounded-full bg-orange-400 dark:bg-orange-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                                                 </svg>
@@ -72,7 +72,7 @@
                                                 </div>
                                             @endfor
                                         </div>
-                                        <p>
+                                        <p class="text-black dark:text-white">
                                             {{ $developer->reviews[$index]->description }}
                                         </p>
                                     </div>

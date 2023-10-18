@@ -20,11 +20,9 @@ class MessageController extends Controller
     public function index()
     {
         $devId = Auth::id();
-        $developer = Developer::where('user_id', '=', $devId)->first();
-
-        $messages = Developer::where('user_id', '=', $devId)->first()->messages;
+        $developer = Developer::where('user_id', '=', $devId)->with('messages')->first();
         
-        return view('dashboard.messages', compact('developer', 'messages'));
+        return view('dashboard.messages', compact('developer'));
     }
 
     /**

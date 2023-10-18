@@ -23,7 +23,7 @@
     --secondary: #d3d6d9;
     --accent: #5d7083;
     --tertiary: #166534;
-    --transparent: #0000004b;
+    --transparent: #ffffff80;
 
     --dark-text: #f3f5f7;
     --dark-background: #000000;
@@ -32,7 +32,7 @@
     --dark-secondary: #26292c;
     --dark-accent: #7c8fa2;
     --dark-tertiary: #166534;
-    --dark-transparent: #00000077;
+    --dark-transparent: #00000080;
 }
 
 /* .btn-darkshadow:hover {
@@ -143,7 +143,7 @@
 
     /* CARD */
     .card-body {
-        @apply block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700;
+        @apply block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 text-gray-900 dark:text-white dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700;
     }
     .card-title {
         @apply mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white;

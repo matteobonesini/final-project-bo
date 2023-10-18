@@ -21,7 +21,7 @@ class ReviewController extends Controller
     public function index()
     {
         $devId = Auth::id();
-        $developer = Developer::find($devId);
+        $developer = Developer::where('user_id', '=', $devId)->first();
         $reviews = Review::where('developer_id', '=', $devId)->get();
         $votes = Vote::all();
 
