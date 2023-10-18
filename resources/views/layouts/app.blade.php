@@ -17,7 +17,7 @@
                 @include('partials.header')
             </div>
 
-            <div class="flex min-h-[90%]">
+            <div class="flex min-h-[90%] bg-shapeline">
     
                 @include('partials.aside')
     

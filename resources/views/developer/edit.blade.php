@@ -114,10 +114,10 @@
                         <option value="{{ $sponsorship->id }}">{{ $sponsorship->name }} - Prezzo: &euro;{{ $sponsorship->price }} - Durata: {{ $sponsorship->duration }} ore</option>
                     @endforeach
                 </select>
-
-                <button type="submit" class="btn-primary">Modifica</button>
+                <div class="flex justify-center mt-5">
+                    <button type="submit" class="btn-primary">Modifica</button>
+                </div>
             </form>
         </div>
-  
     </main>
 @endsection

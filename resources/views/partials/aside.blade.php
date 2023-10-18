@@ -1,4 +1,4 @@
-<aside class="bg-[--secondary] dark:bg-[--dark-secondary] h-full text-[--text] dark:text-[--dark-text] border-t-2 border-zinc-100 dark:border-zinc-700">
+<aside class="bg-[--secondary] dark:bg-[--dark-secondary] h-full text-[--text] dark:text-[--dark-text]">
     <div class="h-full flex flex-col justify-between">
         @if (isset($developer))
             <nav class="text-center">
