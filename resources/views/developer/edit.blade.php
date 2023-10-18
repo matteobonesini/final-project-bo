@@ -5,10 +5,10 @@
         <div class="container mx-auto my-5 px-4">
             <h3 class="mb-8 text-4xl font-bold text-center">{{ $developer->user->name }}</h3>
             @if ($errors->any())
-                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <div class="alert alert-error">
                     <ul>
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            <li>- {{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -19,13 +19,13 @@
 
                 {{-- Name --}}
                 <div class="form-row">
-                    <label class ="form-label" for="name" >Name</label>
+                    <label class ="form-label" for="name"><span class ="text-red-500">*</span>Name</label>
                     <input type="text" name="name" id="name" class="form-input peer" placeholder=" " required value="{{ old('name', $developer->user->name) }}"/>
                 </div>
 
                 {{-- Email --}}
                 <div class="form-row">
-                    <label class ="form-label" for="email" >Email</label>
+                    <label class ="form-label" for="email"><span class ="text-red-500">*</span>Email</label>
                     <input type="email" name="email" id="email" class="form-input peer" placeholder=" " required value="{{ old('email', $developer->user->email) }}"/>
                 </div>
 
@@ -50,7 +50,7 @@
                 {{-- Experience Year --}}
                 <div class="form-row">
                     <label class ="form-label" for="experience_year" >Anni di Esperienza</label>
-                    <input type="number" name="experience_year" id="experience_year" class="form-input peer" placeholder=" " required value="{{ old('experience_year', $developer->experience_year) }}"/>
+                    <input type="number" name="experience_year" id="experience_year" class="form-input peer" placeholder=" " value="{{ old('experience_year', $developer->experience_year) }}"/>
                 </div>
 
                 {{-- Curriculum --}}
@@ -70,20 +70,20 @@
                 
                 {{-- Profile Description --}}
                 <div class="form-row">
-                    <label class ="form-label" for="profile_description" >Descrizione Profilo</label>
-                    <textarea id="profile_description" name="profile_description" class="form-input peer" rows="4" cols="50">{{ old('profile_description', $developer->profile_description) }}</textarea>
+                    <label class ="form-label" for="profile_description"><span class ="text-red-500">*</span>Descrizione Profilo</label>
+                    <textarea required id="profile_description" name="profile_description" class="form-input peer" rows="4" cols="50">{{ old('profile_description', $developer->profile_description) }}</textarea>
                 </div>
 
                 {{-- Address --}}
                 <div class="form-row">
                     <label class ="form-label" for="address" >Indirizzo</label>
-                    <input type="text" name="address" id="address" class="form-input peer" placeholder=" " required value="{{ old('address', $developer->address) }}"/>
+                    <input type="text" name="address" id="address" class="form-input peer" placeholder=" " value="{{ old('address', $developer->address) }}"/>
                 </div>
 
                 {{-- Phone Number --}}
                 <div class="form-row">
                     <label class = "form-label" for="phone_number" >Numero di Telefono</label>
-                    <input type="text" name="phone_number" id="phone_number" class="form-input peer" placeholder=" " required value="{{ old('phone_number', $developer->phone_number) }}"/>
+                    <input type="text" name="phone_number" id="phone_number" class="form-input peer" placeholder=" " value="{{ old('phone_number', $developer->phone_number) }}"/>
                 </div>
 
                 {{-- Work Fields --}}

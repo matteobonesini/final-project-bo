@@ -1,9 +1,8 @@
     
-<nav class="bg-[--bg-secondary] border-gray-200 dark:bg-[--dark-bg-secondary] h-full p-1 flex items-center">
-    <div class="max-w-screen-xl w-full flex flex-wrap md:flex-nowrap items-center justify-between mx-auto">
+<nav class="bg-zinc-300 border-gray-200 dark:bg-zinc-900 h-full p-1 flex items-center">
+    <div class="w-full flex flex-wrap md:flex-nowrap items-center justify-between px-10">
         <a href="{{ route('dashboard') }}" class="flex items-center">
-            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BDeveloper</span>
+            <img src="/LogoSmallRid.png" class="h-8 mr-3 w-48 h-12 object-cover" alt="BDeveloper Logo" />
         </a>
       <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 bg-white" aria-controls="navbar-default" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
