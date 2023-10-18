@@ -45,8 +45,8 @@
 } */
 
 .btn-primary {
-    -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
-    box-shadow: 5px 5px 15px 0px #5d7083;
+    -webkit-box-shadow: 0px 0px 15px 0px #5d7083;
+    box-shadow: 0px 0px 15px 0px #5d7083;
 }
 /* .btn-primary:hover {
     -webkit-box-shadow: 0px 0px 15px 0px #40e297;
@@ -54,8 +54,8 @@
 } */
 
 .btn-secondary {
-    -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
-    box-shadow: 5px 5px 15px 0px #5d7083;
+    -webkit-box-shadow: 0px 0px 15px 0px #5d7083;
+    box-shadow: 0px 0px 15px 0px #5d7083;
 }
 /* .btn-secondary:hover {
     -webkit-box-shadow: 0px 0px 15px 0px var(--primary);
@@ -63,8 +63,8 @@
 } */
 
 .btn-accent {
-    -webkit-box-shadow: 5px 5px 15px 0px #5d7083;
-    box-shadow: 5px 5px 15px 0px #5d7083;
+    -webkit-box-shadow: 0px 0px 15px 0px #5d7083;
+    box-shadow: 0px 0px 15px 0px #5d7083;
 }
 /* .btn-accent:hover {
     -webkit-box-shadow: 0px 0px 15px 0px #7c8fa2;

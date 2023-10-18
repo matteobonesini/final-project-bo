@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('curriculum', 255)->nullable();
             $table->string('profile_picture', 255)->nullable();
             $table->text('profile_description');
-            $table->string('address', 64)->nullable();
+            $table->string('address', 96)->nullable();
             $table->string('phone_number', 20)->nullable();
             $table->timestamps();
         });

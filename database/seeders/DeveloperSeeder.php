@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 // Models
 use App\Models\Developer;
+use App\Models\WorkField;
+use App\Models\User;
 
 // Facades
 use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Str;
 
 class DeveloperSeeder extends Seeder
 {
@@ -28,6 +32,7 @@ class DeveloperSeeder extends Seeder
         });
         
         $imgs = Storage::files("uploads/imgs");
+
         $curriculums = Storage::files("uploads/curriculums");
 
         $descriptions = [
@@ -53,37 +58,61 @@ class DeveloperSeeder extends Seeder
             "Analista dei Sistemi con una vasta esperienza nella definizione dei requisiti e nella progettazione di soluzioni IT. Abile nella comunicazione tra gli utenti finali e i team di sviluppo per garantire il successo dei progetti"
         ];
         
-        for ($i=0; $i < 10; $i++) { 
+        $usersQty = count(User::all());
+
+        for ($i=0; $i < $usersQty; $i++) { 
             $developer = new Developer();
             $developer->user_id = $i+1;
-            $developer->experience_year = rand(0, 20);
-            $developer->address = fake()->streetAddress;
+            $developer->experience_year = rand(1, 20);
+            $developer->address = fake()->address();
             $developer->profile_picture =  $imgs[$i];
-            $developer->curriculum = $curriculums[$i];
-            $developer->profile_description = $descriptions[$i];
+            
+            // Get the right curriculum Else no curriculum
+            $imgName = str_replace(['uploads/imgs/', '.jpg', 'curriculums', 'pdf'], '', $imgs[$i]);
+            for($j = 0; $j < count($curriculums); $j++){
+                $curriculumName = Str::of(str_replace(['uploads', 'imgs', '/', '.', 'jpg', 'curriculums', 'pdf'], '', $curriculums[$j]))->slug('-');
+                $imgName = str_replace(['uploads/imgs/', '.jpg', 'curriculums', 'pdf'], '', $imgs[$j]);
+                if(Str::contains($curriculumName, $imgName)) {
+                    $developer->curriculum = $curriculums[$i];
+                }
+                elseif($j == count($imgs)){
+                    $developer->curriculum = null;
+                }
+            }
+
+            // Get the right description for the work field ELSE no description
+            $workFields = WorkField::all();
+            foreach ($descriptions as $description) {
+                if (Str::contains($description, $workFields[$i]->name)) {
+                    $developer->profile_description = $description;
+                    break;
+                }else{
+                    $developer->profile_description = null;
+                }
+            }
+            
             $developer->phone_number = rand(3000000001, 3999999999);
             $developer->save();
+
+            $developer->work_fields()->attach($i+1);
+
+            // Vote assigned to user (only one each)
             $vote = rand(1, 5);
-
             $developer->votes()->attach($vote);
-            $developer->work_fields()->attach(rand(1, 10));
-            
-            if (fake()->boolean()) {
 
+            // Randomize if user has sponsorship and which one
+            if (fake()->boolean()) {
                 $tier = rand(1, 3);
-            
                 $duration = [
                     24,
                     72,
                     144
                 ];
                 $tierDuration = ($duration[$tier - 1]) * 3600;
-
                 $developer->sponsorships()->attach([
                     $tier => [
                     'start_date' => date('Y-m-d h:i:s'),
                     'expire_date' => date('Y-m-d h:i:s', time() + $tierDuration )]
-
                 ]);
             }
         }
