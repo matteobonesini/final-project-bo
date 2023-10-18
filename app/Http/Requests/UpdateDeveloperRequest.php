@@ -33,7 +33,9 @@ class UpdateDeveloperRequest extends FormRequest
             'remove_curriculum' => 'nullable',
             'work_fields' => 'nullable|array',
             'work_fields.*' => 'exists:work_fields,id',
-            'sponsorship' => 'nullable',
+            'name' => 'required',
+            'email' => 'required|email',
+            'sponsorship' => 'nullable'
         ];
     }
 }

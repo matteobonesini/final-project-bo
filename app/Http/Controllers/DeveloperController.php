@@ -128,6 +128,12 @@ class DeveloperController extends Controller
         if(isset($developer) && Auth::id() === $developer->user_id){
             $data = $request->validated();
 
+            $updatedUser = User::findOrFail($developer->user_id);
+            $updatedUser->update([
+                'name' => $data['name'],
+                'email' => $data['email']
+            ]);
+
             $crlmPath = $developer->curriculum;
             if (isset($data['curriculum'])) {
                 if ($developer->curriculum) {

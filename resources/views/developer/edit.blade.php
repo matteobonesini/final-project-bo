@@ -18,6 +18,18 @@
                 @csrf
                 @method('PUT')
 
+                {{-- Name --}}
+                <div class="form-row">
+                    <label class ="form-label" for="name" >Name</label>
+                    <input type="text" name="name" id="name" class="form-input peer" placeholder=" " required value="{{ old('name', $developer->user->name) }}"/>
+                </div>
+
+                {{-- Email --}}
+                <div class="form-row">
+                    <label class ="form-label" for="email" >Email</label>
+                    <input type="text" name="email" id="email" class="form-input peer" placeholder=" " required value="{{ old('email', $developer->user->email) }}"/>
+                </div>
+
                 {{-- Profile Picture --}}
                 <div class="form-row bg-gray-200 dark:bg-gray-800 rounded-md p-4">
                     @if ($developer->profile_picture)
@@ -56,8 +68,6 @@
                         </div>
                     @endif
                 </div>
-
-                
                 
                 {{-- Profile Description --}}
                 <div class="form-row">

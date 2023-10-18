@@ -17,7 +17,7 @@
 
         <div class = "form-container">
             <!-- Email Address -->
-            <div class="mt-4">
+            <div>
                 <label for="email" class="form-label"><span class = "text-red-500">*</span>Email</label>
                 <input type="email" id="email" name="email" class="form-input @error('email') is-invalid @enderror" placeholder="example@email.com" value="{{ old('email') }}" required>
             </div>
@@ -37,7 +37,7 @@
             </div>
         </div>
         
-        <div class="flex items-center justify-between mt-4 py-8">
+        <div class="flex items-center justify-between mt-8">
             @if (Route::has('password.request'))
                 <a class="btn-accent" href="{{ route('password.request') }}">
                     {{ __('Hai dimenticato la password?') }}
