@@ -63,7 +63,7 @@ class DeveloperSeeder extends Seeder
             $developer->profile_description = $descriptions[$i];
             $developer->phone_number = rand(3000000001, 3999999999);
             $developer->save();
-            $vote = rand(1, 10);
+            $vote = rand(1, 5);
 
             $developer->votes()->attach($vote);
             $developer->work_fields()->attach(rand(1, 10));
