@@ -6,7 +6,6 @@
             <h3 class="mb-8 text-4xl font-bold text-center">{{ $developer->user->name }}</h3>
             @if ($errors->any())
                 <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-                    Errori:
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -27,7 +26,7 @@
                 {{-- Email --}}
                 <div class="form-row">
                     <label class ="form-label" for="email" >Email</label>
-                    <input type="text" name="email" id="email" class="form-input peer" placeholder=" " required value="{{ old('email', $developer->user->email) }}"/>
+                    <input type="email" name="email" id="email" class="form-input peer" placeholder=" " required value="{{ old('email', $developer->user->email) }}"/>
                 </div>
 
                 {{-- Profile Picture --}}
