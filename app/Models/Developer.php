@@ -21,7 +21,9 @@ class Developer extends Model
 
     protected $appends = [
         'full_img_src',
-        'full_cv_src'
+        'full_cv_src',
+        'average_vote',
+        'active_sponsorship'
     ];
 
     public function getFullImgSrcAttribute() {
@@ -30,6 +32,27 @@ class Developer extends Model
 
     public function getFullCvSrcAttribute() {
         return asset('storage/' . $this->curriculum);
+    }
+
+    public function getAverageVoteAttribute() {
+        $voteArr = [];
+        foreach ($this->votes as $vote) {
+            $voteArr[] = $vote->value;
+        }
+        if (count($voteArr) != 0) {
+            return array_sum($voteArr)/count($voteArr);
+        } else {
+            return 0;
+        }
+    }
+
+    public function getActiveSponsorshipAttribute() {
+        $activeSponsorship = false;
+        if(count($this->sponsorships) > 0) {
+            $expireDate = $this->sponsorships[count($this->sponsorships) - 1]->pivot->expire_date;
+            $activeSponsorship = strtotime($expireDate) > time();
+        }
+        return $activeSponsorship;
     }
 
     public function user() {

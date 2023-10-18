@@ -24,41 +24,21 @@ class VoteSeeder extends Seeder
                 "value" => "1"
             ],
             [
-                "name" => "Pessimo",
+                "name" => "Mediocre",
                 "value" => "2"
             ],
             [
-                "name" => "Scadente",
+                "name" => "Accettabile",
                 "value" => "3"
             ],
             [
-                "name" => "Mediocre",
+                "name" => "Buono",
                 "value" => "4"
             ],
             [
-                "name" => "Accettabile",
-                "value" => "5"
-            ],
-            [
-                "name" => "Buono",
-                "value" => "6"
-            ],
-            [
                 "name" => "Ottimo",
-                "value" => "7"
-            ],
-            [
-                "name" => "Eccellente",
-                "value" => "8"
-            ],
-            [
-                "name" => "Straordinario",
-                "value" => "9"
-            ],
-            [
-                "name" => "Eccezzionale",
-                "value" => "10"
-            ],
+                "value" => "5"
+            ]
         ];
 
         foreach ($votes as $singleVote) {

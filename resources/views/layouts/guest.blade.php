@@ -11,11 +11,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-    <body>
+    <body class="h-screen overflow-hidden">
+        @include('partials.headerGuest')
         <main class = "bg-slate-300 dark:bg-slate-900 h-screen">
-        <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-black dark:text-white">
-            @include('partials.headerGuest')
-            <div class="w-1/2 mx-auto mt-10 px-4">
+            <div class="w-1/2 mx-auto pt-10 px-4">
                 @yield('main-content')
             </div>
         </main>
