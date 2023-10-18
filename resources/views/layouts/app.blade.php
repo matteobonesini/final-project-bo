@@ -7,12 +7,8 @@
         <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
         <title>{{ config('app.name', 'BDevelopers') }}</title>
 
-        <!-- Fonts -->
-
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/import.js'])
     </head>
 
     <body>
