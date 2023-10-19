@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 class DeveloperController extends Controller
 {
+    // return all type of work field
     public function work_fields() {
         $work_fields = WorkField::all();
 
@@ -20,6 +21,7 @@ class DeveloperController extends Controller
         ]); 
     }
 
+    // return all type of votes
     public function votes() {
         $votes = Vote::all();
 
@@ -29,15 +31,35 @@ class DeveloperController extends Controller
         ]); 
     }
 
-    public function search(string $search) {
+    public function search(string $search, string $vote = 'null', string $review = 'null') {
+
         $allDevelopers = Developer::where('id', '!=', null)->with('user', 'reviews', 'work_fields')->get();
 
         $developers = [];
 
         foreach ($allDevelopers as $singleDeveloper) {
-            foreach ($singleDeveloper->work_fields as $wf) {
-                if($wf->id == $search) {
+            foreach ($singleDeveloper->work_fields as $singleWorkField) {
+                if($singleWorkField->id == $search && $vote == 'null' && $review == 'null') {
                     $developers[] = $singleDeveloper;
+                } elseif($singleWorkField->id == $search && $vote != 'null' && $review == 'null') {
+                    if($singleDeveloper->average_vote >= (int)$vote)
+                        $developers[] = $singleDeveloper;
+                } elseif($singleWorkField->id == $search && $vote == 'null' && $review != 'null') {
+                    if(count($singleDeveloper->reviews) >= (int)$review)
+                        $developers[] = $singleDeveloper;
+                } elseif($singleWorkField->id == $search && $vote != 'null' && $review != 'null') {
+                    if($singleDeveloper->average_vote >= (int)$vote) {
+                        if(count($singleDeveloper->reviews) >= (int)$review)
+                            $developers[] = $singleDeveloper;
+                    }
+                } elseif($search == 'null') {
+                    foreach ($allDevelopers as $key => $singleDeveloper) {
+                        if($singleDeveloper->active_sponsorship == true && count($developers) < 20) {
+                            $developers[] = $singleDeveloper;
+                        }
+                    }
+                    shuffle($developers);
+                    $developers = array_slice($developers, 0, 4);
                 }
             }
         }
