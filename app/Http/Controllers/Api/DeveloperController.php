@@ -53,12 +53,14 @@ class DeveloperController extends Controller
                             $developers[] = $singleDeveloper;
                     }
                 } elseif($search == 'null') {
-                    foreach ($allDevelopers as $key => $singleDeveloper) {
-                        if($singleDeveloper->active_sponsorship == true && count($developers) < 20) {
+                    $developers = [];
+                    foreach ($allDevelopers as $singleDeveloper) {
+                        if($singleDeveloper->active_sponsorship == true) {
                             $developers[] = $singleDeveloper;
                         }
                     }
                     shuffle($developers);
+                    
                     $developers = array_slice($developers, 0, 4);
                 }
             }

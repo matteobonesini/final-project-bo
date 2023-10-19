@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DeveloperController;
+use App\Http\Controllers\Api\MessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,5 @@ Route::name('api.')->group(function () {
     Route::get('votes', [DeveloperController::class, 'votes']);
     Route::get('developers/{search}-{vote?}-{review?}', [DeveloperController::class, 'search']);
     Route::get('developer/{id}', [DeveloperController::class, 'show']);
+    Route::post('message', [MessageController::class, 'send']);
 });
