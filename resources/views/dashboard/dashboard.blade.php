@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main class="w-full h-full overflow-y-auto pb-12 bg-shapeline">
+    <main class="w-full h-full overflow-y-auto pb-12">
         <div class="container mx-auto px-5">
             <h1 class="font-bold text-[--tertiary] dark:text-[--dark-tertiary] text-4xl my-8 pb-5 border-b-2 border-slate-700">
                 Dashboard

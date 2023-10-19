@@ -16,6 +16,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "braintree": "^3.18.0",
         "chart.js": "^4.4.0"
     }
 }

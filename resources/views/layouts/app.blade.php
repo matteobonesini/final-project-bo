@@ -8,7 +8,9 @@
         <title>{{ config('app.name', 'BDevelopers') }}</title>
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/import.js'])
+        <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.js"></script>
+        <script src="node_modules\flowbite\dist\flowbite.min.js"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/statistics.js', 'resources/js/scripts.js'])
     </head>
 
     <body>
@@ -25,6 +27,7 @@
 
             </div>
         </div>
-        <script src="node_modules\flowbite\dist\flowbite.min.js"></script>
+        
+        
     </body>
 </html>
