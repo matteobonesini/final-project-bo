@@ -2,7 +2,7 @@
 
 @section('main-content')
     <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        {{ __('Avete dimenticato la password? Nessun problema. Comunicateci il vostro indirizzo e-mail e vi invieremo un link per reimpostare la password che vi permetterà di sceglierne una nuova.') }}
     </div>
 
     @if ($errors->any())
@@ -27,7 +27,7 @@
         </div>
         
         <div class="flex items-center justify-end mt-8">
-            <button class="btn-primary">Email Password Reset Link</button>
+            <button class="btn-primary">Link per la reimpostazione della password via e-mail</button>
         </div>
 
     </form>

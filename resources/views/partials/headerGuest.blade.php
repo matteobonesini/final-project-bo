@@ -2,8 +2,7 @@
     <nav class="bg-[--bg-secondary] border-gray-200 dark:bg-[--dark-bg-secondary] h-[8%]">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="{{ route('login') }}" class="flex items-center">
-                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BDeveloper</span>
+                <img src="/LogoSmallRid.png" class="h-full mr-3 w-48 object-cover" alt="BDeveloper Logo" />
             </a>
             <div class="flex md:order-2">
     
@@ -15,7 +14,7 @@
     
                 <a class="ms-5" href="{{ route('register') }}">
                     <button class="btn-primary">
-                        Register
+                        Registrati
                     </button>
                 </a>
                 
