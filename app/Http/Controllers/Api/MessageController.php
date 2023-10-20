@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMessageRequest;
-use Illuminate\Http\Request;
 
 // Model
 use App\Models\Message;
