@@ -23,10 +23,10 @@ class StoreMessageRequest extends FormRequest
     {
         return [
             'developer_id' => 'required',
-            'name' => 'required|min:3, max:255',
+            'name' => 'required|max:255',
             'title' => 'required|max:64',
-            'content' => 'required|min:10, max:2048',
-            'email' => 'required',
+            'content' => 'required|max:2048',
+            'email' => 'required|email',
         ];
     }
 }
