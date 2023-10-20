@@ -45,13 +45,23 @@ class ReviewSeeder extends Seeder
             19 => "Hanno risolto tutti i nostri problemi in modo efficiente. Siamo molto soddisfatti."
         ];
 
-        $developersQty = count(Developer::all());
-        for ($i=0; $i < $developersQty *2; $i++) { 
-            $review = new Review();
-            $review->developer_id = rand(1, 20);
-            $review->customer_name = fake()->name;
-            $review->description = $recensioni[rand(0, 19)];
-            $review->save();
+        $url = 'https://randomuser.me/api/?results='.config('data');
+        $data = json_decode(file_get_contents($url), true);
+        $data = $data['results'];
+
+        $count = count($data);
+        for ($i=1; $i <= $count; $i++) { 
+            for ($j=0; $j < rand(1, 30); $j++) { 
+                $review = new Review();
+                $review->developer_id = $i;
+                $review->customer_name = fake()->name;
+                $review->description = $recensioni[rand(0, 19)];
+                $review->save();
+
+                $developer = Developer::find($i);
+                $vote = rand(1, 5);
+                $developer->votes()->attach($vote);
+            }
         }
     }
 }

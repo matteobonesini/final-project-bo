@@ -16,14 +16,21 @@ class MessageSeeder extends Seeder
             Message::truncate();
         });
 
-        for ($i=0; $i < 10; $i++) { 
-            $message = new Message();
-            $message->developer_id = rand(1, 10);
-            $message->name = fake()->name;
-            $message->email = fake()->email;
-            $message->title = fake()->catchPhrase;
-            $message->content = fake()->sentence(20);
-            $message->save();
+        $url = 'https://randomuser.me/api/?results='.config('data');
+        $data = json_decode(file_get_contents($url), true);
+        $data = $data['results'];
+
+        $count = count($data);
+        for ($i=1; $i <= $count; $i++) { 
+            for ($j=0; $j < rand(5, 20); $j++) { 
+                $message = new Message();
+                $message->developer_id = $i;
+                $message->name = fake()->name;
+                $message->email = fake()->email;
+                $message->title = fake()->catchPhrase;
+                $message->content = fake()->sentence(20);
+                $message->save();
+            }
         }
     }
 }

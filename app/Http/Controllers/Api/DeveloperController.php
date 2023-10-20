@@ -61,7 +61,7 @@ class DeveloperController extends Controller
                     }
                     shuffle($developers);
                     
-                    $developers = array_slice($developers, 0, 4);
+                    $developers = array_slice($developers, 0, 8);
                 }
             }
         }
