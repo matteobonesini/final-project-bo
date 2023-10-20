@@ -11,7 +11,7 @@ class StoreReviewRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,10 @@ class StoreReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required, min:3, max:64, alpha:ascii',
-            'description' => 'required, min:10, max:2048, alpha_num:ascii'
+            'developer_id' => 'required',
+            'customer_name' => 'required|max:64',
+            'description' => 'required|max:2048',
+            'vote' => 'exists:votes,id'
         ];
     }
 }

@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreMessageRequest;
 
 // Model
 use App\Models\Message;
 
-class ReviewController extends Controller
+class MessageController extends Controller
 {
-    public function index()
+    public function send(StoreMessageRequest $request)
     {
-        $message = Message::all();
+        $data = $request->validated();
+
+        Message::create($data);
         return response()->json([
-            'success' => 'true',
-            'result' => $message
-        ]);
+            'success' => true,
+            'result' => $data,
+        ], 200);
     }
 }

@@ -22,10 +22,11 @@ class StoreMessageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|min:3, max:255',
+            'developer_id' => 'required',
+            'name' => 'required|max:255',
             'title' => 'required|max:64',
-            'content' => 'required|min:10, max:2048',
-            'email' => 'nullable',
+            'content' => 'required|max:2048',
+            'email' => 'required|email',
         ];
     }
 }
