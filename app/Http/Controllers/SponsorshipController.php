@@ -39,21 +39,69 @@ class SponsorshipController extends Controller
             ],
         ];
 
-        $gateway = new \Braintree\Gateway([
-            'environment' => env('BRAINTREE_ENVIRONMENT'),
-            'merchantId' => env("BRAINTREE_MERCHANT_ID"),
-            'publicKey' => env("BRAINTREE_PUBLIC_KEY"),
-            'privateKey' => env("BRAINTREE_PRIVATE_KEY")
-        ]);
-        $clientToken = $gateway->clientToken()->generate();
+        $braintree = config('braintree');
+        $clientToken = $braintree->clientToken()->generate();
 
         return view('developer.sponsorship', compact('sponsorships', 'developer', 'sponsorDesc', 'clientToken'));
     }
 
     public function newSponsorship(Request $request){
         $developer = Developer::find(Auth::id());
-        dd($request);
-        
+        $data = $request->validate(
+            [
+                'amount' => 'required|exists:sponsorships,price',
+                'nonce' => 'required',
+                'name' => 'required',
+                'lastname' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+                'zipcode' => 'required',
+                'phone' => 'nullable'
+            ]
+        );
+        $duration = [
+            '2.99' => 24,
+            '5.99' => 72,
+            '9.99' => 144
+        ];
+        $index = [
+            '2.99' => 1,
+            '5.99' => 2,
+            '9.99' => 3
+        ];
+        $tierDuration = ($duration[$data['amount']]) * 3600;
+        $developer->sponsorships()->attach([
+            $index[$data['amount']] => [
 
+                'start_date' => date('Y-m-d h:i:s'),
+                'expire_date' => date('Y-m-d h:i:s', time() + $tierDuration ),
+            ]
+        ]);
+
+        $braintree = config('braintree');
+
+        // payment process
+        $result = $braintree->transaction()->sale([
+            'amount' => $data['amount'],
+            'paymentMethodNonce' => $data['nonce'],
+            //'paymentMethodNonce' => 'fake-valid-nonce', // testing card
+            'billing' => [
+                'postalCode' => $data['zipcode'],
+                'streetAddress' => $data['address'],
+            ],
+            'customer' => [
+                'firstName' => $data['name'],
+                'lastName' => $data['lastname'],
+                // 'email' => $email,
+            ],
+            'options' => [
+                'submitForSettlement' => True
+            ]
+        ]);
+        return response()->json([
+            'success' => 'true',
+            'message' => 'Operazione completata con successo',
+            'result' => $result
+        ], 200);
     }
 }

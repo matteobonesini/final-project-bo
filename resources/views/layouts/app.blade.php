@@ -8,18 +8,19 @@
         <title>{{ config('app.name', 'BDevelopers') }}</title>
 
         <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/statistics.js', 'resources/js/scripts.js'])
         <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.js"></script>
         <script src="node_modules\flowbite\dist\flowbite.min.js"></script>
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/statistics.js', 'resources/js/scripts.js'])
+        
     </head>
 
     <body>
-        <div class="flex flex-col h-screen">
+        <div class="flex flex-col h-screen ">
             <div class="min-h-[10%]">
                 @include('partials.header')
             </div>
 
-            <div class="flex min-h-[90%] bg-shapeline">
+            <div class="flex min-h-[90%] bg-gray-300 bg-opacity-50 bg-blend-color-dodge dark:bg-blend-multiply bg-black-pattern dark:bg-green-400">
     
                 @include('partials.aside')
     
@@ -27,7 +28,5 @@
 
             </div>
         </div>
-        
-        
     </body>
 </html>

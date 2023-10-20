@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main class="w-full h-full bg-shapeline overflow-y-auto">
+    <main class="w-full h-full overflow-y-auto">
         <section class="h-full mx-auto container px-10 py-12">
             <div class="w-full text-center mb-12 border-b-2 border-slate-700 pb-5">
                 <h2 class="max-w-lg mx-auto text-[--tertiary] dark:text-[--dark-tertiary] mb-5 text-3xl font-bold md:text-5xl custom-shadow bg-[--transparent] p-4 rounded-xl ">
