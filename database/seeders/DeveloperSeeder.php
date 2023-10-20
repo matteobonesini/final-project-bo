@@ -23,9 +23,7 @@ class DeveloperSeeder extends Seeder
      */
     public function run(): void
     {
-        $url = 'https://randomuser.me/api/?results='.config('data');
-        $data = json_decode(file_get_contents($url), true);
-        $data = $data['results'];
+        $data = config('data');
 
         Schema::withoutForeignKeyConstraints(function () {
             Developer::truncate();
@@ -33,8 +31,9 @@ class DeveloperSeeder extends Seeder
             DB::table('developer_work_field')->truncate();
             DB::table('developer_sponsorship')->truncate();
         });
-
-        Storage::deleteDirectory('uploads/imgs');
+        if (Storage::exists('uploads/imgs')) {
+            Storage::deleteDirectory('uploads/imgs');
+        }
         Storage::makeDirectory('uploads/imgs');
 
         for ($i=0; $i < count($data); $i++) { 
@@ -44,8 +43,6 @@ class DeveloperSeeder extends Seeder
         }
 
         $imgs = Storage::files("uploads/imgs");
-
-        // $curriculums = Storage::files("uploads/curriculums");
 
         $descriptions = [
             "Sviluppatore Web con oltre 5 anni di esperienza nella creazione di siti web responsive e applicazioni web interattive. Competenze avanzate in HTML, CSS, JavaScript e framework come React e Angular. Esperienza nel lavoro con team multidisciplinari per la realizzazione di progetti web di successo.",
@@ -69,8 +66,6 @@ class DeveloperSeeder extends Seeder
             "Ingegnere AI/ML specializzato nell'applicazione di algoritmi di intelligenza artificiale e machine learning. Esperienza nella creazione di modelli predittivi e nell'implementazione di soluzioni basate sull'AI per risolvere problemi aziendali complessi.",
             "Analista dei Sistemi con una vasta esperienza nella definizione dei requisiti e nella progettazione di soluzioni IT. Abile nella comunicazione tra gli utenti finali e i team di sviluppo per garantire il successo dei progetti"
         ];
-        
-        $userCount = count(User::all());
 
         for ($i=0; $i < count($data); $i++) { 
             $developer = new Developer();
@@ -81,7 +76,7 @@ class DeveloperSeeder extends Seeder
             
             $workId = rand(0, 19);
             $developer->profile_description = $descriptions[$workId];
-            $developer->phone_number = rand(3300000001, 3600000000);
+            $developer->phone_number = '+39 '.rand(3300000001, 3600000000);
             $developer->save();
 
             $developer->work_fields()->attach($workId+1);

@@ -12,7 +12,6 @@ class Developer extends Model
     protected $fillable = [
         'user_id',
         'experience_year',
-        'curriculum',
         'profile_picture',
         'profile_description',
         'address',
@@ -21,17 +20,12 @@ class Developer extends Model
 
     protected $appends = [
         'full_img_src',
-        'full_cv_src',
         'average_vote',
         'active_sponsorship'
     ];
 
     public function getFullImgSrcAttribute() {
         return asset('storage/' . $this->profile_picture);
-    }
-
-    public function getFullCvSrcAttribute() {
-        return asset('storage/' . $this->curriculum);
     }
 
     public function getAverageVoteAttribute() {

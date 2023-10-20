@@ -12,13 +12,11 @@ class MessageSeeder extends Seeder
 {
     public function run(): void
     {
+        $data = config('data');
+        
         Schema::withoutForeignKeyConstraints(function () {
             Message::truncate();
         });
-
-        $url = 'https://randomuser.me/api/?results='.config('data');
-        $data = json_decode(file_get_contents($url), true);
-        $data = $data['results'];
 
         $count = count($data);
         for ($i=1; $i <= $count; $i++) { 

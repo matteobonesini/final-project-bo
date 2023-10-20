@@ -63,21 +63,6 @@
                     <label class ="form-label" for="experience_year" >Anni di Esperienza</label>
                     <input type="number" name="experience_year" id="experience_year" class="form-input peer" placeholder=" " value="{{ old('experience_year', $developer->experience_year) }}"/>
                 </div>
-
-                {{-- Curriculum --}}
-                <div class="form-row bg-gray-200 dark:bg-gray-800 rounded-md p-4">
-                    <label class = "form-label" for="curriculum" >Curriculum</label>
-                    <input type="file" name="curriculum" id="curriculum" class="form-input peer"/>
-                    @if ($developer->curriculum)
-                        <a class="block underline w-full text-center my-5" href="{{ $developer->full_cv_src }}">See Curriculum Pdf</a>
-                        <div class="form-check">
-                            <input class="checkbox" type="checkbox" value="1" name="remove_curriculum" id="remove_curriculum">
-                            <label class="checkbox-label" for="remove_curriculum">
-                                Remove Curriculum
-                            </label>
-                        </div>
-                    @endif
-                </div>
                 
                 {{-- Profile Description --}}
                 <div class="form-row">

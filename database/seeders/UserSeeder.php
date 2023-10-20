@@ -15,6 +15,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $data = config('data');
+
         Schema::withoutForeignKeyConstraints(function () {
             User::truncate();
         });
@@ -101,10 +103,6 @@ class UserSeeder extends Seeder
                 'mail' => 'yuri@email.com'
             ],
         ]; */
-
-        $url = 'https://randomuser.me/api/?results='.config('data');
-        $data = json_decode(file_get_contents($url), true);
-        $data = $data['results'];
 
         foreach ($data as $user) {
             $newUser = new User();
