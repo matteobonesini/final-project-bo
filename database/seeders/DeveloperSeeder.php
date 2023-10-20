@@ -70,12 +70,14 @@ class DeveloperSeeder extends Seeder
             // Get the right curriculum Else no curriculum
             $imgName = str_replace(['uploads/imgs/', '.jpg', 'curriculums', 'pdf'], '', $imgs[$i]);
             for($j = 0; $j < count($curriculums); $j++){
+
                 $curriculumName = Str::of(str_replace(['uploads', 'imgs', '/', '.', 'jpg', 'curriculums', 'pdf'], '', $curriculums[$j]))->slug('-');
                 $imgName = str_replace(['uploads/imgs/', '.jpg', 'curriculums', 'pdf'], '', $imgs[$j]);
+                
                 if(Str::contains($curriculumName, $imgName)) {
                     $developer->curriculum = $curriculums[$i];
                 }
-                elseif($j == count($imgs)){
+                elseif($j == count($curriculums)){
                     $developer->curriculum = null;
                 }
             }

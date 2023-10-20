@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main class="w-full h-full overflow-y-auto pb-12 bg-shapeline">
+    <main class="w-full h-full overflow-y-auto pb-12">
         <div class="container mx-auto px-5">
             <h1 class="font-bold text-[--tertiary] dark:text-[--dark-tertiary] text-4xl my-8 pb-5 border-b-2 border-slate-700">
                 Dashboard
             </h1>
-            
-            
             @if ($developer)
                 <section class="grid sm:grid-cols-1 md:grid-cols-2 gap-10">
                     <div class="bg-[--transparent] dark:bg-[--dark-transparent] p-5 rounded-lg">
@@ -68,27 +66,7 @@
                         @endif
                     </div>
                 </section>
-                <div class="relative">
-                    <button class="rounded-full absolute top-2 right-2 hover:bg-white hover:scale-125 transition-all peer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                    </button>
-                    <div class="text-center my-10 bg-amber-300 rounded-2xl p-4 peer-focus:hidden">
-                        <h2 class="text-center p-3 text-2xl font-bold">
-                            Aumenta la visibilità del tuo profilo!
-                            <p class="my-2 text-xl">
-                                Acquistando ora la sponsorship il tuo profilo sarà più facile da trovare ed avrai molte più possibilità di ricevere lavoro
-                            </p> 
-                        </h2>
-                        <a href="{{ route('developer.edit', ['developer' => $developer->id]) }}">
-                            <button class="btn-accent">
-                                Clicca Qui
-                            </button>
-                        </a>
-                    </div>
-                    
-                </div>
+                
             @else
                 <section class="flex justify-center">
                     <a href="{{ route('developer.create') }}">

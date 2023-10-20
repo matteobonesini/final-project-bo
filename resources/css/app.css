@@ -80,6 +80,13 @@
     background-position: center;
 }
 
+.bg-black-pattern {
+    background-image: url("/resources/images/bg-pattern-black.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 @layer components {
     /* BUTTON */
     .btn {
@@ -167,4 +174,7 @@
         @apply bg-green-300 border-green-500 
     }
 
+    .blur-layer{
+        @apply bg-gray-700 bg-opacity-90
+    }
 }

@@ -2,17 +2,6 @@ import Chart from 'chart.js/auto';
 
 Chart.defaults.color = '#ffffff';
 
-
-const messLength = messagesArr.length;
-console.log('Messages: ', messagesArr);
-
-const votesLength = votesArr.length;
-console.log('Votes: ', votesArr);
-
-const reviewsLength = reviewsArr.length;
-console.log('Reviews: ', reviewsArr);
-
-
 function getData(entity){
 	const years = [];
 	const months = [];
