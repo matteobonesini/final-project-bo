@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             User::truncate();
         });
 
-        $users = [
+        /* $users = [
             [
                 'userName' => 'Alice Johnson',
                 'mail' => 'alice@email.com'
@@ -100,12 +100,16 @@ class UserSeeder extends Seeder
                 'userName' => 'Yuri Montesi',
                 'mail' => 'yuri@email.com'
             ],
-        ];
+        ]; */
 
-        foreach ($users as $user) {
+        $url = 'https://randomuser.me/api/?results='.config('data');
+        $data = json_decode(file_get_contents($url), true);
+        $data = $data['results'];
+
+        foreach ($data as $user) {
             $newUser = new User();
-            $newUser->name = $user['userName'];
-            $newUser->email = $user['mail'];
+            $newUser->name = $user['name']['first']. ' ' . $user['name']['last'];
+            $newUser->email = $user['email'];
             $newUser->password = Hash::make('password');
             $newUser->save();
         }

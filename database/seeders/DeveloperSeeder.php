@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Developer;
 use App\Models\WorkField;
 use App\Models\User;
-
 // Facades
 use Illuminate\Support\Facades\DB;
 
@@ -24,16 +23,29 @@ class DeveloperSeeder extends Seeder
      */
     public function run(): void
     {
+        $url = 'https://randomuser.me/api/?results='.config('data');
+        $data = json_decode(file_get_contents($url), true);
+        $data = $data['results'];
+
         Schema::withoutForeignKeyConstraints(function () {
             Developer::truncate();
             DB::table('developer_vote')->truncate();
             DB::table('developer_work_field')->truncate();
             DB::table('developer_sponsorship')->truncate();
         });
-        
+
+        Storage::deleteDirectory('uploads/imgs');
+        Storage::makeDirectory('uploads/imgs');
+
+        for ($i=0; $i < count($data); $i++) { 
+            $url = $data[$i]['picture']['large'];
+            $img = storage_path('app/public/uploads/imgs/image'.$i.'.jpg');
+            file_put_contents($img, file_get_contents($url));
+        }
+
         $imgs = Storage::files("uploads/imgs");
 
-        $curriculums = Storage::files("uploads/curriculums");
+        // $curriculums = Storage::files("uploads/curriculums");
 
         $descriptions = [
             "Sviluppatore Web con oltre 5 anni di esperienza nella creazione di siti web responsive e applicazioni web interattive. Competenze avanzate in HTML, CSS, JavaScript e framework come React e Angular. Esperienza nel lavoro con team multidisciplinari per la realizzazione di progetti web di successo.",
@@ -58,49 +70,21 @@ class DeveloperSeeder extends Seeder
             "Analista dei Sistemi con una vasta esperienza nella definizione dei requisiti e nella progettazione di soluzioni IT. Abile nella comunicazione tra gli utenti finali e i team di sviluppo per garantire il successo dei progetti"
         ];
         
-        $usersQty = count(User::all());
+        $userCount = count(User::all());
 
-        for ($i=0; $i < $usersQty; $i++) { 
+        for ($i=0; $i < count($data); $i++) { 
             $developer = new Developer();
             $developer->user_id = $i+1;
             $developer->experience_year = rand(1, 20);
             $developer->address = fake()->address();
             $developer->profile_picture =  $imgs[$i];
             
-            // Get the right curriculum Else no curriculum
-            $imgName = str_replace(['uploads/imgs/', '.jpg', 'curriculums', 'pdf'], '', $imgs[$i]);
-            for($j = 0; $j < count($curriculums); $j++){
-
-                $curriculumName = Str::of(str_replace(['uploads', 'imgs', '/', '.', 'jpg', 'curriculums', 'pdf'], '', $curriculums[$j]))->slug('-');
-                $imgName = str_replace(['uploads/imgs/', '.jpg', 'curriculums', 'pdf'], '', $imgs[$j]);
-                
-                if(Str::contains($curriculumName, $imgName)) {
-                    $developer->curriculum = $curriculums[$i];
-                }
-                elseif($j == count($curriculums)){
-                    $developer->curriculum = null;
-                }
-            }
-
-            // Get the right description for the work field ELSE no description
-            $workFields = WorkField::all();
-            foreach ($descriptions as $description) {
-                if (Str::contains($description, $workFields[$i]->name)) {
-                    $developer->profile_description = $description;
-                    break;
-                }else{
-                    $developer->profile_description = null;
-                }
-            }
-            
-            $developer->phone_number = rand(3000000001, 3999999999);
+            $workId = rand(0, 19);
+            $developer->profile_description = $descriptions[$workId];
+            $developer->phone_number = rand(3300000001, 3600000000);
             $developer->save();
 
-            $developer->work_fields()->attach($i+1);
-
-            // Vote assigned to user (only one each)
-            $vote = rand(1, 5);
-            $developer->votes()->attach($vote);
+            $developer->work_fields()->attach($workId+1);
 
             // Randomize if user has sponsorship and which one
             if (fake()->boolean()) {
