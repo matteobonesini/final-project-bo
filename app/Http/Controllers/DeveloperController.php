@@ -44,11 +44,6 @@ class DeveloperController extends Controller
         if(!isset(User::find(Auth::id())->developer)) {
             $data = $request->validated();
 
-            $crlmPath = NULL;
-            if (isset($data['curriculum'])) {
-                $crlmPath = Storage::put('uploads/curriculums', $data['curriculum']);
-            }
-
             $imgPath = NULL;
             if (isset($data['profile_picture'])) {
                 $imgPath = Storage::put('uploads/imgs', $data['profile_picture']);
@@ -57,7 +52,6 @@ class DeveloperController extends Controller
             $newDeveloper = Developer::create([
                 'user_id' => Auth::id(),
                 'experience_year' => $data['experience_year'],
-                'curriculum' => $crlmPath,
                 'profile_picture' => $imgPath,
                 'profile_description' => $data['profile_description'],
                 'address' => $data['address'],
@@ -134,20 +128,6 @@ class DeveloperController extends Controller
                 'email' => $data['email']
             ]);
 
-            $crlmPath = $developer->curriculum;
-            if (isset($data['curriculum'])) {
-                if ($developer->curriculum) {
-                    Storage::delete($developer->curriculum);
-                }
-                $crlmPath = Storage::put('uploads/curriculums', $data['curriculum']);
-            }
-            else if (isset($data['remove_curriculum'])) {
-                if ($developer->curriculum) {
-                    Storage::delete($developer->curriculum);
-                }
-                $crlmPath = null;
-            }
-
             $imgPath = $developer->profile_picture;
             if (isset($data['profile_picture'])) {
                 if ($developer->profile_picture) {
@@ -165,7 +145,6 @@ class DeveloperController extends Controller
             $updatedDeveloper = Developer::findOrFail($developer->id);
             $updatedDeveloper->update([
                 'experience_year' => $data['experience_year'],
-                'curriculum' => $crlmPath,
                 'profile_picture' => $imgPath,
                 'profile_description' => $data['profile_description'],
                 'address' => $data['address'],

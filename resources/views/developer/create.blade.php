@@ -23,13 +23,6 @@
                 <input type="number" name="experience_year" id="experience_year" class="form-input peer" placeholder=" " value="{{ old('experience_year') }}"/> 
             </div>
 
-            {{-- Curriculum --}}
-            <div class="form-row">
-                <label for="curriculum" class = "form-label" >Curriculum</label>
-                <input type="file" name="curriculum" id="curriculum" class="form-input peer"/>
-                
-            </div>
-
             {{-- Profile Picture --}}
             <div class="form-row">
                 <label class = "form-label" for="profile_picture" >Profile Picture</label>

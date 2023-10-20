@@ -18,6 +18,8 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
+        $data = config('data');
+
         Schema::withoutForeignKeyConstraints(function () {
             Review::truncate();
         });
@@ -44,10 +46,6 @@ class ReviewSeeder extends Seeder
             18 => "Lavoro di qualità superiore. Li raccomandiamo a tutti coloro che cercano servizi IT.",
             19 => "Hanno risolto tutti i nostri problemi in modo efficiente. Siamo molto soddisfatti."
         ];
-
-        $url = 'https://randomuser.me/api/?results='.config('data');
-        $data = json_decode(file_get_contents($url), true);
-        $data = $data['results'];
 
         $count = count($data);
         for ($i=1; $i <= $count; $i++) { 

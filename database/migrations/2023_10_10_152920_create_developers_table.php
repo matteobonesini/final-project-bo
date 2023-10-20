@@ -23,7 +23,6 @@ return new class extends Migration
                 ->onUpdate('cascade');
 
             $table->unsignedTinyInteger('experience_year')->nullable();
-            $table->string('curriculum', 255)->nullable();
             $table->string('profile_picture', 255)->nullable();
             $table->text('profile_description');
             $table->string('address', 96)->nullable();
