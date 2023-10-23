@@ -73,13 +73,8 @@ class DeveloperController extends Controller
     }
 
     public function show(string $id) {
-        $developer = Developer::where('id', $id)->with('user', 'reviews', 'work_fields')->first();
 
-        $activeSponsorship = false;
-        if(count($developer->sponsorships) > 0) {
-            $expireDate = $developer->sponsorships[count($developer->sponsorships) - 1]->pivot->expire_date;
-            $activeSponsorship = strtotime($expireDate) > time();
-        }
+        $developer = Developer::where('id', $id)->with('user', 'reviews', 'work_fields')->first();
 
         if ($developer) {
             return response()->json([

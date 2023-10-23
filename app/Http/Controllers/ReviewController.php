@@ -22,9 +22,9 @@ class ReviewController extends Controller
     {
         $devId = Auth::id();
         $developer = Developer::where('user_id', '=', $devId)->first();
-        $reviews = Review::where('developer_id', '=', $devId)->get();
-        $votes = Vote::all();
+        $votes = $developer->votes->sortByDesc('id')->values();
+        $reviews = $developer->reviews->sortByDesc('id')->values(); 
 
-        return view ('dashboard.reviews', compact('reviews', 'votes', 'developer'));
+        return view ('dashboard.reviews', compact('developer', 'votes', 'reviews'));
     }
 }

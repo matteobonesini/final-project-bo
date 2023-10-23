@@ -44,6 +44,7 @@
         
         <div class="my-5 px-2">
             @auth
+                <h6 class="text-xs mb-4 text-center">{{ Auth::user()['name'] }}</h6>
                 <form method="POST" action="{{ route('logout') }}" class="flex justify-center">
                     @csrf
 

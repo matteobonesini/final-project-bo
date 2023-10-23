@@ -17,20 +17,16 @@
                                 @if($developer->votes->isEmpty())
                                     <span class="text-black dark:text-white">Non ci sono recensioni</span> 
                                 @else
-                                @php  
-                                    $votes = $developer->votes->toQuery()->orderBy('id', 'desc')->limit(5)->get();
-                                    $reviews = $developer->reviews->toQuery()->orderBy('id', 'desc')->limit(5)->get(); 
-                                @endphp
                                     @foreach ($votes as $key => $vote)
                                         <div class="card-body">
                                             <h5 class="font-bold text-lg text-[--primary] dark:text-[--dark-primary] mb-4">
-                                                {{ $developer->reviews[$key]->customer_name }}
+                                                {{ $reviews[$key]->customer_name }}
                                             </h5>
                                             <h5 class="dark:text-[--dark-accent] text-[--accent] font-medium">
-                                                {{ $developer->votes[$key]->name }}
+                                                {{ $votes[$key]->name }}
                                             </h5>
                                             <p>
-                                                {{ $developer->reviews[$key]->description}}
+                                                {{ $reviews[$key]->description}}
                                             </p>
                                         </div>
                                     @endforeach
@@ -43,7 +39,6 @@
                             Ultimi Messaggi
                         </h4>
                         @if($developer)
-                            @php $messages = $developer->messages->toQuery()->orderBy('id', 'desc')->limit(5)->get(); @endphp
                             <div class="grid grid-cols-1 gap-3">
                                 @if($developer->messages->isEmpty())
                                     <span class="text-[--text] dark:text-[--dark-text]">Non ci sono messaggi</span> 

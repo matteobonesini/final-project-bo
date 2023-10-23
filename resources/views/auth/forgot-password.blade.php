@@ -26,7 +26,7 @@
             </div>
         </div>
         
-        <div class="flex items-center justify-end mt-8">
+        <div class="flex flex-col-reverse md:flex-row md:items-center justify-start justify-between space-y-5 md:space-y-0 space-y-reverse mt-5">
             <button class="btn-primary">Link per la reimpostazione della password via e-mail</button>
         </div>
 
