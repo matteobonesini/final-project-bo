@@ -32,8 +32,8 @@
                             </div>
                         @else
                             <div class="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-                                @foreach ($developer->messages as $message)
-                                    <div class="card-body">
+                                @foreach ($messages as $message)
+                                    <div class="card-body w-full">
                                         <div class="flex flex-col justify-between rounded-lg h-full">
                                             <div>
                                                 <h2 class="text-[--primary] dark:text-[--dark-primary] text-xl font-semibold mb-3">

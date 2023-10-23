@@ -21,59 +21,8 @@ class MessageController extends Controller
     {
         $devId = Auth::id();
         $developer = Developer::where('user_id', '=', $devId)->with('messages')->first();
+        $messages = $developer->messages->sortByDesc('id')->values(); 
         
-        return view('dashboard.messages', compact('developer'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(StoreMessageRequest $request)
-    // {
-    //     $formData = $request->validated();
-    //     $message = Message::create($formData);
-    //     $message->save();
-
-    //     return redirect()->route('dashboard.messages');
-    // }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateMessageRequest $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Message $message)
-    {
-        //
+        return view('dashboard.messages', compact('developer', 'messages'));
     }
 }

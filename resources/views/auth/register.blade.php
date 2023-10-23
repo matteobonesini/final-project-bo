@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="flex items-center  justify-between mt-8">
+        <div class="flex flex-col-reverse md:flex-row md:items-center justify-start justify-between space-y-5 md:space-y-0 space-y-reverse mt-5">
             <a class="btn-accent" href="{{ route('login') }}">
                 {{ __('Già registrato?') }}
             </a>
