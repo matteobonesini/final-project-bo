@@ -24,7 +24,7 @@ class StoreReviewRequest extends FormRequest
         return [
             'developer_id' => 'required',
             'customer_name' => 'required|max:64',
-            'description' => 'required|max:2048',
+            'description' => 'nullable|max:2048',
             'vote' => 'exists:votes,id'
         ];
     }

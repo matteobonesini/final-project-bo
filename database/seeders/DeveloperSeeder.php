@@ -27,7 +27,6 @@ class DeveloperSeeder extends Seeder
 
         Schema::withoutForeignKeyConstraints(function () {
             Developer::truncate();
-            DB::table('developer_vote')->truncate();
             DB::table('developer_work_field')->truncate();
             DB::table('developer_sponsorship')->truncate();
         });
