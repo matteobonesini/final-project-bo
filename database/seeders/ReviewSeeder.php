@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Schema;
 // Models
 use App\Models\Review;
 use App\Models\Developer;
+use Illuminate\Support\Facades\DB;
 
 class ReviewSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class ReviewSeeder extends Seeder
 
         Schema::withoutForeignKeyConstraints(function () {
             Review::truncate();
+            DB::table('developer_vote')->truncate();
         });
 
         $recensioni = [
@@ -52,7 +54,7 @@ class ReviewSeeder extends Seeder
             for ($j=0; $j < rand(1, 30); $j++) { 
                 $review = new Review();
                 $review->developer_id = $i;
-                $review->customer_name = fake()->name;
+                $review->customer_name = fake()->firstName . ' ' . fake()->lastName();
                 $review->description = $recensioni[rand(0, 19)];
                 $review->created_at = fake()->dateTimeThisDecade();
                 $review->updated_at = $review->created_at;
