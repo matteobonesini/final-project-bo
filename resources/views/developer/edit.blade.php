@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-black dark:text-white">
+    <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-[--text] dark:text-[--dark-text]">
         <div class="container mx-auto my-5 px-4">
             <div class="mb-8 relative">
                 <h3 class="text-4xl font-bold text-center">{{ $developer->user->name }}</h3>
@@ -30,30 +30,31 @@
 
                 {{-- Name --}}
                 <div class="form-row">
-                    <label class ="form-label" for="name"><span class ="text-red-500">*</span>Name</label>
+                    <label class ="form-label" for="name"><span class ="text-red-500">*</span> Nome Cognome</label>
                     <input type="text" name="name" id="name" class="form-input peer" placeholder=" " required value="{{ old('name', $developer->user->name) }}"/>
                 </div>
 
                 {{-- Email --}}
                 <div class="form-row">
-                    <label class ="form-label" for="email"><span class ="text-red-500">*</span>Email</label>
+                    <label class ="form-label" for="email"><span class ="text-red-500">*</span> Email</label>
                     <input type="email" name="email" id="email" class="form-input peer" placeholder=" " required value="{{ old('email', $developer->user->email) }}"/>
                 </div>
 
                 {{-- Profile Picture --}}
+                <h4 class="mb-2 font-medium text-sm">Immagine profilo</h4>
                 <div class="form-row bg-gray-200 dark:bg-gray-800 rounded-md p-4">
                     @if ($developer->profile_picture)
                         <div class="my-8 flex justify-center">
                             <img class="rounded-lg w-32 object-cover" src="{{ $developer->full_img_src }}" class="w-50" alt="{{ $developer->user->name }}">
                         </div>
                         <div class="form-check">
-                            <input class="checkbox" type="checkbox" name="remove_profile_picture" id="remove_profile_picture" value="remove">
+                            <input class="checkbox my-5" type="checkbox" name="remove_profile_picture" id="remove_profile_picture" value="remove">
                             <label class="checkbox-label" for="remove_profile_picture">
-                                Remove Profile Picture
+                                Rimuovi immagine profilo
                             </label>
                         </div>
                     @endif
-                    <label class = "form-label" for="profile_picture" >Profile Picture</label>
+                    <label class="form-label" for="profile_picture">Seleziona immagine profilo</label>
                     <input type="file" name="profile_picture" id="profile_picture" class="form-input peer"/>
                     
                 </div>
@@ -66,7 +67,7 @@
                 
                 {{-- Profile Description --}}
                 <div class="form-row">
-                    <label class ="form-label" for="profile_description"><span class ="text-red-500">*</span>Descrizione Profilo</label>
+                    <label class ="form-label" for="profile_description"><span class ="text-red-500">*</span> Descrizione Profilo</label>
                     <textarea required id="profile_description" name="profile_description" class="form-input peer" rows="4" cols="50">{{ old('profile_description', $developer->profile_description) }}</textarea>
                 </div>
 
@@ -83,7 +84,7 @@
                 </div>
 
                 {{-- Work Fields --}}
-                <h4 class="mb-2">Work Fields: </h4>
+                <h4 class="mb-2 font-medium text-sm"><span class ="text-red-500">*</span> Work Fields</h4>
                 <div class="form-row bg-gray-200 dark:bg-gray-800 rounded-md py-6 px-4">
                     <div class="grid grid-cols-5 gap-4">
                         @foreach ($work_fields as $work_field)

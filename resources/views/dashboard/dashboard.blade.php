@@ -14,26 +14,23 @@
                         </h4>
                         <div class="grid grid-cols-1 gap-3">
                             @if($developer)
-                                @if($developer->reviews->isEmpty())
+                                @if($developer->votes->isEmpty())
                                     <span class="text-black dark:text-white">Non ci sono recensioni</span> 
                                 @else
-                                @php $reviews = $developer->reviews->toQuery()->orderBy('id', 'desc')->get(); @endphp
-                                    @foreach ($reviews as $key => $singleReview)
+                                @php  
+                                    $votes = $developer->votes->toQuery()->orderBy('id', 'desc')->limit(5)->get();
+                                    $reviews = $developer->reviews->toQuery()->orderBy('id', 'desc')->limit(5)->get(); 
+                                @endphp
+                                    @foreach ($votes as $key => $vote)
                                         <div class="card-body">
                                             <h5 class="font-bold text-lg text-[--primary] dark:text-[--dark-primary] mb-4">
-                                                {{ $singleReview->customer_name }}
+                                                {{ $developer->reviews[$key]->customer_name }}
                                             </h5>
-                                            @if ($developer->votes->isEmpty())
-                                                Non ci sono valutazioni
-                                            {{-- @else
-                                                @if($developer->votes[$singleReview->id])
-                                                    <h5 class=" font-medium">
-                                                        {{ $developer->votes[0]->name }}
-                                                    </h5>
-                                                @endif --}}
-                                            @endif
+                                            <h5 class="dark:text-[--dark-accent] text-[--accent] font-medium">
+                                                {{ $developer->votes[$key]->name }}
+                                            </h5>
                                             <p>
-                                                {{ $singleReview->description}}
+                                                {{ $developer->reviews[$key]->description}}
                                             </p>
                                         </div>
                                     @endforeach
@@ -46,11 +43,12 @@
                             Ultimi Messaggi
                         </h4>
                         @if($developer)
+                            @php $messages = $developer->messages->toQuery()->orderBy('id', 'desc')->limit(5)->get(); @endphp
                             <div class="grid grid-cols-1 gap-3">
                                 @if($developer->messages->isEmpty())
-                                    <span class="text-black dark:text-white">Non ci sono recensioni</span> 
+                                    <span class="text-[--text] dark:text-[--dark-text]">Non ci sono messaggi</span> 
                                 @else
-                                    @foreach ($developer->messages as $singleMessage)
+                                    @foreach ($messages as $singleMessage)
                                         <div class="card-body">
                                             <h5 class="text-[--primary] dark:text-[--dark-primary] font-bold text-lg">
                                                 {{ $singleMessage->name }}

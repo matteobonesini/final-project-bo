@@ -54,6 +54,8 @@ class ReviewSeeder extends Seeder
                 $review->developer_id = $i;
                 $review->customer_name = fake()->name;
                 $review->description = $recensioni[rand(0, 19)];
+                $review->created_at = fake()->dateTimeThisDecade();
+                $review->updated_at = $review->created_at;
                 $review->save();
 
                 $developer = Developer::find($i);
