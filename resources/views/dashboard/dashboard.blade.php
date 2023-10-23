@@ -17,21 +17,20 @@
                                 @if($developer->reviews->isEmpty())
                                     <span class="text-black dark:text-white">Non ci sono recensioni</span> 
                                 @else
-                                    @foreach ($developer->reviews as $singleReview)
+                                @php $reviews = $developer->reviews->toQuery()->orderBy('id', 'desc')->get(); @endphp
+                                    @foreach ($reviews as $key => $singleReview)
                                         <div class="card-body">
                                             <h5 class="font-bold text-lg text-[--primary] dark:text-[--dark-primary] mb-4">
                                                 {{ $singleReview->customer_name }}
                                             </h5>
                                             @if ($developer->votes->isEmpty())
                                                 Non ci sono valutazioni
-                                            @else
-                                                @foreach ($developer->votes as $vote)
-                                                    @if($vote->pivot->developer_id == $singleReview->developer_id)
-                                                        <h5 class=" font-medium">
-                                                            {{ $vote->name }}
-                                                        </h5>
-                                                    @endif
-                                                @endforeach
+                                            {{-- @else
+                                                @if($developer->votes[$singleReview->id])
+                                                    <h5 class=" font-medium">
+                                                        {{ $developer->votes[0]->name }}
+                                                    </h5>
+                                                @endif --}}
                                             @endif
                                             <p>
                                                 {{ $singleReview->description}}

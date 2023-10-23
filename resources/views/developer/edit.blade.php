@@ -4,8 +4,8 @@
     <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-black dark:text-white">
         <div class="container mx-auto my-5 px-4">
             <div class="mb-8 relative">
+                <h3 class="text-4xl font-bold text-center">{{ $developer->user->name }}</h3>
                 <a href="{{ route('sponsorship') }}">
-                    <h3 class="text-4xl font-bold text-center mx-12">{{ $developer->user->name }}</h3>
                     <h4 class="absolute top-0 right-0 bg-amber-300 text-black py-2 px-4 rounded-2xl font-bold hover:scale-110">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
@@ -99,7 +99,7 @@
 
                 {{-- Work Fields --}}
                 <h4 class="mb-2">Work Fields: </h4>
-                <div class="form-row">
+                <div class="form-row bg-gray-200 dark:bg-gray-800 rounded-md py-6 px-4">
                     <div class="grid grid-cols-5 gap-4">
                         @foreach ($work_fields as $work_field)
                             <div class="flex items-center mb-4">
@@ -118,13 +118,6 @@
                     </div>
                 </div>
 
-                <h4 class="mb-5">Sponsorship: </h4>
-                <select name="sponsorship" id="sponsorship" class="select mb-3">
-                    <option value=NULL selected>Scegli un'opzione</option>
-                    @foreach ($sponsorships as $sponsorship)
-                        <option value="{{ $sponsorship->id }}">{{ $sponsorship->name }} - Prezzo: &euro;{{ $sponsorship->price }} - Durata: {{ $sponsorship->duration }} ore</option>
-                    @endforeach
-                </select>
                 <div class="flex justify-center mt-5">
                     <button type="submit" class="btn-primary">Modifica</button>
                 </div>

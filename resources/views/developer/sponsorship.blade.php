@@ -126,7 +126,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
                             </label>
-                            <input type="text" id="check-out-price" name="check-out-price" class="border-gray-700 bg-gray-50 dark:bg-gray-700 h-full text-[--text] dark:text-[--dark-text]" readonly>
+                            <input type="text" id="check-out-price" name="check-out-price" class=" border-white dark:border-gray-700 bg-gray-50 dark:bg-gray-700 h-full text-[--text] dark:text-[--dark-text]" readonly>
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
         let selectedTierPrice = '';
 
         tier1Btn.addEventListener('click', () => {
-            buySection.classList.toggle('hidden');
+            buySection.classList.remove('hidden');
             document.getElementById('check-out-tier').value = 'Tier 1';
             selectedTier = 'Tier 1';
             document.getElementById('check-out-price').value = '2.99';
@@ -185,7 +185,7 @@
         });
 
         tier2Btn.addEventListener('click', () => {
-            buySection.classList.toggle('hidden');
+            buySection.classList.remove('hidden');
             document.getElementById('check-out-tier').value = 'Tier 2';
             selectedTier = 'Tier 2';
             document.getElementById('check-out-price').value = '5.99';
@@ -193,7 +193,7 @@
         });
 
         tier3Btn.addEventListener('click', () => {
-            buySection.classList.toggle('hidden');
+            buySection.classList.remove('hidden');
             document.getElementById('check-out-tier').value = 'Tier 3';
             selectedTier = 'Tier 3';
             document.getElementById('check-out-price').value = '9.99';
@@ -238,6 +238,7 @@
                                 braintreeElem.classList.add('hidden')
                                 layer.classList.remove('hidden');
                                 successModal.classList.remove('hidden');
+                                buySection.classList.add('hidden');
                             }
                         })
                         .catch(function (error) {
