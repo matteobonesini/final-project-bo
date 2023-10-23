@@ -10,7 +10,7 @@
                             Le Tue Recensioni
                         </h2>
                         <div class="mx-auto w-full max-w-lg">
-                            <p class="tracking-[0.2px] text-[--text] font-semibold">
+                            <p class="tracking-[0.2px] text-[--text] dark:text-[--dark-text] font-semibold">
                                 Ciò che pensano i clienti dei tuoi servizi
                             </p>
                         </div>
@@ -20,7 +20,7 @@
                 @if ($developer != null)
                     @if (count($developer->votes) == 0 || $developer->votes == null)
                         <div class="mt-10 group">
-                            <h2 class="text-center font-bold text-2xl text-[--text]">
+                            <h2 class="text-center font-bold text-2xl text-[--text] dark:text-[--dark-text]">
                                 Al momento non ci sono recensioni
                             </h2>
                             <div class="flex justify-center my-4">
