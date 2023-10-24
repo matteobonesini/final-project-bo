@@ -150,7 +150,7 @@
 
     /* CARD */
     .card-body {
-        @apply block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 text-gray-900 dark:text-white dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700;
+        @apply block p-6 bg-[--secondary] border border-gray-200 rounded-lg shadow text-gray-900  dark:bg-[--dark-secondary] dark:text-white dark:border-gray-700;
     }
     .card-title {
         @apply mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white;

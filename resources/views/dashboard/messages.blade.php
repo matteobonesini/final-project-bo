@@ -11,7 +11,7 @@
                         </h2>
                         <div class="mx-auto w-full max-w-lg">
                             <p class="tracking-[0.2px] text-[--text] dark:text-[--dark-text] font-semibold">
-                                Esplora le statistiche del tuo profilo
+                                Le proposte dei tuoi clienti 
                             </p>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                                                     {{ $message->content }}
                                                 </p>
                                             </div>
-                                            <p class="text-blue-500 mt-4">
+                                            <p class="text-blue-500 mt-4 text-xs md:text-sm lg:text-base">
                                                 {{ $message->email }}
                                             </p>
                                         </div>
