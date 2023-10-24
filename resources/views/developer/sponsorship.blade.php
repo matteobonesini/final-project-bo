@@ -140,11 +140,13 @@
             </form>
 
             <div id="success-modal" class="z-10 hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  bg-white ">
-                <button class="close-modal flex justify-end w-full p-2 cursor-pointer group">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="group-hover:bg-red-400 group-hover:scale-110 transition-all rounded-full w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </button>
+                <a href="{{ route('dashboard') }}">
+                    <button class="close-modal flex justify-end w-full p-2 cursor-pointer group">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="group-hover:bg-red-400 group-hover:scale-110 transition-all rounded-full w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </button>
+                </a>
                 <div class="flex items-center md:px-20 md:pb-12 px-8 pb-8">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-green-500 w-24 h-24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -235,10 +237,10 @@
                             if (response != null && response.data.success == 'true') {
                                 console.log('modale aperto', response);
                                 successMessage.innerHTML = response.data.message;
-                                braintreeElem.classList.add('hidden')
-                                layer.classList.remove('hidden');
+                                braintreeElem.classList.add('hidden');
+                                console.log(successModal);
                                 successModal.classList.remove('hidden');
-                                buySection.classList.add('hidden');
+                                layer.classList.remove('hidden');
                             }
                         })
                         .catch(function (error) {

@@ -45,11 +45,20 @@
                     </div>
                 @else
                     <div class="w-full flex flex-wrap justify-center">
-                        <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
-                            <canvas class="max-w-xs max-h-80 mt-2" id="messages-year"></canvas>
-                        </div>
-                        <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
-                            <canvas class="max-w-xs max-h-80 mt-2" id="messages-month"></canvas>
+                        <div class="w-full">
+                            <div>
+                                <label class="form-label text-center" for="message-select">Seleziona il filtro da applicare</label>
+                                <select class="w-2/3 mx-auto form-input" name="message-select" id="message-select">
+                                    <option selected value="anno">Ultimo Anno</option>
+                                    <option value="mesi-6">Ultimi 6 mesi</option>
+                                    <option value="mesi-3">Ultimi 3 mesi</option>
+                                    <option value="settimana">Ultimi 7 giorni</option>
+                                    <option value="giorno">24 ore precedenti</option>
+                                </select>
+                            </div>
+                            <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
+                                <canvas class="max-w-md mt-2" id="messages"></canvas>
+                            </div>
                         </div>
                     
                         <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
