@@ -61,7 +61,7 @@ class ReviewSeeder extends Seeder
                 $review->save();
 
                 $developer = Developer::find($i);
-                $vote = rand(1, 5);
+                $vote = rand(3, 5);
                 $developer->votes()->attach($vote);
             }
         }

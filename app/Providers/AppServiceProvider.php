@@ -29,6 +29,6 @@ class AppServiceProvider extends ServiceProvider
             'privateKey' => env('BRAINTREE_PRIVATE_KEY')
         ]);
         config(['braintree' => $braintree]); 
-        // Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
+        Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
     }
 }

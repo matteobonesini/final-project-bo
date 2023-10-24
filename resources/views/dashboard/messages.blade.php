@@ -4,8 +4,8 @@
     <main class="w-full h-full overflow-y-auto pb-12">
         <section class= "text-[--text]  dark:text-[--dark-text]">
             <div class="container mx-auto px-10 py-12">
-                <div class="flex flex-col items-center mb-8 md:mb-12 lg:mb-16">
-                    <div class="w-full text-center mb-12 border-b-2 border-slate-700 pb-5">
+                <div class="flex flex-col items-center">
+                    <div class="w-full text-center mb-8 md:mb-12 lg:mb-16 border-b-2 border-slate-700 pb-5">
                         <h2 class="max-w-lg mx-auto text-[--tertiary] dark:text-[--dark-tertiary] mb-5 text-3xl font-bold md:text-5xl custom-shadow bg-[--transparent] p-4 rounded-xl ">
                             Messaggi in Arrivo
                         </h2>
@@ -32,8 +32,8 @@
                             </div>
                         @else
                             <div class="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-                                @foreach ($developer->messages as $message)
-                                    <div class="card-body">
+                                @foreach ($messages as $message)
+                                    <div class="card-body w-full">
                                         <div class="flex flex-col justify-between rounded-lg h-full">
                                             <div>
                                                 <h2 class="text-[--primary] dark:text-[--dark-primary] text-xl font-semibold mb-3">

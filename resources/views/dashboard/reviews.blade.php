@@ -18,13 +18,13 @@
                 </div>
                
                 @if ($developer != null)
-                    @if (count($developer->votes) == 0 || $developer->votes == null)
-                        <div class="mt-10 group">
+                    @if (count($votes) == 0 || $votes == null)
+                        <div class="group">
                             <h2 class="text-center font-bold text-2xl text-[--text] dark:text-[--dark-text]">
                                 Al momento non ci sono recensioni
                             </h2>
                             <div class="flex justify-center my-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-[--text] dark:text-[--dark-text] w-16 h-16">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z" />
                                 </svg>
                             </div>
@@ -34,26 +34,26 @@
                         </div>
                     @endif
                    
-                    @if (count($developer->votes) != 0)
+                    @if (count($votes) != 0)
                         <!-- Reviews -->
                         <div class="flex flex-col items-center mb-12 md:mb-16 lg:mb-20">
-                            <div class="grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-                                @foreach ($developer->votes as $index =>$vote)
+                            <div class="w-full grid grid-cols-1 justify-items-center gap-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+                                @foreach ($votes as $index =>$vote)
                                     <!-- Review Item -->
-                                    <div class="flex flex-col rounded-lg bg-[--secondary] dark:bg-[--dark-secondary] p-8 gap-2 md:gap-3 min-w-full custom-shadow">
+                                    <div class="w-full flex flex-col rounded-lg bg-[--secondary] dark:bg-[--dark-secondary] p-8 gap-2 md:gap-3 min-w-full custom-shadow">
                                         <div class="flex flex-wrap justify-center">
                                             <div class="border-[--accent] border p-2 rounded-full bg-orange-400 dark:bg-orange-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                                                 </svg>
                                             </div>
-                                            @if (count($developer->reviews) > $index)
+                                            @if (count($reviews) > $index)
                                                 <div class="w-full text-center">
                                                     <h6 class="text-lg my-2 font-bold md:text-base text-[--text] dark:text-[--dark-text]">
-                                                        {{ $developer->reviews[$index]->customer_name }}
+                                                        {{ $reviews[$index]->customer_name }}
                                                     </h6>
                                                     <h5 class="font-medium text-[--text] dark:text-[--dark-text]">
-                                                        {{ $developer->votes[$index]->name }}
+                                                        {{ $votes[$index]->name }}
                                                     </h5>
                                                 </div>
                                             @endif
@@ -75,9 +75,9 @@
                                                 </div>
                                             @endfor
                                         </div>
-                                        @if (count($developer->reviews) > $index)
+                                        @if (count($reviews) > $index)
                                             <p class="text-[--text] dark:text-[--dark-text]">
-                                                {{ $developer->reviews[$index]->description }}
+                                                {{ $reviews[$index]->description }}
                                             </p>
                                         @endif
                                     </div>

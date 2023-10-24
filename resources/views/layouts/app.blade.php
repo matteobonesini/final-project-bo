@@ -10,13 +10,12 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/statistics.js', 'resources/js/scripts.js'])
         <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.js"></script>
-        {{-- <script src="node_modules\flowbite\dist\flowbite.min.js"></script> --}}
         
     </head>
 
     <body>
         <div class="flex flex-col h-screen ">
-            <div class="min-h-[10%]">
+            <div class="md:min-h-[10%]">
                 @include('partials.header')
             </div>
 
