@@ -10,7 +10,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/statistics.js', 'resources/js/scripts.js'])
         <script src="https://js.braintreegateway.com/web/dropin/1.40.2/js/dropin.js"></script>
-        <script src="node_modules\flowbite\dist\flowbite.min.js"></script>
+        {{-- <script src="node_modules\flowbite\dist\flowbite.min.js"></script> --}}
         
     </head>
 
