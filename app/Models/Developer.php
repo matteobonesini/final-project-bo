@@ -21,7 +21,8 @@ class Developer extends Model
     protected $appends = [
         'full_img_src',
         'average_vote',
-        'active_sponsorship'
+        'active_sponsorship',
+        'sponsorship_expire_date'
     ];
 
     public function getFullImgSrcAttribute() {
@@ -47,6 +48,14 @@ class Developer extends Model
             $activeSponsorship = strtotime($expireDate) > time();
         }
         return $activeSponsorship;
+    }
+
+    public function getSponsorshipExpireDateAttribute() {
+        $expireDate = null;
+        if(count($this->sponsorships) > 0 && $this->active_sponsorship) {
+            $expireDate = $this->sponsorships[count($this->sponsorships) - 1]->pivot->expire_date;
+        }
+        return $expireDate;
     }
 
     public function user() {

@@ -1,9 +1,9 @@
-<aside class="bg-[--secondary] dark:bg-[--dark-secondary] h-full text-[--text] dark:text-[--dark-text]">
+<aside class="bg-[--secondary] dark:bg-[--dark-secondary] h-full text-[--text] dark:text-[--dark-text] w-20 md:w-auto p-2">
     <div class="h-full flex flex-col justify-between">
         @if (isset($developer))
             <nav class="text-center">
                 <ul>
-                    <li class="p-2 m-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
+                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
                         <a class="w-full flex justify-center md:justify-start md:ms-2" href="/dashboard/messages">
                             <div class="md:me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-0">
@@ -14,7 +14,7 @@
                         </a>
                     </li>
 
-                    <li class="p-2 m-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
+                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
                         <a class="w-full flex justify-center md:justify-start md:ms-2" href="/dashboard/reviews">
                             <div class="md:me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -25,7 +25,7 @@
                         </a>
                     </li>
 
-                    <li class="p-2 m-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
+                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
                         <a class="w-full flex justify-center md:justify-start md:ms-2" href="/dashboard/statistics">
                             <div class="md:me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -42,13 +42,19 @@
             </nav>
         @endif
         
-        <div class="my-5 px-2">
+        <div class="mt-5">
             @auth
-                <h6 class="text-xs mb-4 text-center">{{ Auth::user()['name'] }}</h6>
+                <h6 class="text-xs mb-4 text-center bg-zinc-200 dark:bg-zinc-900 p-1 rounded-xl">{{ Auth::user()['name'] }}</h6>
+                @if ($developer->active_sponsorship)
+                    <a href="{{ route('developer.show', ['developer' => $developer->id]) }}">
+                        <span class="hidden md:block text-center mb-4 bg-amber-300 text-yellow-800 text-sm font-medium px-2 py-0.5 rounded-xl">Sponsorship<br>attiva</span>
+                        <span class="block md:hidden text-center mb-4 bg-amber-300 text-yellow-800 text-sm font-medium px-2 py-0.5 rounded-xl">S<br></span>
+                    </a>
+                @endif
                 <form method="POST" action="{{ route('logout') }}" class="flex justify-center">
                     @csrf
 
-                    <button type="submit" class="btn-primary flex">
+                    <button type="submit" class="btn-primary flex justify-center px-0 w-full">
                         <div class="md:me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />

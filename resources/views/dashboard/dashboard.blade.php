@@ -45,7 +45,7 @@
                                 @else
                                     @foreach ($messages as $singleMessage)
                                         <div class="card-body">
-                                            <h5 class="text-[--primary] dark:text-[--dark-primary] font-bold text-lg">
+                                            <h5 class="text-[--primary] dark:text-[--dark-primary] font-bold text-lg mb-4">
                                                 {{ $singleMessage->name }}
                                             </h5>
                                             <p>
