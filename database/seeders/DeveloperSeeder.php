@@ -35,9 +35,15 @@ class DeveloperSeeder extends Seeder
         }
         Storage::makeDirectory('uploads/imgs');
 
-        for ($i=0; $i < count($data); $i++) { 
+        for ($i=0; $i < count($data); $i++) {
+            $j = '';
+            if($i < 10)
+                $j = '0'.$i;
+            else 
+                $j = $i;
+
             $url = $data[$i]['picture']['large'];
-            $img = storage_path('app/public/uploads/imgs/image'.$i.'.jpg');
+            $img = storage_path('app/public/uploads/imgs/image'.$j.'.jpg');
             file_put_contents($img, file_get_contents($url));
         }
 

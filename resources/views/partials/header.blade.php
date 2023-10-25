@@ -1,7 +1,7 @@
 <nav class="bg-zinc-300 border-gray-200 dark:bg-zinc-900 h-full flex items-center border-b-2">
     <div class="w-full flex flex-wrap md:flex-nowrap items-center justify-between px-10 py-4">
         <a href="{{ route('dashboard') }}" class="flex items-center">
-            <img src="/LogoSmallRid.png" class="h-full w-32 md:w-48 mr-3 object-cover" alt="BDeveloper Logo" />
+            <img src="/logo-hor-final.png" class="h-16 mr-3 w-48 object-cover" alt="BDeveloper Logo" />
         </a>
       <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
           <span class="sr-only">Open main menu</span>
