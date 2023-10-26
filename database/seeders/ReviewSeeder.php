@@ -52,17 +52,26 @@ class ReviewSeeder extends Seeder
         $count = count($data);
         for ($i=1; $i <= $count; $i++) { 
             for ($j=0; $j < rand(1, 30); $j++) { 
+                $create_date = fake()->dateTimeThisDecade();
+                $update_date = $create_date;
+
                 $review = new Review();
                 $review->developer_id = $i;
                 $review->customer_name = fake()->firstName . ' ' . fake()->lastName();
                 $review->description = $recensioni[rand(0, 19)];
-                $review->created_at = fake()->dateTimeThisDecade();
-                $review->updated_at = $review->created_at;
+                $review->created_at = $create_date;
+                $review->updated_at = $update_date;
                 $review->save();
 
                 $developer = Developer::find($i);
                 $vote = rand(3, 5);
-                $developer->votes()->attach($vote);
+                $developer->votes()->attach([
+                    $vote => [
+                        'created_at' => fake()->dateTimeBetween('now', 'now'),
+                        'updated_at' => fake()->dateTimeBetween('now', 'now')
+                    ]
+                ]
+                );
             }
         }
     }

@@ -33,6 +33,9 @@
     --dark-accent: #7c8fa2;
     --dark-tertiary: #166534;
     --dark-transparent: #00000080;
+
+    --sponsorship-banner-height: 40px;
+    --sponsorship-banner-height-mobile: 80px;
 }
 
 /* .btn-darkshadow:hover {
@@ -100,7 +103,7 @@
     .btn-primary:hover,
     .btn-secondary:hover,
     .btn-accent:hover {
-        @apply scale-110;
+        @apply scale-105;
     }
 
     .btn-secondary {

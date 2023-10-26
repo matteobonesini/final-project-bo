@@ -70,11 +70,11 @@ class SponsorshipController extends Controller
             '9.99' => 3
         ];
         $tierDuration = ($duration[$data['amount']]) * 3600;
+        date_default_timezone_set('Europe/Rome');
         $developer->sponsorships()->attach([
             $index[$data['amount']] => [
-
-                'start_date' => date('Y-m-d h:i:s'),
-                'expire_date' => date('Y-m-d h:i:s', time() + $tierDuration ),
+                'start_date' => date('Y-m-d G:i:s'),
+                'expire_date' => date('Y-m-d G:i:s', time() + $tierDuration ),
             ]
         ]);
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-[--text] dark:text-[--dark-text]">
+    <main class="bg-zinc-50 dark:bg-zinc-900 w-full h-full overflow-y-auto text-[--text] dark:text-[--dark-text]">
         <div class="container mx-auto my-5 px-4">
             <div class="mb-8 flex flex-col items-center">
                 <h3 class="text-4xl font-bold text-center">{{ $developer->user->name }}</h3>
