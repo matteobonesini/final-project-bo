@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main class="bg-zinc-50 dark:bg-zinc-900 w-full overflow-auto text-black dark:text-white">
+    <main class="bg-zinc-50 dark:bg-zinc-900 w-full h-full overflow-y-auto text-black dark:text-white">
         <div class="container mx-auto my-16 px-4">
             <div class="sm:w-full mx-auto flex flex-col items-center md:justify-start md:flex-row gap-2 mb-10">
                 {{-- Profile Picture --}}
@@ -30,23 +30,12 @@
                             </div>
                         @endfor
                     </div>
-                    {{-- Button edit profile --}}
+                    {{-- Button edit profile 
                     <div class="mb-5">
                         <a class="me-5" href="{{ route('developer.edit', ['developer' => $developer->id]) }}">
                             <button class="btn-primary">Modifica</button>
                         </a>
-                    </div>
-                    {{-- Sponsorship --}}
-                    <div class="">
-                        @if ($activeSponsorship)
-                        <span class="bg-amber-300 text-yellow-800 text-sm font-medium px-2 py-0.5 rounded">Sponsorship attiva</span>
-                        @php
-                            $date = date('d/m/Y', strtotime($developer->sponsorship_expire_date));
-                            $time = date('G:i', strtotime($developer->sponsorship_expire_date));
-                        @endphp
-                        <span class="block mt-1">{{ 'Scadenza il giorno '. $date . ' alle ore ' . $time }}</span>
-                        @endif
-                    </div>
+                    </div> --}}
                 </div>
             </div>
     

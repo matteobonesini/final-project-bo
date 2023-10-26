@@ -3,7 +3,7 @@
         @if (isset($developer))
             <nav class="text-center">
                 <ul>
-                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
+                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-105 hover:cursor-pointer transition-all">
                         <a class="w-full flex justify-center md:justify-start md:ms-2" href="/dashboard/messages">
                             <div class="md:me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 m-0">
@@ -14,7 +14,7 @@
                         </a>
                     </li>
 
-                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
+                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-105 hover:cursor-pointer transition-all">
                         <a class="w-full flex justify-center md:justify-start md:ms-2" href="/dashboard/reviews">
                             <div class="md:me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -25,7 +25,7 @@
                         </a>
                     </li>
 
-                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-110 hover:cursor-pointer">
+                    <li class="p-2 mb-2 rounded dark:bg-[--accent] bg-[--dark-accent] hover:scale-105 hover:cursor-pointer transition-all">
                         <a class="w-full flex justify-center md:justify-start md:ms-2" href="/dashboard/statistics">
                             <div class="md:me-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -45,12 +45,6 @@
         <div class="mt-5">
             @auth
                 <h6 class="text-xs mb-4 text-center bg-zinc-200 dark:bg-zinc-900 p-1 rounded-xl">{{ Auth::user()['name'] }}</h6>
-                @if ($developer->active_sponsorship)
-                    <a href="{{ route('developer.show', ['developer' => $developer->id]) }}">
-                        <span class="hidden md:block text-center mb-4 bg-amber-300 text-yellow-800 text-sm font-medium px-2 py-0.5 rounded-xl">Sponsorship<br>attiva</span>
-                        <span class="block md:hidden text-center mb-4 bg-amber-300 text-yellow-800 text-sm font-medium px-2 py-0.5 rounded-xl">S<br></span>
-                    </a>
-                @endif
                 <form method="POST" action="{{ route('logout') }}" class="flex justify-center">
                     @csrf
 
