@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
 
-        <title>{{ config('app.name', 'BDevelopers') }}</title>
+        <title>{{ config('app.name', 'BDeveloper') }}</title>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

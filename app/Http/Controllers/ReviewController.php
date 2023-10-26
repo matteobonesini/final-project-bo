@@ -12,9 +12,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Developer;
 use App\Models\Review;
 use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
+    public function compare($a, $b) {
+        if($a->pivot->id > $b->pivot->id) {
+            return -1;
+        } elseif($a->pivot->id < $b->pivot->id) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
     /**
      * Display a listing of the resource.
      */
@@ -22,8 +32,16 @@ class ReviewController extends Controller
     {
         $devId = Auth::id();
         $developer = Developer::where('user_id', '=', $devId)->first();
-        $votes = $developer->votes->sortByDesc('id')->values();
-        $reviews = $developer->reviews->sortByDesc('id')->values(); 
+        $votes = $developer->votes->sort(function($a, $b) {
+            if($a->pivot->id > $b->pivot->id) {
+                return -1;
+            } elseif($a->pivot->id < $b->pivot->id) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })->values();
+        $reviews = $developer->reviews->sortKeysDesc()->values();
 
         return view ('dashboard.reviews', compact('developer', 'votes', 'reviews'));
     }
