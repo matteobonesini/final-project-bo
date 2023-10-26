@@ -44,35 +44,63 @@
                         
                     </div>
                 @else
-                    <div class="w-full flex flex-wrap justify-center">
-                        <div class="w-full">
+                    <div class=" grid grid-cols-1 lg:grid-cols-2 gap-10">
+                        <div class="w-full mx-auto">
                             <div>
                                 <label class="form-label text-center" for="message-select">Seleziona il filtro da applicare</label>
-                                <select class="w-2/3 mx-auto form-input" name="message-select" id="message-select">
-                                    <option selected value="anno">Ultimo Anno</option>
-                                    <option value="mesi-6">Ultimi 6 mesi</option>
-                                    <option value="mesi-3">Ultimi 3 mesi</option>
-                                    <option value="settimana">Ultimi 7 giorni</option>
-                                    <option value="giorno">24 ore precedenti</option>
+                                <select class="w-1/3 mx-auto form-input" name="message-select" id="message-select">
+                                    <option selected value="last-year">Ultimo Anno</option>
+                                    <option value="last-6-months">Ultimi 6 mesi</option>
+                                    <option value="last-3-months">Ultimi 3 mesi</option>
+                                    <option value="last-week">Ultimi 7 giorni</option>
+                                    <option value="last-day">24 ore precedenti</option>
                                 </select>
                             </div>
-                            <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
-                                <canvas class="max-w-md mt-2" id="messages"></canvas>
+                            <div id="messages-wrapper" class="mx-auto my-3 text-center bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg">
+                                <canvas class="w-full mt-2" id="messages"></canvas>
                             </div>
+                            <h5 id="mess-no-data" class="text-center mt-4 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
+                                Non ci sono dati relativi al periodo selezionato
+                            </h5>
+                            
                         </div>
                     
-                        <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
-                            <canvas class="max-w-xs max-h-80 mt-2" id="votes-year"></canvas>
-                        </div>
-                        <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
-                            <canvas class="max-w-xs max-h-80 mt-2" id="votes-month"></canvas>
+                        <div class="w-full mx-auto">
+                            <div>
+                                <label class="form-label text-center" for="review-select">Seleziona il filtro da applicare</label>
+                                <select class="w-1/3 mx-auto form-input" name="review-select" id="review-select">
+                                    <option selected value="last-year">Ultimo Anno</option>
+                                    <option value="last-6-months">Ultimi 6 mesi</option>
+                                    <option value="last-3-months">Ultimi 3 mesi</option>
+                                    <option value="last-week">Ultimi 7 giorni</option>
+                                    <option value="last-day">24 ore precedenti</option>
+                                </select>
+                            </div>
+                            <div id="reviews-wrapper" class="relative mx-auto my-3 text-center bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg">
+                                <canvas class="w-full mt-2" id="reviews"></canvas>
+                            </div>
+                            <h5 id="review-no-data" class="text-center mt-4 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
+                                Non ci sono dati relativi al periodo selezionato
+                            </h5>
                         </div>
                     
-                        <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
-                            <canvas class="max-w-xs max-h-80 mt-2" id="reviews-year"></canvas>
-                        </div>
-                        <div class="m-3 text-center bg-[--transparent] dark:bg-[--dark-transparent] p-3 rounded-lg">
-                            <canvas class="max-w-xs max-h-80 mt-2" id="reviews-month"></canvas>
+                        <div class="w-full mx-auto">
+                            <div>
+                                <label class="form-label text-center" for="vote-select">Seleziona il filtro da applicare</label>
+                                <select class="w-1/3 mx-auto form-input" name="vote-select" id="vote-select">
+                                    <option selected value="last-year">Ultimo Anno</option>
+                                    <option value="last-6-months">Ultimi 6 mesi</option>
+                                    <option value="last-3-months">Ultimi 3 mesi</option>
+                                    <option value="last-week">Ultimi 7 giorni</option>
+                                    <option value="last-day">24 ore precedenti</option>
+                                </select>
+                            </div>
+                            <div id="votes-wrapper" class="relative mx-auto my-3 text-center bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg">
+                                <canvas class="w-full mt-2" id="votes"></canvas>
+                            </div>
+                            <h5 id="vote-no-data" class="text-center mt-4 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
+                                Non ci sono dati relativi al periodo selezionato
+                            </h5>
                         </div>
                     </div>
                 @endif
