@@ -4,6 +4,9 @@ console.log(reviewsArr)
 console.log(messagesArr)
 console.log(votesArr)
 
+//---------------------------------------------
+// Messages
+
 function getMessageData(entity){
 	const years = [
 		{
@@ -937,7 +940,6 @@ else{
 
 //---------------------------------------------
 // Votes
-
 
 function getVotesData(entity){
 	const years = [
