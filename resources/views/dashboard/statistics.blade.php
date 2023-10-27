@@ -59,7 +59,7 @@
                             <div id="messages-wrapper" class="mx-auto my-3 text-center bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg">
                                 <canvas class="w-full mt-2" id="messages"></canvas>
                             </div>
-                            <h5 id="mess-no-data" class="text-center mt-4 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
+                            <h5 id="mess-no-data" class="text-center mt-3 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
                                 Non ci sono dati relativi al periodo selezionato
                             </h5>
                             
@@ -79,7 +79,7 @@
                             <div id="reviews-wrapper" class="relative mx-auto my-3 text-center bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg">
                                 <canvas class="w-full mt-2" id="reviews"></canvas>
                             </div>
-                            <h5 id="review-no-data" class="text-center mt-4 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
+                            <h5 id="review-no-data" class="text-center mt-3 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
                                 Non ci sono dati relativi al periodo selezionato
                             </h5>
                         </div>
@@ -98,7 +98,7 @@
                             <div id="votes-wrapper" class="relative mx-auto my-3 text-center bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg">
                                 <canvas class="w-full mt-2" id="votes"></canvas>
                             </div>
-                            <h5 id="vote-no-data" class="text-center mt-4 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
+                            <h5 id="vote-no-data" class="text-center mt-3 bg-[--accent] dark:bg-[--dark-accent] p-6 rounded-lg hidden text-[--text] dark:text-[--dark-text] font-semibold text-lg">
                                 Non ci sono dati relativi al periodo selezionato
                             </h5>
                         </div>

@@ -11,7 +11,7 @@
                         </h2>
                         <div class="mx-auto w-full max-w-lg">
                             <p class="tracking-[0.2px] text-[--text] dark:text-[--dark-text] font-semibold">
-                                Le proposte dei tuoi clienti 
+                                Le proposte dei tuoi contatti 
                             </p>
                         </div>
                     </div>

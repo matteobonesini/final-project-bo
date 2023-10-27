@@ -26,7 +26,7 @@ class UpdateDeveloperRequest extends FormRequest
             'experience_year' => 'nullable',
             'profile_picture' => 'nullable|max:255',
             'profile_description' => 'required',
-            'address' => 'nullable|max:64',
+            'address' => 'nullable|max:96',
             'phone_number' => 'nullable|max:20',
             'remove_profile_picture' => 'nullable',
             'remove_curriculum' => 'nullable',
