@@ -86,17 +86,17 @@
                 <div class="flex flex-wrap md:flex-nowrap w-full md:w-full p-4">
                     <div class="w-full mx-4 my-2">
                         <label for="" class="form-label"><span class="text-red-500">*</span> Nome</label>
-                        <input type="text" id="name" name="name" class="form-input @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                        <input type="text" id="name" name="name" class="form-input @error('name') is-invalid @enderror" value="{{ old('name') }}" required min="2" max="64">
                     </div>
                     <div class="w-full mx-4 my-2">
                         <label for="" class="form-label"><span class="text-red-500">*</span> Cognome</label>
-                        <input type="text" id="lastname" name="lastname" class="form-input @error('lastname') is-invalid @enderror" value="{{ old('lastname') }}" required>
+                        <input type="text" id="lastname" name="lastname" class="form-input @error('lastname') is-invalid @enderror" value="{{ old('lastname') }}" required min="2" max="64">
                     </div>
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap w-full md:w-full p-4">
                     <div class="w-full mx-4 my-2">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]"><span class="text-red-500">*</span> Indirizzo</label>
-                        <input type="text" class="form-input @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required>
+                        <input type="text" class="form-input @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required pattern="^(?=\S*\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\D*\d)[a-zA-Z\d\s',.#/-]*$">
                     </div>
                     <div class="w-full mx-4 my-2">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]"><span class="text-red-500">*</span> Città</label>

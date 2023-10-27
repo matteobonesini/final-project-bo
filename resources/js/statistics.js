@@ -67,13 +67,14 @@ function getMessageData(entity){
 			year = new Date(element.created_at).getFullYear();
 			month = new Date(element.created_at).toLocaleString('en', { month: 'long' });
 			day = new Date(element.created_at).toLocaleString('en', { day: 'numeric' });
-			function addHours() {
-				hour = new Date(element.created_at);
-				hour.setTime(hour.getTime() + (2*60*60*1000));
-				hour = new Date(hour).toLocaleTimeString();
-				return hour;
-			}
-			addHours();
+			// function addHours() {
+			// 	hour = new Date(element.created_at);
+			// 	hour.setTime(hour.getTime() + (2*60*60*1000));
+			// 	hour = new Date(hour).toLocaleTimeString();
+			// 	return hour;
+			// }
+			// addHours();
+			hour = new Date(element.created_at).getHours();
 			console.log(year, month, day, hour)
 			
 			const arrayYear = years[arrayCounter];
@@ -236,8 +237,8 @@ function getMessageData(entity){
 const messageData = getMessageData(messagesArr);
 const messageFilter = document.getElementById('message-select');
 console.log(messageFilter)
-	
-function graphDataCreate(selectFilter, data){
+
+function graphDataCreate(selectFilter, data, dataArray){
 	console.log(selectFilter);
 	let graphDataLabel = [];
 	let graphDataNumbers = [];
@@ -437,9 +438,9 @@ function graphDataCreate(selectFilter, data){
 		
 		for (let ind = 0; ind < data.length; ind++) {
 			const year = data[ind];
-
+			console.log('prova', year.name,now.getFullYear())
 			// take the current year
-			if(year.name == now.getFullYear){
+			if(year.name == now.getFullYear()){
 
 				let selectMonth = new Date(now).toLocaleString('en', {month:'long'});
 				console.log(selectMonth)
@@ -454,16 +455,19 @@ function graphDataCreate(selectFilter, data){
 						console.log('esiste')
 						for (let it = 0; it < singleMonth.days.length; it++) {
 							const day = singleMonth.days[it];
-							console.log(day.name, now.getDate())
+							console.log(day.name, now.getDate(), now.getDate() -1)
 
 							// Check if the message day is the same as today
-							if (day.name == now.getDate()) {
-								console.log('ok')
-
+							if (day.name == now.getDate() || day.name == now.getDate() -1) {
+								
 								for (let loopIndex = 0; loopIndex < day.hours.length; loopIndex++) {
 									const hour = day.hours[loopIndex];
-									graphDataLabel.push(hour.name);
-									graphDataNumbers.push(hour.items)
+									let dataMs = new Date(dataArray[loopIndex].created_at).getTime();
+
+									if (dataMs > (now.getTime() - (24*60*60*1000)) && dataMs < now.getTime()) {
+										graphDataLabel.push(hour.name);
+										graphDataNumbers.push(hour.items)
+									}
 								}
 							}
 						}
@@ -476,10 +480,10 @@ function graphDataCreate(selectFilter, data){
 	return [graphDataLabel, graphDataNumbers];
 }
 let messagesGraph;
-let messageGraphData = graphDataCreate(messageFilter, messageData);
+let messageGraphData = graphDataCreate(messageFilter, messageData, messagesArr);
 
 messageFilter.addEventListener('change', () => {
-	messageGraphData = graphDataCreate(messageFilter, messageData);
+	messageGraphData = graphDataCreate(messageFilter, messageData, messagesArr);
 
 	if(messagesGraph != undefined){
 		messagesGraph.destroy();
@@ -497,11 +501,23 @@ messageFilter.addEventListener('change', () => {
 						labels: messageGraphData[0],
 						datasets: [
 							{
-								label: 'Media messaggi ricevuti per anno',
+								label: 'Messaggi ricevuti',
 								data: messageGraphData[1],
 								backgroundColor: '#1dbf73',
 							}
 						],
+					},
+					options: {
+						plugins: {
+							legend: {
+								labels: {
+									// This more specific font property overrides the global property
+									font: {
+										size: 16
+									}
+								}
+							}
+						}
 					}
 				}
 			);
@@ -548,11 +564,23 @@ if (messageGraphData != undefined && messageGraphData != null && messageGraphDat
 				labels: messageGraphData[0],
 				datasets: [
 					{
-						label: 'Media messaggi ricevuti per anno',
+						label: 'Messaggi ricevuti',
 						data: messageGraphData[1],
 						backgroundColor: '#1dbf73',
 					}
 				],
+			},
+			options: {
+				plugins: {
+					legend: {
+						labels: {
+							// This more specific font property overrides the global property
+							font: {
+								size: 16
+							}
+						}
+					}
+				}
 			}
 		}
 	);
@@ -562,7 +590,7 @@ else{
 	document.getElementById('messages-wrapper').classList.add('hidden');
 	document.getElementById('mess-no-data').classList.remove('hidden');
 }
-
+ 
 //---------------------------------------------
 // Reviews 
 
@@ -629,13 +657,7 @@ function getRewiewsData(entity){
 			year = new Date(element.created_at).getFullYear();
 			month = new Date(element.created_at).toLocaleString('en', { month: 'long' });
 			day = new Date(element.created_at).toLocaleString('en', { day: 'numeric' });
-			function addHours() {
-				hour = new Date(element.created_at);
-				hour.setTime(hour.getTime() + (2*60*60*1000));
-				hour = new Date(hour).toLocaleTimeString();
-				return hour;
-			}
-			addHours();
+			hour + new Date(element.created_at).getHours();
 			console.log(year, month, day, hour)
 			
 			const arrayYear = years[arrayCounter];
@@ -800,11 +822,11 @@ const reviewData = getRewiewsData(reviewsArr);
 let reviewGraph;
 const reviewFilter = document.getElementById('review-select');
 console.log(reviewFilter.value)
-let reviewsGraphData = graphDataCreate(reviewFilter, reviewData);
+let reviewsGraphData = graphDataCreate(reviewFilter, reviewData, reviewsArr);
 
 
 reviewFilter.addEventListener('change', () => {
-	reviewsGraphData = graphDataCreate(reviewFilter, reviewData);
+	reviewsGraphData = graphDataCreate(reviewFilter, reviewData, reviewsArr);
 	console.log('cambio di stato')
 
 	if(reviewGraph != undefined){
@@ -823,11 +845,23 @@ reviewFilter.addEventListener('change', () => {
 						labels: reviewsGraphData[0],
 						datasets: [
 							{
-								label: 'Media messaggi ricevuti per anno',
+								label: 'Recensioni ricevute',
 								data: reviewsGraphData[1],
-								backgroundColor: '#1dbf73',
+								backgroundColor: '#93C379',
 							}
 						],
+					},
+					options: {
+						plugins: {
+							legend: {
+								labels: {
+									// This more specific font property overrides the global property
+									font: {
+										size: 16
+									}
+								}
+							}
+						}
 					}
 				}
 			);
@@ -874,11 +908,23 @@ if (reviewsGraphData[0] != '' && reviewsGraphData[1] != '') {
 				labels: reviewsGraphData[0],
 				datasets: [
 					{
-						label: 'Media messaggi ricevuti per anno',
+						label: 'Recensioni ricevute',
 						data: reviewsGraphData[1],
-						backgroundColor: '#1dbf73',
+						backgroundColor: '#93C379',
 					}
 				],
+			},
+			options: {
+				plugins: {
+					legend: {
+						labels: {
+							// This more specific font property overrides the global property
+							font: {
+								size: 16
+							}
+						}
+					}
+				}
 			}
 		}
 	);
@@ -934,20 +980,23 @@ function getVotesData(entity){
 		totalVotes = 0;
 		for (let z = 0; z < years.length; z++) {
 			const year = years[z];
+			console.log('add-1')
 			for (let x = 0; x < year.months.length; x++) {
 				const month = year.months[x];
+				console.log('add-2')
 				for (let c = 0; c < month.days.length; c++) {
+					console.log('add-3')
 					const day = month.days[c];
 					for (let v = 0; v < day.hours.length; v++) {
 						const hour = day.hours[v];
-						totalVotes ++;
-						console.log('add')
+						totalVotes += hour.items;
+						console.log('add', totalVotes)
 					}
 				}
 			}
-		} 
+		}
 		console.log(years)
-		console.log('recensioni in array',totalVotes ,'entità recensioni', entity.length);
+		console.log('voti in array',totalVotes ,'entità voti', entity.length);
 		console.log('index',i,'counter', arrayCounter);
 		const element = entity[i];
 		console.log(element)
@@ -956,13 +1005,7 @@ function getVotesData(entity){
 			year = new Date(element.created_at).getFullYear();
 			month = new Date(element.created_at).toLocaleString('en', { month: 'long' });
 			day = new Date(element.created_at).toLocaleString('en', { day: 'numeric' });
-			function addHours() {
-				hour = new Date(element.created_at);
-				hour.setTime(hour.getTime() + (2*60*60*1000));
-				hour = new Date(hour).toLocaleTimeString();
-				return hour;
-			}
-			addHours();
+			hour = new Date(element.created_at).getHours();
 			console.log(year, month, day, hour)
 			
 			const arrayYear = years[arrayCounter];
@@ -993,7 +1036,6 @@ function getVotesData(entity){
 						}
 					],
 				};
-				console.log('totale messaggi',totalVotes)
 			}
 			else{
 				block1: for (let index = 0; index <= years.length; index++) {
@@ -1006,7 +1048,6 @@ function getVotesData(entity){
 							console.log('nomi anno uguali')
 							for (let b = 0; b < singleYear.months.length; b++) {
 								const singleMonth = singleYear.months[b];
-
 								if (singleMonth.name == month) {
 									console.log('nomi mese uguali')
 									for (let n = 0; n < singleMonth.days.length; n++) {
@@ -1127,11 +1168,11 @@ console.log(votesData)
 let votesGraph;
 const votesFilter = document.getElementById('vote-select');
 console.log(votesFilter.value)
-let votesGraphData = graphDataCreate(votesFilter, votesData);
+let votesGraphData = graphDataCreate(votesFilter, votesData, votesArr);
 
 
 votesFilter.addEventListener('change', () => {
-	votesGraphData = graphDataCreate(votesFilter, votesData);
+	votesGraphData = graphDataCreate(votesFilter, votesData, votesArr);
 	console.log('cambio di stato')
 
 	if(votesGraph != undefined){
@@ -1150,11 +1191,23 @@ votesFilter.addEventListener('change', () => {
 						labels: votesGraphData[0],
 						datasets: [
 							{
-								label: 'Media messaggi ricevuti per anno',
+								label: 'Voti ricevuti',
 								data: votesGraphData[1],
 								backgroundColor: '#1dbf73',
 							}
 						],
+					},
+					options: {
+						plugins: {
+							legend: {
+								labels: {
+									// This more specific font property overrides the global property
+									font: {
+										size: 16
+									}
+								}
+							}
+						}
 					}
 				}
 			);
@@ -1178,7 +1231,7 @@ votesFilter.addEventListener('change', () => {
 						{
 							label: 'Media messaggi ricevuti per anno',
 							data: votesGraphData[1],
-							backgroundColor: '#1dbf73',
+							backgroundColor: '#1A3B03',
 						}
 					],
 				}
@@ -1201,11 +1254,23 @@ if (votesGraphData[0] != '' && votesGraphData[1] != '') {
 				labels: votesGraphData[0],
 				datasets: [
 					{
-						label: 'Media messaggi ricevuti per anno',
+						label: 'Voti ricevuti',
 						data: votesGraphData[1],
-						backgroundColor: '#1dbf73',
+						backgroundColor: '#1A3B03',
 					}
 				],
+			},
+			options: {
+				plugins: {
+					legend: {
+						labels: {
+							// This more specific font property overrides the global property
+							font: {
+								size: 16
+							}
+						}
+					}
+				}
 			}
 		}
 	);
