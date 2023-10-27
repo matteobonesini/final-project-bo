@@ -48,7 +48,7 @@
                         <div class="w-full mx-auto">
                             <div>
                                 <label class="form-label text-center" for="message-select">Seleziona il filtro da applicare</label>
-                                <select class="w-1/3 mx-auto form-input" name="message-select" id="message-select">
+                                <select class="w-full sm:w-1/3 mx-auto form-input" name="message-select" id="message-select">
                                     <option selected value="last-year">Ultimo Anno</option>
                                     <option value="last-6-months">Ultimi 6 mesi</option>
                                     <option value="last-3-months">Ultimi 3 mesi</option>
@@ -68,7 +68,7 @@
                         <div class="w-full mx-auto">
                             <div>
                                 <label class="form-label text-center" for="review-select">Seleziona il filtro da applicare</label>
-                                <select class="w-1/3 mx-auto form-input" name="review-select" id="review-select">
+                                <select class="w-full sm:w-1/3 mx-auto form-input" name="review-select" id="review-select">
                                     <option selected value="last-year">Ultimo Anno</option>
                                     <option value="last-6-months">Ultimi 6 mesi</option>
                                     <option value="last-3-months">Ultimi 3 mesi</option>
@@ -84,10 +84,10 @@
                             </h5>
                         </div>
                     
-                        <div class="w-full mx-auto">
+                        <div class="w-full mx-auto mb-8">
                             <div>
                                 <label class="form-label text-center" for="vote-select">Seleziona il filtro da applicare</label>
-                                <select class="w-1/3 mx-auto form-input" name="vote-select" id="vote-select">
+                                <select class="w-full sm:w-1/3 mx-auto form-input" name="vote-select" id="vote-select">
                                     <option selected value="last-year">Ultimo Anno</option>
                                     <option value="last-6-months">Ultimi 6 mesi</option>
                                     <option value="last-3-months">Ultimi 3 mesi</option>
