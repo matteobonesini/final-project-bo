@@ -52,8 +52,17 @@ class Developer extends Model
 
     public function getSponsorshipExpireDateAttribute() {
         $expireDate = null;
+        $ss = $this->sponsorships->sort(function($a, $b) {
+            if($a->pivot->id > $b->pivot->id) {
+                return -1;
+            } elseif($a->pivot->id < $b->pivot->id) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })->values();
         if(count($this->sponsorships) > 0 && $this->active_sponsorship) {
-            $expireDate = $this->sponsorships[count($this->sponsorships) - 1]->pivot->expire_date;
+            $expireDate = $ss[0]->pivot->expire_date;
         }
         return $expireDate;
     }
@@ -67,7 +76,7 @@ class Developer extends Model
     }
     
     public function sponsorships() {
-        return $this->belongsToMany(Sponsorship::class)->withPivot('expire_date');
+        return $this->belongsToMany(Sponsorship::class)->withPivot('id', 'expire_date');
     }
 
     public function reviews() {
