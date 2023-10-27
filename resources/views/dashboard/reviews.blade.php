@@ -56,7 +56,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="flex justify-center">
+                                        <div class="flex justify-center p-0.5">
                                             @for ($j=0; $j < $vote->value; $j++)
                                                 <div class=" text-yellow-600 dark:text-yellow-400 mr-1 w-3.5 flex-none">
                                                     <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">

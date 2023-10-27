@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
 @section('main-content')
-    <main class="w-full h-full overflow-y-auto">
-        <section class=" bg-[--transparent] dark:bg-[--dark-transparent] rounded-2xl m-10">
-            <div class="py-2 px-4 mx-auto max-w-screen-xl lg:py-12 lg:px-6">
+    <main class="w-full h-full overflow-y-auto px-4">
+        <section class="bg-[--transparent] dark:bg-[--dark-transparent] rounded-2xl my-10">
+            <div class="py-2 px-4 lg:py-12 lg:px-6">
                 <div class="pb-5 border-b-2 border-slate-700 dark:border-slate-800 mb-12">
-                    <h1 class="mb-4 text-4xl text-center first-letter:tracking-tight font-extrabold text-[--text] dark:text-[--dark-text]">
+                    <h1 class="mb-4 text-xl md:text-4xl text-center first-letter:tracking-tight font-extrabold text-[--text] dark:text-[--dark-text]">
                         Sponsorizzazione
                     </h1>
                 </div>
-                <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-                    <h2 class="mb-4 text-3xl tracking-tight font-bold text-[--text] dark:text-[--dark-text]">
+                <div class="text-center mb-8 lg:mb-12">
+                    <h2 class="mb-4 text-xl md:text-3xl tracking-tight font-bold text-[--text] dark:text-[--dark-text]">
                         Disegnate su misura per le vostre esigenze
                     </h2>
-                    <p class="mb-5 font-light text-[--text] sm:text-xl dark:text-[--dark-text]">
+                    <p class="mb-5 font-light text-[--text] text-base md:text-md dark:text-[--dark-text]">
                         Qui in BDevelopers proponiamo piani che siano in linea con le necessità dei sviluppatori e le richieste del mercato
                     </p>
                 </div>
 
-                <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+                <div class="space-y-8 lg:grid lg:grid-cols-3 gap-6 xl:gap-10 lg:space-y-0">
                     @foreach ($sponsorships as $index => $sponsorship)
                         <!-- Pricing Card -->
-                        <div class="flex flex-col justify-between p-6 mx-auto w-full text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                        <div class="flex flex-col justify-between p-6 w-full text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                             <div>
                                 <h3 class="mb-4 text-2xl font-bold">
                                     {{ $sponsorship->name }}
@@ -65,8 +65,8 @@
                 </div>
             </div>
         </section>
-        <section id="buy-section" class="hidden relative">
-            <form class="w-full max-w-3xl mx-auto bg-slate-50 dark:bg-slate-700 px-2 py-8 form-body flex flex-wrap my-10">
+        <section id="buy-section" class="hidden relative w-auto">
+            <form class="w-auto max-w-3xl bg-slate-50 dark:bg-slate-700 px-2 py-8 form-body flex flex-wrap my-10">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-error">
@@ -84,41 +84,41 @@
                     I campi contrassegnati con <span class="text-red-500">*</span> sono obbligatori
                 </h5>
                 <div class="flex flex-wrap md:flex-nowrap w-full md:w-full p-4">
-                    <div class="w-full mx-4 my-2">
+                    <div class="w-full px-4 my-2">
                         <label for="" class="form-label"><span class="text-red-500">*</span> Nome</label>
                         <input type="text" id="name" name="name" class="form-input @error('name') is-invalid @enderror" value="{{ old('name') }}" required min="2" max="64">
                     </div>
-                    <div class="w-full mx-4 my-2">
+                    <div class="w-full px-4 my-2">
                         <label for="" class="form-label"><span class="text-red-500">*</span> Cognome</label>
                         <input type="text" id="lastname" name="lastname" class="form-input @error('lastname') is-invalid @enderror" value="{{ old('lastname') }}" required min="2" max="64">
                     </div>
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap w-full md:w-full p-4">
-                    <div class="w-full mx-4 my-2">
+                    <div class="w-full px-4 my-2">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]"><span class="text-red-500">*</span> Indirizzo</label>
                         <input type="text" class="form-input @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required pattern="^(?=\S*\s)(?=[^a-zA-Z]*[a-zA-Z])(?=\D*\d)[a-zA-Z\d\s',.#/-]*$">
                     </div>
-                    <div class="w-full mx-4 my-2">
+                    <div class="w-full px-4 my-2">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]"><span class="text-red-500">*</span> Città</label>
                         <input type="text" class="form-input @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}" required>
                     </div>
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap w-full md:w-full p-4">
-                    <div class="w-full mx-4 my-2">
+                    <div class="w-full px-4 my-2">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]"><span class="text-red-500">*</span> Codice Postale</label>
                         <input type="text" class="form-input @error('zip-code') is-invalid @enderror" id="zip-code" name="zip-code" value="{{ old('zip-code') }}" required>
                     </div>
-                    <div class="w-full mx-4 my-2">
+                    <div class="w-full px-4 my-2">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]">Telefono</label>
                         <input type="text" class="form-input @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}">
                     </div>
                 </div>
                 <div class="flex flex-wrap md:flex-nowrap w-full md:w-full p-4 border-t-2 border-white">
-                    <div class="w-full mx-4 my-2 ">
+                    <div class="w-full px-4 my-2 ">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]">Abbonamento Selezionato</label>
-                        <input type="text" id="check-out-tier" name="check-out-tier" class="rounded-lg border-b-2 border-gray-600 bg-gray-50 dark:bg-gray-700 p-2.5 text-[--text] dark:text-[--dark-text]" readonly/>
+                        <input type="text" id="check-out-tier" name="check-out-tier" class="w-full rounded-lg border-b-2 border-gray-600 bg-gray-50 dark:bg-gray-700 p-2.5 text-[--text] dark:text-[--dark-text]" readonly/>
                     </div>
-                    <div class="w-full mx-4 my-2">
+                    <div class="w-full px-4 my-2">
                         <label for="" class="form-label dark:text-[--dark-text] text-[--text]">Totale</label>
                         <div class="flex items-center rounded-lg border-2 border-gray-600 bg-gray-50 dark:bg-gray-700 text-[--text] dark:text-[--dark-text] overflow-hidden">
                             <label for="" class="h-full p-3 bg-gray-50 dark:bg-gray-500 text-[--text] dark:text-[--dark-text]">
@@ -126,12 +126,12 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
                             </label>
-                            <input type="text" id="check-out-price" name="check-out-price" class=" border-white dark:border-gray-700 bg-gray-50 dark:bg-gray-700 h-full text-[--text] dark:text-[--dark-text]" readonly>
+                            <input type="text" id="check-out-price" name="check-out-price" class="w-full border-white dark:border-gray-700 bg-gray-50 dark:bg-gray-700 h-full text-[--text] dark:text-[--dark-text]" readonly>
                         </div>
                     </div>
                 </div>
                 {{-- Braintree --}}
-                <div id="dropin-container" class="max-w-lg flex mx-auto justify-center items-center">
+                <div id="dropin-container" class="flex justify-center items-center">
                 </div>
                 <div class="w-full flex justify-center items-center my-4">
                     <button type="button" id="submit-button" class="btn bg-green-500 text-white">Paga</button>
@@ -139,7 +139,7 @@
                 {{-- End Braintree --}}
             </form>
 
-            <div id="success-modal" class="z-10 hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  bg-white ">
+            <div id="success-modal" class="z-10 hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl  bg-white">
                 <a href="{{ route('dashboard') }}">
                     <button class="close-modal flex justify-end w-full p-2 cursor-pointer group">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="group-hover:bg-red-400 group-hover:scale-110 transition-all rounded-full w-6 h-6">
