@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Developer;
 use App\Models\Sponsorship;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,6 +13,7 @@ class SponsorshipController extends Controller
     public function index()
     {
         $userId = Auth::id();
+        // dd(User::find($userId)->developer->id);
         $developer = Developer::find($userId);
         $sponsorships = Sponsorship::all();
 

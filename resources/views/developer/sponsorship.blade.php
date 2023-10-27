@@ -18,10 +18,10 @@
                     </p>
                 </div>
 
-                <div class="space-y-8 lg:grid lg:grid-cols-3 gap-6 xl:gap-10 lg:space-y-0">
+                <div class="space-y-8 lg:grid lg:grid-cols-3 gap-6 xl:gap-10 lg:space-y-0 justify-items-center">
                     @foreach ($sponsorships as $index => $sponsorship)
                         <!-- Pricing Card -->
-                        <div class="flex flex-col justify-between p-6 w-full text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
+                        <div class="flex flex-col justify-between p-6 w-full lg:max-w-sm text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
                             <div>
                                 <h3 class="mb-4 text-2xl font-bold">
                                     {{ $sponsorship->name }}
@@ -65,8 +65,8 @@
                 </div>
             </div>
         </section>
-        <section id="buy-section" class="hidden relative w-auto">
-            <form class="w-auto max-w-3xl bg-slate-50 dark:bg-slate-700 px-2 py-8 form-body flex flex-wrap my-10">
+        <section id="buy-section" class="hidden relative">
+            <form class="w-full max-w-3xl mx-auto bg-slate-50 dark:bg-slate-700 px-2 py-8 form-body flex flex-wrap my-10">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-error">
@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 {{-- Braintree --}}
-                <div id="dropin-container" class="flex justify-center items-center">
+                <div id="dropin-container" class="w-full flex justify-center items-center">
                 </div>
                 <div class="w-full flex justify-center items-center my-4">
                     <button type="button" id="submit-button" class="btn bg-green-500 text-white">Paga</button>

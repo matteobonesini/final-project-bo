@@ -25,29 +25,31 @@
     
                 <div class="w-full h-full">
                     <div class="h-[--sponsorship-banner-height-mobile] sm:h-[--sponsorship-banner-height] text-center">
-                        @if (isset($developer) && $developer->active_sponsorship)
-                            <a href="{{ route('sponsorship') }}">
-                                <div class="bg-amber-300 text-yellow-800 font-medium h-full px-[5px] text-sm md:text-base lg:text-xl leading-10 md:leading-10 lg:leading-10"><span class="underline">Rinnova Sponsorizzazione!</span>
-                                    &rarr; <span id="expire_date" class="ms-1"></span>
-                                </div>
-                                @php
-                                    date_default_timezone_set('Europe/Rome');
-                                    $date = strtotime($developer->sponsorship_expire_date);
-                                @endphp
-                                <script>
-                                    const d = new Date({{ $date * 1000 }});
-                                    let day = d.toLocaleString('it-IT', {day: 'numeric', month: 'numeric', year:'numeric'})
-                                    let hour = d.toLocaleString('it-IT', {hour12: false, hour:'2-digit', minute:'numeric'})
-                                    expire = 'Scadenza il giorno ' + day + ' alle ore ' + hour;
-                                    document.getElementById("expire_date").innerHTML = expire
-                                </script>
-                            </a>
-                        @else
-                            <a href="{{ route('sponsorship') }}">
-                                <div class="bg-zinc-900 text-white dark:text-black dark:bg-zinc-100 font-medium h-full px-[5px] text-sm md:text-base lg:text-xl leading-10 md:leading-10 lg:leading-10">Scopri i vantaggi della sponsorizzazione
-                                    &rarr; <span class="ms-1 text-yellow-500 font-bold underline">Attiva ora!</span>
-                                </div>
-                            </a>
+                        @if (isset($developer))    
+                            @if ($developer->active_sponsorship)
+                                <a href="{{ route('sponsorship') }}">
+                                    <div class="bg-amber-300 text-yellow-800 font-medium h-full px-[5px] text-sm md:text-base lg:text-xl leading-10 md:leading-10 lg:leading-10"><span class="underline">Rinnova Sponsorizzazione!</span>
+                                        &rarr; <span id="expire_date" class="ms-1"></span>
+                                    </div>
+                                    @php
+                                        date_default_timezone_set('Europe/Rome');
+                                        $date = strtotime($developer->sponsorship_expire_date);
+                                    @endphp
+                                    <script>
+                                        const d = new Date({{ $date * 1000 }});
+                                        let day = d.toLocaleString('it-IT', {day: 'numeric', month: 'numeric', year:'numeric'})
+                                        let hour = d.toLocaleString('it-IT', {hour12: false, hour:'2-digit', minute:'numeric'})
+                                        expire = 'Scadenza il giorno ' + day + ' alle ore ' + hour;
+                                        document.getElementById("expire_date").innerHTML = expire
+                                    </script>
+                                </a>
+                            @else
+                                <a href="{{ route('sponsorship') }}">
+                                    <div class="bg-zinc-900 text-white dark:text-black dark:bg-zinc-100 font-medium h-full px-[5px] text-sm md:text-base lg:text-xl leading-10 md:leading-10 lg:leading-10">Scopri i vantaggi della sponsorizzazione
+                                        &rarr; <span class="ms-1 text-yellow-500 font-bold underline">Attiva ora!</span>
+                                    </div>
+                                </a>
+                            @endif
                         @endif
                     </div>
 
