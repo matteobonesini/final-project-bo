@@ -73,12 +73,24 @@ class SponsorshipController extends Controller
         ];
         $tierDuration = ($duration[$data['amount']]) * 3600;
         date_default_timezone_set('Europe/Rome');
-        $developer->sponsorships()->attach([
-            $index[$data['amount']] => [
-                'start_date' => date('Y-m-d G:i:s'),
-                'expire_date' => date('Y-m-d G:i:s', time() + $tierDuration ),
-            ]
-        ]);
+        if($developer->active_sponsorship) {
+            $start_date = $developer->sponsorship_expire_date;
+            $start_date_unix = strtotime($start_date);
+            $expire_date = $start_date_unix + $tierDuration;
+            $developer->sponsorships()->attach([
+                $index[$data['amount']] => [
+                    'start_date' => $start_date,
+                    'expire_date' => date('Y-m-d G:i:s', $expire_date),
+                ]
+            ]);
+        } else {
+            $developer->sponsorships()->attach([
+                $index[$data['amount']] => [
+                    'start_date' => date('Y-m-d G:i:s'),
+                    'expire_date' => date('Y-m-d G:i:s', time() + $tierDuration ),
+                ]
+            ]);
+        }
 
         $braintree = config('braintree');
 

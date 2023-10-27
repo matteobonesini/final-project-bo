@@ -52,7 +52,7 @@ class ReviewSeeder extends Seeder
         $count = count($data);
         for ($i=1; $i <= $count; $i++) { 
             for ($j=0; $j < rand(1, 30); $j++) { 
-                $create_date = fake()->dateTimeThisDecade();
+                $create_date = fake()->dateTimeBetween('-8 month', '0 second');
                 $update_date = $create_date;
 
                 $review = new Review();
@@ -67,8 +67,8 @@ class ReviewSeeder extends Seeder
                 $vote = rand(3, 5);
                 $developer->votes()->attach([
                     $vote => [
-                        'created_at' => fake()->dateTimeBetween('now', 'now'),
-                        'updated_at' => fake()->dateTimeBetween('now', 'now')
+                        'created_at' => $create_date,
+                        'updated_at' => $update_date
                     ]
                 ]
                 );

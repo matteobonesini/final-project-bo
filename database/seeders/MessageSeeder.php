@@ -35,7 +35,7 @@ class MessageSeeder extends Seeder
                 $message->email = fake()->email;
                 $message->title = fake()->catchPhrase;
                 $message->content = fake()->randomElement($messagesContent);
-                $message->created_at = fake()->dateTimeBetween('-4 month', '0 second');;
+                $message->created_at = fake()->dateTimeBetween('-8 month', '0 second');
                 $message->updated_at = $message->created_at;
                 $message->save();
             }

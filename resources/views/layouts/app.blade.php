@@ -24,8 +24,8 @@
                 @include('partials.aside')
     
                 <div class="w-full h-full">
-                    <div class="h-[--sponsorship-banner-height-mobile] sm:h-[--sponsorship-banner-height] text-center">
-                        @if (isset($developer))    
+                    @if (isset($developer))    
+                        <div class="h-[--sponsorship-banner-height-mobile] sm:h-[--sponsorship-banner-height] text-center">
                             @if ($developer->active_sponsorship)
                                 <a href="{{ route('sponsorship') }}">
                                     <div class="bg-amber-300 text-yellow-800 font-medium h-full px-[5px] text-sm md:text-base lg:text-xl leading-10 md:leading-10 lg:leading-10"><span class="underline">Rinnova Sponsorizzazione!</span>
@@ -50,12 +50,16 @@
                                     </div>
                                 </a>
                             @endif
-                        @endif
-                    </div>
-
-                    <div class="h-[calc(100%_-_var(--sponsorship-banner-height-mobile))] md:h-[calc(100%_-_var(--sponsorship-banner-height))]">
+                        </div>
+                        <div class="h-[calc(100%_-_var(--sponsorship-banner-height-mobile))] md:h-[calc(100%_-_var(--sponsorship-banner-height))]">
+                            @yield('main-content')
+                        </div>
+                    @else 
+                    <div class="h-full">
                         @yield('main-content')
                     </div>
+                    @endif
+
                     
                 </div>
 
