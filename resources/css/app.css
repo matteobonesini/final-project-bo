@@ -4,6 +4,7 @@
 
 ::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -70,7 +71,8 @@
     }
 
     .btn-primary {
-        @apply bg-[--primary] dark:bg-[--dark-primary] py-2 px-6 rounded-xl dark:text-[--dark-text] text-[--dark-text] transition-all;
+        @apply bg-[--primary] dark:bg-[--dark-primary] py-2 px-6 rounded-xl transition-all text-black;
+        
     }
     .btn:hover,
     .btn-primary:hover,
@@ -97,7 +99,7 @@
     }
 
     .form-container {
-        @apply dark:bg-slate-800 bg-slate-200 p-10 rounded-xl;
+        @apply dark:bg-[--dark-secondary] bg-slate-200 p-10 rounded-xl;
     }
 
     .form-row {

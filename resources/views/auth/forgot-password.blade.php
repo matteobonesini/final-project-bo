@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('main-content')
-    <div class="mb-4 text-sm text-gray-600">
+    <div class="mb-4 text-sm text-gray-600 dark:text-white text-center">
         {{ __('Avete dimenticato la password? Nessun problema. Comunicateci il vostro indirizzo e-mail e vi invieremo un link per reimpostare la password che vi permetterà di sceglierne una nuova.') }}
     </div>
 
@@ -26,7 +26,7 @@
             </div>
         </div>
         
-        <div class="flex flex-col-reverse md:flex-row md:items-center justify-start justify-between space-y-5 md:space-y-0 space-y-reverse mt-5">
+        <div class="flex flex-col-reverse md:flex-row md:items-center justify-start space-y-5 md:space-y-0 space-y-reverse mt-5">
             <button class="btn-primary">Link per la reimpostazione della password via e-mail</button>
         </div>
 
