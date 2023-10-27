@@ -13,21 +13,18 @@
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <div class="hidden md:flex items-center flex-row space-x-5 mt-0 border-0 dark:border-gray-700">
             @if (isset($developer))
-                <a class="flex items-center gap-2" href="{{ route('sponsorship') }}">
-                    <button class="bg-amber-300 rounded-xl py-2 px-6 hover:scale-105 transition-all font-bold">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-                        </svg>
-                        <span class="hidden lg:inline-block">Acquista o estendi sponsorizzazione</span>
+                <a href="http://localhost:5173">
+                    <button class="btn bg-sky-800 text-[--dark-text] btn-shadow md:inline-block">
+                        Pagina Iniziale
                     </button>
                 </a>
                 <a href="{{ route('developer.show', ['developer' => $developer->id]) }}">
-                    <button class="btn btn-accent text-[--text] dark:text-[--dark-text] btn-shadow md:inline-block">
+                    <button class="btn btn-accent text-[--dark-text] btn-shadow md:inline-block">
                         Mostra Profilo
                     </button>
                 </a>
                 <a href="{{ route('developer.edit', ['developer' => $developer->id]) }}">
-                    <button class="btn-secondary md:inline-block">
+                    <button class="btn btn-secondary md:inline-block">
                         Modifica Profilo
                     </button>
                 </a>
