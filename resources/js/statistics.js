@@ -827,7 +827,6 @@ const reviewFilter = document.getElementById('review-select');
 console.log(reviewFilter.value)
 let reviewsGraphData = graphDataCreate(reviewFilter, reviewData, reviewsArr);
 
-
 reviewFilter.addEventListener('change', () => {
 	reviewsGraphData = graphDataCreate(reviewFilter, reviewData, reviewsArr);
 	console.log('cambio di stato')
@@ -1172,7 +1171,6 @@ const votesFilter = document.getElementById('vote-select');
 console.log(votesFilter.value)
 let votesGraphData = graphDataCreate(votesFilter, votesData, votesArr);
 
-
 votesFilter.addEventListener('change', () => {
 	votesGraphData = graphDataCreate(votesFilter, votesData, votesArr);
 	console.log('cambio di stato')
@@ -1195,7 +1193,7 @@ votesFilter.addEventListener('change', () => {
 							{
 								label: 'Voti ricevuti',
 								data: votesGraphData[1],
-								backgroundColor: '#1dbf73',
+								backgroundColor: '#1A3B03',
 							}
 						],
 					},
