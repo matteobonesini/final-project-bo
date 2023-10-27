@@ -38,44 +38,17 @@
     --sponsorship-banner-height-mobile: 80px;
 }
 
-/* .btn-darkshadow:hover {
-    -webkit-box-shadow: 0px 0px 15px 0px #000000;
-    box-shadow: 0px 0px 15px 0px #000000;
-}
-.btn-lightshadow:hover {
-    -webkit-box-shadow: 0px 0px 15px 0px #ffffff;
-    box-shadow: 0px 0px 15px 0px #ffffff;
-} */
-
-.btn-primary {
+.btn:hover {
     -webkit-box-shadow: 0px 0px 15px 0px #5d7083;
     box-shadow: 0px 0px 15px 0px #5d7083;
 }
-/* .btn-primary:hover {
-    -webkit-box-shadow: 0px 0px 15px 0px #40e297;
-    box-shadow: 0px 0px 15px 0px #40e297;
-} */
 
-.btn-secondary {
-    -webkit-box-shadow: 0px 0px 15px 0px #5d7083;
-    box-shadow: 0px 0px 15px 0px #5d7083;
+.dark-shadow {
+    box-shadow: 0px 0px 10px 0px var(--accent);
 }
-/* .btn-secondary:hover {
-    -webkit-box-shadow: 0px 0px 15px 0px var(--primary);
-    box-shadow: 0px 0px 15px 0px var(--primary);
-} */
 
-.btn-accent {
-    -webkit-box-shadow: 0px 0px 15px 0px #5d7083;
-    box-shadow: 0px 0px 15px 0px #5d7083;
-}
-/* .btn-accent:hover {
-    -webkit-box-shadow: 0px 0px 15px 0px #7c8fa2;
-    box-shadow: 0px 0px 15px 0px #7c8fa2;
-} */
-
-.custom-shadow {
-    box-shadow: 5px 5px 15px 0px var(--text);
+.light-shadow {
+    box-shadow: 0px 0px 10px 0px var(--dark-accent);
 }
 
 .bg-shapeline {
