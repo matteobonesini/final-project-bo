@@ -13,8 +13,10 @@
                     </p>
                 </div>
             </div>
+            
             @if ($developer)
                 @if (count($developer->votes) === 0 || $developer->votes === null)
+                
                     <div class="group">
                         <h2 class="text-center font-bold text-2xl text-[--text] dark:text-[--dark-text]">
                             Al momento non ci sono contenuti da mostrare

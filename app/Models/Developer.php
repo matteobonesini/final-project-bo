@@ -84,7 +84,7 @@ class Developer extends Model
     }
 
     public function votes() {
-        return $this->belongsToMany(Vote::class)->withPivot('id');
+        return $this->belongsToMany(Vote::class)->withPivot('id', 'created_at');
     }
 
     public function work_fields() {

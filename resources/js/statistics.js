@@ -36,7 +36,6 @@ function getMessageData(entity){
 			]
 		}
 	];
-	let arrayCounter = 0;
 	let year;
 	let month;
 	let day;
@@ -62,7 +61,7 @@ function getMessageData(entity){
 		} 
 		console.log(years)
 		console.log('messaggi in array',totalMessages ,'entità messaggi', entity.length);
-		console.log('index',i,'counter', arrayCounter);
+		console.log('index',i);
 		const element = entity[i];
 		console.log(element)
 		
@@ -70,19 +69,9 @@ function getMessageData(entity){
 			year = new Date(element.created_at).getFullYear();
 			month = new Date(element.created_at).toLocaleString('en', { month: 'long' });
 			day = new Date(element.created_at).toLocaleString('en', { day: 'numeric' });
-			// function addHours() {
-			// 	hour = new Date(element.created_at);
-			// 	hour.setTime(hour.getTime() + (2*60*60*1000));
-			// 	hour = new Date(hour).toLocaleTimeString();
-			// 	return hour;
-			// }
-			// addHours();
-			hour = new Date(element.created_at).getHours();
+			hour = new Date(element.created_at).getUTCHours();
 			console.log(year, month, day, hour)
 			
-			const arrayYear = years[arrayCounter];
-			if(arrayYear != undefined){console.log(arrayYear.name, year)};
-
 			// IF the name of the first object in array 'years' is empty
 			if (years[0].name == '') {
 				console.log('inserisco il primo oggetto');
@@ -126,34 +115,35 @@ function getMessageData(entity){
 									console.log('nomi mese uguali')
 									for (let n = 0; n < singleMonth.days.length; n++) {
 										const singleDay = singleMonth.days[n];
-
+										console.log(singleDay.name, day, singleDay.name == day)
 										if (singleDay.name == day ) {
 											console.log('nomi giorno uguali')
 											for (let m = 0; m < singleDay.hours.length; m++) {
 												const singleHour = singleDay.hours[m];
-
+												console.log(singleHour.name, hour, singleHour.name == hour)
 												if (singleHour.name == hour) {
-													console.log('ora uguale')
+													console.log('ora uguale',singleHour.items)
 													singleHour.items ++;
 													singleMonth.items ++;
 													singleYear.items ++;
+													console.log(singleHour.items)
 
 													singleHour.average = singleHour.items / 24;
 													singleDay.average = singleDay.items / 7;
 													singleMonth.average = singleMonth.items / 30;
 													singleYear.average = singleYear.items / 365;
 
-													break block1;
+													break;
 												}
 												else if(singleHour.name != hour && m == singleDay.hours.length -1) {
-													console.log('aggiungo nuovo')
+													console.log('aggiungo nuova ora')
 													singleDay.hours.push(
 														{
 															name: hour,
 															items: 1,
 														}
 													)
-													
+													singleDay.items ++;
 													singleMonth.items ++;
 													singleYear.items ++;
 												}
@@ -161,6 +151,7 @@ function getMessageData(entity){
 											}
 										}
 										else if(singleDay.name != day && n == singleMonth.days.length -1){
+											console.log('aggiungo nuovo giorno')
 											singleMonth.days.push(
 												{
 													name:day,
@@ -173,10 +164,14 @@ function getMessageData(entity){
 													]
 												}
 											)
+											singleYear.items ++;
+											singleMonth.items ++;
+											break block1;
 										}
 									}
 								}
 								else if(singleMonth.name != month && b == singleYear.months.length -1){
+									console.log('aggiungo nuovo mese')
 									singleYear.months.push(
 										{
 											name: month,
@@ -195,6 +190,8 @@ function getMessageData(entity){
 											]
 										}
 									)
+									singleYear.items ++;
+									break;
 								}
 							}
 						}
@@ -222,8 +219,6 @@ function getMessageData(entity){
 									}
 								],
 							});
-							arrayCounter++;
-							break;
 						}
 					}
 					
@@ -260,9 +255,12 @@ function graphDataCreate(selectFilter, data, dataArray){
 					const month = element.months[l];
 					graphDataLabel.push(month.name)
 					graphDataNumbers.push(month.items)
+					console.log(month.items)
 				}
 			}
 		}
+		console.log(graphDataLabel,graphDataNumbers)
+		
 	};
 
 	// Select filter '6 months'
@@ -341,31 +339,30 @@ function graphDataCreate(selectFilter, data, dataArray){
 		const monthsResult = getPreviousMonths(monthsArray, date);
 
 		const now = new Date(Date.now()).getFullYear();
-		console.log('hello')
+		console.log('hello', data[0])
 
-		for (let ind = 0; ind < data.length; ind++) {
-			const element = data[ind];
-			// take the current year obj
-			if(element.name == now){
+		for (let ind = 0; ind < data[0].months.length -1; ind++) {
+			const singleMonth = data[0].months[ind];
+			console.log(data, )
+			if(data != undefined){
+				// take the current year obj
+				if(data[0].name == now){
 
-				console.log('year exist',element)
+					console.log('anno attuale', data[0].name)
 
-				// transform the months in the array 'monthsResult' from number to name
-				let selectedMonths = [];
-				for (let iter = 0; iter < 3; iter++) {
-
-					let selectMonth = Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(`${monthsResult[iter]}`));
-					selectedMonths.push(selectMonth);
-				}
-				console.log(selectedMonths)
-				// for the current month and the 2 before
-				for (let iter = 0; iter < 3; iter++) {
-					const singleMonth = element.months[iter];
-					console.log(singleMonth)
-					// IF there is a message with the same month name put in array 'graphData'
+					// transform the months in the array 'monthsResult' from number to name
+					let selectedMonths = [];
+					// for the current month and the 2 before
+					for (let iter = 0; iter < 3; iter++) {
+						let selectMonth = Intl.DateTimeFormat('en', { month: 'long' }).format(new Date(`${monthsResult[iter]}`));
+						selectedMonths.push(selectMonth);
+					}
+					console.log(selectedMonths)
+						
 					if(singleMonth != undefined){
-						console.log('ingresso')
+						// IF there is a message with the same month name as monthsResult put in array 'graphData'
 						if (selectedMonths.includes(singleMonth.name)) {
+							console.log('entro i 3 mesi')
 							graphDataLabel.push(singleMonth.name);
 							graphDataNumbers.push(singleMonth.items);
 							console.log(graphDataLabel, graphDataNumbers);
@@ -596,8 +593,7 @@ else{
  
 //---------------------------------------------
 // Reviews 
-
-function getRewiewsData(entity){
+function getReviewsData(entity){
 	const years = [
 		{
 			name: '',
@@ -626,7 +622,6 @@ function getRewiewsData(entity){
 			]
 		}
 	];
-	let arrayCounter = 0;
 	let year;
 	let month;
 	let day;
@@ -652,7 +647,7 @@ function getRewiewsData(entity){
 		} 
 		console.log(years)
 		console.log('recensioni in array',totalReviews ,'entità recensioni', entity.length);
-		console.log('index',i,'counter', arrayCounter);
+		console.log('index',i);
 		const element = entity[i];
 		console.log(element)
 		
@@ -660,12 +655,9 @@ function getRewiewsData(entity){
 			year = new Date(element.created_at).getFullYear();
 			month = new Date(element.created_at).toLocaleString('en', { month: 'long' });
 			day = new Date(element.created_at).toLocaleString('en', { day: 'numeric' });
-			hour + new Date(element.created_at).getHours();
+			hour = new Date(element.created_at).getUTCHours();
 			console.log(year, month, day, hour)
 			
-			const arrayYear = years[arrayCounter];
-			if(arrayYear != undefined){console.log(arrayYear.name, year)};
-
 			// IF the name of the first object in array 'years' is empty
 			if (years[0].name == '') {
 				console.log('inserisco il primo oggetto');
@@ -691,7 +683,7 @@ function getRewiewsData(entity){
 						}
 					],
 				};
-				console.log('totale messaggi',totalReviews)
+				console.log('totale recensioni',totalReviews)
 			}
 			else{
 				block1: for (let index = 0; index <= years.length; index++) {
@@ -709,34 +701,35 @@ function getRewiewsData(entity){
 									console.log('nomi mese uguali')
 									for (let n = 0; n < singleMonth.days.length; n++) {
 										const singleDay = singleMonth.days[n];
-
+										console.log(singleDay.name, day, singleDay.name == day)
 										if (singleDay.name == day ) {
 											console.log('nomi giorno uguali')
 											for (let m = 0; m < singleDay.hours.length; m++) {
 												const singleHour = singleDay.hours[m];
-
+												console.log(singleHour.name, hour, singleHour.name == hour)
 												if (singleHour.name == hour) {
-													console.log('ora uguale')
+													console.log('ora uguale',singleHour.items)
 													singleHour.items ++;
 													singleMonth.items ++;
 													singleYear.items ++;
+													console.log(singleHour.items)
 
 													singleHour.average = singleHour.items / 24;
 													singleDay.average = singleDay.items / 7;
 													singleMonth.average = singleMonth.items / 30;
 													singleYear.average = singleYear.items / 365;
 
-													break block1;
+													break;
 												}
 												else if(singleHour.name != hour && m == singleDay.hours.length -1) {
-													console.log('aggiungo nuovo')
+													console.log('aggiungo nuova ora')
 													singleDay.hours.push(
 														{
 															name: hour,
 															items: 1,
 														}
 													)
-													
+													singleDay.items ++;
 													singleMonth.items ++;
 													singleYear.items ++;
 												}
@@ -744,6 +737,7 @@ function getRewiewsData(entity){
 											}
 										}
 										else if(singleDay.name != day && n == singleMonth.days.length -1){
+											console.log('aggiungo nuovo giorno')
 											singleMonth.days.push(
 												{
 													name:day,
@@ -756,10 +750,14 @@ function getRewiewsData(entity){
 													]
 												}
 											)
+											singleYear.items ++;
+											singleMonth.items ++;
+											break block1;
 										}
 									}
 								}
 								else if(singleMonth.name != month && b == singleYear.months.length -1){
+									console.log('aggiungo nuovo mese')
 									singleYear.months.push(
 										{
 											name: month,
@@ -778,6 +776,8 @@ function getRewiewsData(entity){
 											]
 										}
 									)
+									singleYear.items ++;
+									break;
 								}
 							}
 						}
@@ -805,8 +805,6 @@ function getRewiewsData(entity){
 									}
 								],
 							});
-							arrayCounter++;
-							break;
 						}
 					}
 					
@@ -821,7 +819,7 @@ function getRewiewsData(entity){
 	return years;
 };
 
-const reviewData = getRewiewsData(reviewsArr);
+const reviewData = getReviewsData(reviewsArr);
 let reviewGraph;
 const reviewFilter = document.getElementById('review-select');
 console.log(reviewFilter.value)
@@ -939,7 +937,6 @@ else{
 
 //---------------------------------------------
 // Votes
-
 function getVotesData(entity){
 	const years = [
 		{
@@ -969,7 +966,6 @@ function getVotesData(entity){
 			]
 		}
 	];
-	let arrayCounter = 0;
 	let year;
 	let month;
 	let day;
@@ -981,37 +977,31 @@ function getVotesData(entity){
 		totalVotes = 0;
 		for (let z = 0; z < years.length; z++) {
 			const year = years[z];
-			console.log('add-1')
 			for (let x = 0; x < year.months.length; x++) {
 				const month = year.months[x];
-				console.log('add-2')
 				for (let c = 0; c < month.days.length; c++) {
-					console.log('add-3')
 					const day = month.days[c];
 					for (let v = 0; v < day.hours.length; v++) {
 						const hour = day.hours[v];
-						totalVotes += hour.items;
-						console.log('add', totalVotes)
+						totalVotes ++;
+						console.log('add')
 					}
 				}
 			}
-		}
+		} 
 		console.log(years)
 		console.log('voti in array',totalVotes ,'entità voti', entity.length);
-		console.log('index',i,'counter', arrayCounter);
+		console.log('index',i);
 		const element = entity[i];
 		console.log(element)
 		
 		if(element != undefined){
-			year = new Date(element.created_at).getFullYear();
-			month = new Date(element.created_at).toLocaleString('en', { month: 'long' });
-			day = new Date(element.created_at).toLocaleString('en', { day: 'numeric' });
-			hour = new Date(element.created_at).getHours();
+			year = new Date(element.pivot.created_at).getFullYear();
+			month = new Date(element.pivot.created_at).toLocaleString('en', { month: 'long' });
+			day = new Date(element.pivot.created_at).toLocaleString('en', { day: 'numeric' });
+			hour = new Date(element.pivot.created_at).getUTCHours();
 			console.log(year, month, day, hour)
 			
-			const arrayYear = years[arrayCounter];
-			if(arrayYear != undefined){console.log(arrayYear.name, year)};
-
 			// IF the name of the first object in array 'years' is empty
 			if (years[0].name == '') {
 				console.log('inserisco il primo oggetto');
@@ -1037,6 +1027,7 @@ function getVotesData(entity){
 						}
 					],
 				};
+				console.log('totale voti',totalVotes)
 			}
 			else{
 				block1: for (let index = 0; index <= years.length; index++) {
@@ -1049,38 +1040,40 @@ function getVotesData(entity){
 							console.log('nomi anno uguali')
 							for (let b = 0; b < singleYear.months.length; b++) {
 								const singleMonth = singleYear.months[b];
+
 								if (singleMonth.name == month) {
 									console.log('nomi mese uguali')
 									for (let n = 0; n < singleMonth.days.length; n++) {
 										const singleDay = singleMonth.days[n];
-
+										console.log(singleDay.name, day, singleDay.name == day)
 										if (singleDay.name == day ) {
 											console.log('nomi giorno uguali')
 											for (let m = 0; m < singleDay.hours.length; m++) {
 												const singleHour = singleDay.hours[m];
-
+												console.log(singleHour.name, hour, singleHour.name == hour)
 												if (singleHour.name == hour) {
-													console.log('ora uguale')
+													console.log('ora uguale',singleHour.items)
 													singleHour.items ++;
 													singleMonth.items ++;
 													singleYear.items ++;
+													console.log(singleHour.items)
 
 													singleHour.average = singleHour.items / 24;
 													singleDay.average = singleDay.items / 7;
 													singleMonth.average = singleMonth.items / 30;
 													singleYear.average = singleYear.items / 365;
 
-													break block1;
+													break;
 												}
 												else if(singleHour.name != hour && m == singleDay.hours.length -1) {
-													console.log('aggiungo nuovo')
+													console.log('aggiungo nuova ora')
 													singleDay.hours.push(
 														{
 															name: hour,
 															items: 1,
 														}
 													)
-													
+													singleDay.items ++;
 													singleMonth.items ++;
 													singleYear.items ++;
 												}
@@ -1088,6 +1081,7 @@ function getVotesData(entity){
 											}
 										}
 										else if(singleDay.name != day && n == singleMonth.days.length -1){
+											console.log('aggiungo nuovo giorno')
 											singleMonth.days.push(
 												{
 													name:day,
@@ -1100,10 +1094,14 @@ function getVotesData(entity){
 													]
 												}
 											)
+											singleYear.items ++;
+											singleMonth.items ++;
+											break block1;
 										}
 									}
 								}
 								else if(singleMonth.name != month && b == singleYear.months.length -1){
+									console.log('aggiungo nuovo mese')
 									singleYear.months.push(
 										{
 											name: month,
@@ -1122,6 +1120,8 @@ function getVotesData(entity){
 											]
 										}
 									)
+									singleYear.items ++;
+									break;
 								}
 							}
 						}
@@ -1149,10 +1149,9 @@ function getVotesData(entity){
 									}
 								],
 							});
-							arrayCounter++;
-							break;
 						}
 					}
+					
 				}
 			}
 			console.log(years);
