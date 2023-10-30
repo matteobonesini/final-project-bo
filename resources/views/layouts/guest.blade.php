@@ -14,7 +14,7 @@
 
     <body class="h-screen overflow-hidden">
         @include('partials.headerGuest')
-        <main class="h-screen">
+        <main class="bg-slate-300 dark:bg-zinc-900 h-screen">
             <div class="w-full md:w-3/4 lg:w-4/6 mx-auto py-4 md:pt-10 px-4">
                 @yield('main-content')
             </div>
