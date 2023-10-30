@@ -1,5 +1,5 @@
 <nav class="bg-zinc-400 dark:bg-zinc-900 h-full flex items-center">
-    <div class="w-full flex flex-wrap md:flex-nowrap items-center justify-between px-10 py-4">
+    <div class="w-full flex flex-wrap md:flex-nowrap items-center justify-between p-2 sm:p-5 ">
         <a href="{{ route('dashboard') }}" class="flex items-center">
             <img src="/logo-hor-final.png" class="h-16 mr-3 w-48 object-cover" alt="BDeveloper Logo" />
         </a>
@@ -15,7 +15,7 @@
             @if (isset($developer))
                 <a href="http://localhost:5173">
                     <button class="btn bg-sky-800 text-[--dark-text] btn-shadow md:inline-block">
-                        Pagina Iniziale
+                        Profilo Pubblico
                     </button>
                 </a>
                 <a href="{{ route('developer.show', ['developer' => $developer->id]) }}">

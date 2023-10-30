@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main-content')
-<main class = "w-full h-full overflow-y-auto dark:bg-slate-900 dark:text-[--dark-text]">
+<main class = "w-full h-full overflow-y-auto dark:text-[--dark-text]">
     <div class="container mx-auto my-5 px-4">
         <h3 class="mb-8 text-4xl font-bold text-center">{{ Auth::user()->name }}</h3>
         @if ($errors->any())

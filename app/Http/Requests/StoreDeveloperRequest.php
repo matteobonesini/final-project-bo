@@ -23,7 +23,7 @@ class StoreDeveloperRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'experience_year' => 'nullable',
+            'experience_year' => 'nullable|max:2',
             'profile_picture' => 'nullable|max:255',
             'profile_description' => 'required',
             'address' => 'nullable|max:64',
