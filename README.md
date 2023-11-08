@@ -1,8 +1,6 @@
 # BDeveloper
 
-<div style="text-align: center">
-    <img src="./public/preview.png" alt="preview" width="500px"/>
-</div>
+![preview](./public/preview.png)
 
 Questo è BDeveloper, ovvero un sito che permette di cercare uno sviluppatore specializzato in un determinato ambito e chiedere un appuntamento. 
 
