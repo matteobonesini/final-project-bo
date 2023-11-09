@@ -9,15 +9,18 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
           </svg>
       </button>
-      
+
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <div class="hidden md:flex items-center flex-row space-x-5 mt-0 border-0 dark:border-gray-700">
+            <button class="btn bg-sky-800 text-[--dark-text] btn-shadow md:inline-block" onclick="changeTheme()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6 inline-block align-middle">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                </svg>
+                <span id="themeStatus" class="align-middle ml-1">Auto</span>
+            </button>
             @if (isset($developer))
-                <a href="http://localhost:5173">
-                    <button class="btn bg-sky-800 text-[--dark-text] btn-shadow md:inline-block">
-                        Profilo Pubblico
-                    </button>
-                </a>
                 <a href="{{ route('developer.show', ['developer' => $developer->id]) }}">
                     <button class="btn btn-accent text-[--dark-text] btn-shadow md:inline-block">
                         Mostra Profilo
@@ -36,7 +39,7 @@
                         </button>
                     </a>
                 </div>
-            @endif  
+            @endif
         </div>
         <div class="block md:hidden text-white pt-10">
             <ul>
@@ -54,9 +57,54 @@
                 <li>
                     <a href="{{ route('developer.create') }}">Crea Profilo</a>
                 </li>
-                @endif 
+                @endif
             </ul>
         </div>
     </div>
-
 </nav>
+
+<script>
+    let themeStatus = document.getElementById('themeStatus');
+
+    // set initial theme
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
+    }
+
+    // set initial theme status on button 
+    switch (localStorage.theme) {
+            case 'light':
+                themeStatus.innerHTML = 'Chiaro';
+                break;
+            case 'dark':
+                themeStatus.innerHTML = 'Scuro';
+                break;
+            default:
+                themeStatus.innerHTML = 'Auto';
+        }
+
+    function changeTheme() {
+        switch (localStorage.theme) {
+            case 'light':
+                localStorage.theme = 'dark';
+                document.documentElement.classList.add('dark')
+                themeStatus.innerHTML = 'Scuro';
+                break;
+            case 'dark':
+                localStorage.removeItem('theme');
+                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark')
+                } else {
+                    document.documentElement.classList.remove('dark')
+                }
+                themeStatus.innerHTML = 'Auto';
+                break;
+            default:
+                localStorage.theme = 'light';
+                document.documentElement.classList.remove('dark')
+                themeStatus.innerHTML = 'Chiaro';
+        }
+    }
+</script>

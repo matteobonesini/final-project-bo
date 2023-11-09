@@ -8,9 +8,7 @@ export default {
         './storage/framework/views/*.php',
         './storage/framework/views/*.blade.php',
         './resources/views/**/*.blade.php',
-        './node_modules/flowbite/**/*.js'
     ],
-
     theme: {
         extend: {
             fontFamily: {
@@ -18,8 +16,8 @@ export default {
             },
         },
     },
-
     plugins: [
         forms,
     ],
+    darkMode: 'class',
 };
