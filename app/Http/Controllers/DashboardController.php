@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 // Models
 use App\Models\Developer;
-
+use App\Models\User;
 // Facades
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index(){
-        $devId = Auth::id();
+        $devId = User::findOrFail(Auth::id())->developer->user_id;
         $developer = Developer::where('user_id', '=', $devId)->with('reviews', 'messages', 'votes')->first();
         if(isset($developer)) {
             $messages = $developer->messages->sortByDesc('id')->take(5)->values();

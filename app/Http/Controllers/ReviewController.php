@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 // Models
 use App\Models\Developer;
 use App\Models\Review;
+use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +31,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $devId = Auth::id();
+        $devId = User::findOrFail(Auth::id())->developer->user_id;
         $developer = Developer::where('user_id', '=', $devId)->first();
         $votes = $developer->votes->sort(function($a, $b) {
             if($a->pivot->id > $b->pivot->id) {
