@@ -71,7 +71,7 @@
     }
 
     .btn-primary {
-        @apply bg-[--primary] dark:bg-[--dark-primary] py-2 px-6 rounded-xl transition-all text-black;
+        @apply bg-[--primary] dark:bg-[--dark-primary] py-2 px-6 rounded-xl transition-all text-white dark:text-black;
         
     }
     .btn:hover,
