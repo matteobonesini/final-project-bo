@@ -19,7 +19,7 @@
                 @include('partials.header')
             </header>
 
-            <main class="flex h-[calc(100vh_-_74px)] bg-zinc-50 bg-opacity-50 bg-blend-color-dodge dark:bg-blend-multiply bg-black-pattern dark:bg-zinc-950">
+            <main class="flex h-[calc(100vh_-_74px)] bg-zinc-50 bg-opacity-50 dark:bg-blend-multiply dark:bg-zinc-950">
     
                 @include('partials.aside')
     

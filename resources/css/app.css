@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: var(--secondary);
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: var(--primary);
-}
 
 :root {
     --text: #080a0c;
@@ -50,18 +37,6 @@
 
 .light-shadow {
     box-shadow: 0px 0px 10px 0px var(--dark-accent);
-}
-
-.bg-shapeline {
-    background-image: url("/resources/images/subtle-prism.svg");
-    background-position: center;
-}
-
-.bg-black-pattern {
-    background-image: url("/resources/images/bg-pattern-black.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 @layer components {

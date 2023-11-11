@@ -12,8 +12,7 @@ class SponsorshipController extends Controller
 {
     public function index()
     {
-        $userId = Auth::id();
-        // dd(User::find($userId)->developer->id);
+        $userId = User::find(Auth::id())->developer->id;
         $developer = Developer::find($userId);
         $sponsorships = Sponsorship::all();
 
