@@ -35,7 +35,8 @@
             
         </section>
     </main> 
-    
+
+    @vite('resources/js/statistics.js')
     <script>
         let messagesArr = {!! json_encode($messagesDataChart) !!};
         let reviewsArr = {!! json_encode($reviewsDataChart) !!};
